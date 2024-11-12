@@ -1,0 +1,203 @@
+.profileContainer {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.title {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #000;
+}
+
+.profileInfo {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.profileInfo p {
+    margin: 15px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.profileInfo strong {
+    display: inline-block;
+    width: 120px;
+    color: #333;
+}
+
+.form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+    border-color: #000;
+    outline: none;
+}
+
+.addressList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.addressCard {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.addressCard:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.addressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.defaultBadge {
+    background: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.addressActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.actionButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.editButton {
+    background: #000;
+    color: white;
+}
+
+.deleteButton {
+    background: #dc3545;
+    color: white;
+}
+
+.defaultButton {
+    background: #4CAF50;
+    color: white;
+}
+
+.submitButton,
+.cancelButton {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.submitButton {
+    background: #000;
+    color: white;
+    margin-right: 10px;
+}
+
+.cancelButton {
+    background: #6c757d;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .profileContainer {
+        padding: 15px;
+        margin: 20px;
+    }
+
+    .addressList {
+        grid-template-columns: 1fr;
+    }
+
+    .formGroup input,
+    .formGroup select {
+        padding: 10px;
+    }
+
+    .actionButton {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .profileInfo {
+        padding: 15px;
+    }
+
+    .profileInfo p {
+        font-size: 14px;
+    }
+
+    .formGroup label {
+        font-size: 14px;
+    }
+}
