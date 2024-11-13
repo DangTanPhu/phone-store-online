@@ -7,7 +7,7 @@ const authMiddleware = require('./middleware/authMiddleware');
 const adminMiddleware = require('./middleware/adminMiddleware');
 const cron = require('node-cron');
 const inventoryController = require('./controllers/inventoryController');
-const deliveryRoutes = require('./routes/deliveryRouter');
+const deliveryRoutes = require('./router/deliveryRouter');
    
 
 dotenv.config({path:'../.env'});
@@ -51,16 +51,16 @@ mongoose.connect(process.env.MONGODB_URI, {
 .catch((err) => console.error('MongoDB connection error:', err));
 
 // Import routes
-const authRoutes = require('./routes/auth');
-const productRoutes = require('./routes/products');
-const cartRoutes = require('./routes/cart');
+const authRoutes = require('./router/auth');
+const productRoutes = require('./router/products');
+const cartRoutes = require('./router/cart');
 //const userRoutes = require('./routes/user');
-const categoryRoutes = require('./routes/categories');
-const orderRoutes = require('./routes/orderRouter');
-const adminRoutes = require('./routes/adminRouter');
-const userRoutes = require('./routes/userRouter');
-const categoriesRoutes = require('./routes/categories');
-const addressRoutes = require('./routes/addressRouter');
+const categoryRoutes = require('./router/categories');
+const orderRoutes = require('./router/orderRouter');
+const adminRoutes = require('./router/adminRouter');
+const userRoutes = require('./router/userRouter');
+const categoriesRoutes = require('./router/categories');
+const addressRoutes = require('./router/addressRouter');
 
 // Đặt route admin trước các route khác
 app.use('/api/admin', authMiddleware, adminMiddleware, (req, res, next) => {
@@ -95,12 +95,12 @@ app.get('/api/categories/:slug/products', productController.getProductsByCategor
 
 app.get('/api/products/slug/:slug', productController.getProductBySlug);
 
-const inventoryRoutes = require('./routes/inventoryRouter');
+const inventoryRoutes = require('./router/inventoryRouter');
 
 // Thêm dòng này vào phần sử dụng routes
 app.use('/api/inventory', inventoryRoutes);
 
-const supplierRoutes = require('./routes/supplierRouter');
+const supplierRoutes = require('./router/supplierRouter');
 
 // Thêm dòng này vào phần khai báo routes
 app.use('/api/suppliers', supplierRoutes);
@@ -130,7 +130,7 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.use('/api', adminRoutes);
 
 // Add route for delivery management
-app.use('/api/admin/deliveries', require('./routes/deliveryRouter'));
+app.use('/api/admin/deliveries', require('./router/deliveryRouter'));
 app.use('/api/deliveries', deliveryRoutes);
 
 // Import cronJobs
