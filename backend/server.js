@@ -8,14 +8,10 @@ const adminMiddleware = require('./middleware/adminMiddleware');
 const cron = require('node-cron');
 const inventoryController = require('./controllers/inventoryController');
 const deliveryRoutes = require('./router/deliveryRouter');
-   
+
 
 dotenv.config({path:'../.env'});
-
-console.log('ADMIN_SECRET:', process.env.ADMIN_SECRET);
-
 const app = express();
-
 // Cấu hình CORS
 app.use(cors({
   origin: 'http://localhost:3000', // Thay đổi thành URL của frontend của bạn
