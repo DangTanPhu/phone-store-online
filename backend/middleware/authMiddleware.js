@@ -5,37 +5,25 @@ const authMiddleware = async (req, res, next) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
         
+        // Nếu bạn không muốn kiểm tra token, có thể bỏ qua phần này.
         if (!token) {
-            return res.status(401).json({ message: 'Không có token, quyền truy cập bị từ chối' });
+            // Bạn có thể trả về lỗi hoặc không làm gì tùy ý.
+            return next();
         }
 
+        // Nếu không cần xác minh token JWT, bạn có thể bỏ qua đoạn này.
+        // Nếu cần, có thể thêm phần xử lý riêng nếu token có mặt.
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.userId);
         
-        if (!user) {
-            return res.status(401).json({ message: 'Không tìm thấy người dùng' });
-        }
+        // Không cần kiểm tra trạng thái tài khoản nữa
+        // Nếu muốn có thông tin người dùng có thể lưu vào `req.user` để dùng ở các bước tiếp theo:
+        req.user = user || null;
 
-        // Kiểm tra trạng thái tài khoản
-        if (!user.isActive) {
-            return res.status(403).json({ 
-                message: 'Tài khoản của bạn đã bị khóa',
-                status: 'locked'
-            });
-        }
-
-        // Kiểm tra tài khoản có đang bị tạm khóa
-        if (user.isLocked) {
-            return res.status(403).json({
-                message: 'Tài khoản đang bị tạm khóa',
-                status: 'temporary_locked'
-            });
-        }
-
-        req.user = user;
         next();
     } catch (error) {
-        res.status(401).json({ message: 'Token không hợp lệ' });
+        // Nếu muốn bỏ qua phần này, chỉ cần gọi next mà không cần xử lý lỗi.
+        next();
     }
 };
 

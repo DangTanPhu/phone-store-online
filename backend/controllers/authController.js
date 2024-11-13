@@ -6,29 +6,33 @@ const { sendResetPasswordEmail } = require('../utils/emailService');
 
 exports.register = async (req, res) => {
   try {
-    const { username, email, password, role, adminSecret } = req.body;
-    console.log('Registration attempt:', { username, email, role, adminSecret });
+    const { username, email, password, role } = req.body;
+    console.log('Registration attempt:', { username, email, role });
 
+    // Kiểm tra người dùng đã tồn tại chưa
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    // Mặc định vai trò là 'user', nếu role === 'admin' thì chỉ cần tạo tài khoản admin
     let userRole = 'user';
     if (role === 'admin') {
-      if (adminSecret !== process.env.ADMIN_SECRET) {
-        return res.status(403).json({ message: 'Invalid admin secret' });
-      }
       userRole = 'admin';
     }
 
+    // Băm mật khẩu
     const hashedPassword = await bcrypt.hash(password, 12);
+    
+    // Tạo người dùng mới
     const user = new User({ 
       username, 
       email, 
       password: hashedPassword,
       role: userRole
     });
+    
+    // Lưu người dùng vào cơ sở dữ liệu
     await user.save();
     res.status(201).json({ message: 'User created successfully', role: userRole });
   } catch (error) {

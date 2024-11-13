@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
-const authMiddleware = require('../middleware/authMiddleware');
-const adminMiddleware = require('../middleware/adminMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 const Order = require('../models/Order');  
 const User = require('../models/User');
@@ -12,8 +10,9 @@ const supplierController = require('../controllers/supplierController');
 const Delivery = require('../models/Delivery');
 const voucherController = require('../controllers/voucherController');
 
-router.use(authMiddleware);
-router.use(adminMiddleware);
+// Nếu không muốn xác minh quyền từ admin, bạn có thể bỏ qua middleware auth và admin
+// router.use(authMiddleware); // Xóa dòng này
+// router.use(adminMiddleware); // Xóa dòng này
 
 // Quản lý sản phẩm
 router.get('/products', adminController.getAllProducts);
@@ -41,9 +40,9 @@ router.put('/products/update-stock', inventoryController.updateStock);
 // Quản lý đơn đặt hàng
 router.get('/purchase-orders', inventoryController.getPurchaseOrders);
 router.post('/purchase-orders', inventoryController.createPurchaseOrder);
-router.put('/purchase-orders/:id', authMiddleware, adminMiddleware, inventoryController.updatePurchaseOrder);
-router.get('/purchase-orders/:id/pdf', authMiddleware, adminMiddleware, inventoryController.generatePurchaseOrderPDF);
-router.get('/purchase-orders/:id/receipt-pdf', authMiddleware, adminMiddleware, inventoryController.generateReceiptConfirmationPDF);
+router.put('/purchase-orders/:id', inventoryController.updatePurchaseOrder);
+router.get('/purchase-orders/:id/pdf', inventoryController.generatePurchaseOrderPDF);
+router.get('/purchase-orders/:id/receipt-pdf', inventoryController.generateReceiptConfirmationPDF);
 
 // Kiểm tra hàng tồn kho thấp
 router.post('/check-low-stock', inventoryController.manualCheckLowStock);
@@ -54,14 +53,15 @@ router.post('/suppliers', supplierController.createSupplier);
 router.put('/suppliers/:id', supplierController.updateSupplier);
 router.delete('/suppliers/:id', supplierController.deleteSupplier);
 
-router.get('/statistics/download', adminMiddleware, adminController.downloadStatisticsReport);
+router.get('/statistics/download', adminController.downloadStatisticsReport);
+
 // Quản lý voucher
 router.post('/vouchers', adminController.createVoucher);
-router.get('/vouchers', authMiddleware, adminMiddleware, adminController.getAllVouchers);
+router.get('/vouchers', adminController.getAllVouchers);
 router.put('/vouchers/:id', adminController.updateVoucher);
 router.delete('/vouchers/:id', adminController.deleteVoucher);
 
-router.put('/purchase-orders/:id/confirm-receipt', authMiddleware, adminMiddleware, inventoryController.confirmReceiptAndUpdateInventory);
+router.put('/purchase-orders/:id/confirm-receipt', inventoryController.confirmReceiptAndUpdateInventory);
 
 router.put('/deliveries/:id', async (req, res) => {
   try {
