@@ -93,7 +93,6 @@ exports.getAllUsers = async (req, res) => {
     res.status(500).json({ message: 'Lỗi khi lấy danh sách người dùng' });
   }
 };
-
 exports.updateUserStatus = async (req, res) => {
   try {
     const { id } = req.params;
@@ -489,4 +488,3 @@ exports.downloadStatisticsReport = async (req, res) => {
     }
   }
 };
-

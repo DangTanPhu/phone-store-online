@@ -1,5 +1,5 @@
-const PDFDocument = require('pdfkit');
-const path = require('path');
+// const PDFDocument = require('pdfkit');
+// const path = require('path');
 
 function createPurchaseOrderPDF(purchaseOrder, res, userName) {
   const doc = new PDFDocument({

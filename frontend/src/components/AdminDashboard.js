@@ -14,7 +14,7 @@ const AdminDashboard = () => {
     if (!user || user.role !== 'admin') {
       navigate('/login');
     }
-  }, [user, navigate]);
+  }, [user, navigate]); 
 
   if (!user || user.role !== 'admin') {
     return null;

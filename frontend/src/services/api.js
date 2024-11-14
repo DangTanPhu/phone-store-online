@@ -1,11 +1,12 @@
 /* eslint-disable unicode-bom */
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5001/api'; // Đảm bảo port này khớp với port của backend
+const API_URL = 'http://localhost:7070/api'; // Đảm bảo port này khớp với port của backend
 
 // Tạo một instance của axios với cấu hình mặc định
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/api`,
+  baseURL:`${API_URL}`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -40,7 +41,7 @@ api.interceptors.response.use(
 );
 
 // Danh sách c c endpoint không cần xác thực
-const publicEndpoints = ['/products', '/categories', '/products/category'];
+const publicEndpoints = ['/products', '/categories', '/products/categories'];
 
 // Hàm để set token vào header của mọi request
 export const setAuthToken = (token) => {
@@ -616,4 +617,3 @@ export const cancelOrder = async (orderId) => {
 };
 
 export default api;
-

@@ -95,7 +95,6 @@ router.post('/add', authMiddleware, async (req, res) => {
     cart.finalAmount = totalAmount + 30000; // Cộng phí ship
 
     await cart.save();
-
     res.status(200).json({
       message: 'Sản phẩm đã được thêm vào giỏ hàng',
       cart: {
@@ -114,6 +113,97 @@ router.post('/add', authMiddleware, async (req, res) => {
     });
   }
 });
+// Add item to cart
+// router.post('/add', async (req, res) => {
+//   try {
+//     const { productId, quantity, size, color } = req.body;
+//     const userId = req.user._id;
+
+//     // Tìm sản phẩm
+//     const product = await Product.findById(productId);
+//     if (!product) {
+//       return res.status(404).json({ message: 'Không tìm thấy sản phẩm' });
+//     }
+
+//     // Kiểm tra số lượng tồn kho
+//     if (product.stock < quantity) {
+//       return res.status(400).json({ 
+//         message: `Số lượng yêu cầu (${quantity}) vượt quá số lượng trong kho (${product.stock})`
+//       });
+//     }
+
+//     // Tìm hoặc tạo giỏ hàng
+//     let cart = await Cart.findOne({ user: userId });
+//     if (!cart) {
+//       cart = new Cart({ 
+//         user: userId, 
+//         items: [],
+//         voucher: null,
+//         discountAmount: 0
+//       });
+//     }
+
+//     // Reset voucher
+//     cart.voucher = null;
+//     cart.discountAmount = 0;
+
+//     // Xử lý thêm sản phẩm
+//     const existingItemIndex = cart.items.findIndex(
+//       item => item.product.toString() === productId && 
+//       item.size === size && 
+//       item.color === color
+//     );
+
+//     // Kiểm tra tổng số lượng khi thêm vào giỏ hàng
+//     const newQuantity = existingItemIndex > -1 
+//       ? cart.items[existingItemIndex].quantity + quantity
+//       : quantity;
+
+//     if (product.stock < newQuantity) {
+//       return res.status(400).json({
+//         message: `Tổng số lượng yêu cầu (${newQuantity}) vượt quá số lượng trong kho (${product.stock})`
+//       });
+//     }
+
+//     // Cập nhật hoặc thêm mới vào giỏ hàng
+//     if (existingItemIndex > -1) {
+//       cart.items[existingItemIndex].quantity = newQuantity;
+//     } else {
+//       cart.items.push({ 
+//         product: productId, 
+//         quantity, 
+//         size, 
+//         color
+//       });
+//     }
+
+//     // Tính lại tổng tiền
+//     await cart.populate('items.product');
+//     const totalAmount = cart.items.reduce((sum, item) => 
+//       sum + (item.product.price * item.quantity), 0
+//     );
+//     cart.finalAmount = totalAmount + 30000; // Cộng phí ship
+
+//     await cart.save();
+
+//     res.status(200).json({
+//       message: 'Sản phẩm đã được thêm vào giỏ hàng',
+//       cart: {
+//         items: cart.items,
+//         finalAmount: cart.finalAmount,
+//         discountAmount: 0,
+//         voucher: null
+//       }
+//     });
+
+//   } catch (error) {
+//     console.error('Error adding to cart:', error);
+//     res.status(500).json({ 
+//       message: 'Lỗi khi thêm sản phẩm vào giỏ hàng', 
+//       error: error.message 
+//     });
+//   }
+// });
 
 // Remove item from cart
 router.delete('/remove/:productId', async (req, res) => {
@@ -301,7 +391,7 @@ router.put('/update/:itemId', async (req, res) => {
     }
 
     if (quantity && quantity > product.stock) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: `Chỉ còn ${product.stock} sản phẩm trong kho`,
         availableStock: product.stock
       });
@@ -443,5 +533,6 @@ router.post('/clear', async (req, res) => {
 });
 
 router.post('/remove-voucher', authMiddleware, voucherController.removeVoucher);
-
+// router.post('/remove-voucher', voucherController.removeVoucher);
+// 
 module.exports = router;

@@ -14,26 +14,28 @@ const Login = () => {
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await apiLogin(email, password);
-      if (response.data.token) {
-        const userData = {
-          ...response.data.user,
-          token: response.data.token
-        };
-        await login(userData);
-        if (userData.role === 'admin') {
-          navigate('/admin/statistics');
-        } else {
-          navigate('/dashboard');
-        }
+  e.preventDefault();
+  try {
+    const response = await apiLogin(email, password);
+    console.log(response); // Check the response here
+    if (response.data.token) {
+      const userData = {
+        ...response.data.user,
+        token: response.data.token
+      };
+      await login(userData);
+      if (userData.role === 'admin') {
+        navigate('/admin/statistics');
+      } else {
+        navigate('/dashboard');
       }
-    } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Đăng nhập thất bại';
-      toast.error(errorMessage);
     }
-  };
+  } catch (err) {
+    console.error(err); // Log the error for debugging
+    const errorMessage = err.response?.data?.message || 'Đăng nhập thất bại';
+    toast.error(errorMessage);
+  }
+};
 
   const handleGoogleLogin = useCallback(async () => {
     try {
