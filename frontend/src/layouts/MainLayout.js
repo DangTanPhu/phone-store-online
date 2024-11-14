@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
   return (
     <div className={styles.layout}>
       <Header onMenuToggle={toggleMenu} />
-      <div className={styles.divider}></div>
+      {/* <div className={styles.divider}></div> */}
       <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       <main className={styles.main}>
         {children}

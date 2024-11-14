@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   return (
     <div className={styles.adminDashboard}>
       <aside className={styles.sidebar}>
-        <h1 className={styles.dashboardTitle}>Trang quản trị</h1>
+        <h1 className={styles.dashboardTitle}>Quản lý hệ thống</h1>
         <nav className={styles.dashboardNav}>
           {navItems.map((item) => (
             <Link
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
       </aside>
       <main className={styles.mainContent}>
         <header className={styles.header}>
-          <h2>Xin chào, Quản trị viên</h2>
+          <h2>Chào mừng đến với trang quản trị</h2>
           <div className={styles.userMenu}>
             {/* Thêm các mục menu người dùng nếu cần */}
           </div>

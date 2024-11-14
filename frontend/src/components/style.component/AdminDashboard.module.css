@@ -1,12 +1,12 @@
 .adminDashboard {
     display: flex;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    background-color: #b8bec4;
 }
 
 .sidebar {
     width: 250px;
-    background-color: #11cdef;
+    background-color: #070909;
     color: white;
     padding: 20px;
 }

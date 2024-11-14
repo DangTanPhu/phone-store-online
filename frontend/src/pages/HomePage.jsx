@@ -4,6 +4,7 @@ import styles from './HomePage.module.css';
 import { getProducts } from '../services/api';
 
 const imageUrl = (img) => {
+
   if (!img) return '/assets/placeholder-image.jpg';
   if (img.startsWith('http')) return img;
   return `${process.env.REACT_APP_API_URL}/uploads/${img}`;

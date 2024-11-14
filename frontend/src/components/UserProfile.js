@@ -117,7 +117,7 @@ const UserProfile = () => {
         throw new Error('Vui lòng điền đầy đủ thông tin địa chỉ');
       }
 
-      const addressData = {
+        const addressData = {
         fullName: newAddress.fullName,
         phone: newAddress.phone,
         streetAddress: newAddress.streetAddress,
@@ -193,7 +193,7 @@ const UserProfile = () => {
 
   return (
     <div className={styles.profileContainer}>
-      <h2 className={styles.title}>{profile.role === 'admin' ? 'Admin Profile' : 'User Profile'}</h2>
+      <h2 className={styles.title}>{profile.role === 'admin' ? 'Thông tin cá nhân' : 'Thông tin cá nhân'}</h2>
       
       {/* User Information Section */}
       {editMode ? (
@@ -245,13 +245,16 @@ const UserProfile = () => {
         </form>
       ) : (
         <div className={styles.profileInfo}>
-          <p><strong>Username:</strong> {profile.username}</p>
+          <p><strong >Tên người dùng:</strong>{profile.username}</p>
           <p><strong>Email:</strong> {profile.email}</p>
-          <p><strong>Full Name:</strong> {profile.fullName || 'Not provided'}</p>
-          <p><strong>Phone Number:</strong> {profile.phoneNumber || 'Not provided'}</p>
+          <p><strong>Tên đầy đủ:</strong> {profile.fullName || 'Chưa cung cấp'}</p>
+          <p><strong>Số điện thoại:</strong> {profile.phoneNumber || 'Chưa cung cấp'}</p>
+
           {profile.role === 'admin' && <p><strong>Role:</strong> {profile.role}</p>}
-          <button onClick={() => setEditMode(true)} className={styles.editButton}>Edit Profile</button>
+          <button onClick={() => setEditMode(true)} className={styles.editButton}>Chỉnh sửa</button>
         </div>
+        
+        
       )}
 
       {/* Updated Shipping Addresses Section */}
@@ -300,28 +303,7 @@ const UserProfile = () => {
       {/* Updated Add/Edit Address Form */}
       <h3 className={styles.subtitle}>{editingAddressId ? 'Sửa địa chỉ' : 'Thêm địa chỉ mới'}</h3>
       <form onSubmit={editingAddressId ? handleUpdateAddress : handleAddAddress} className={styles.addressForm}>
-        <div className={styles.formGroup}>
-          <label htmlFor="fullName">Họ và tên:</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={newAddress.fullName}
-            onChange={handleAddressInputChange}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="phone">Số điện thoại:</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={newAddress.phone}
-            onChange={handleAddressInputChange}
-            required
-          />
-        </div>
+        
         <div className={styles.formGroup}>
           <label htmlFor="streetAddress">Địa chỉ:</label>
           <input
@@ -386,6 +368,28 @@ const UserProfile = () => {
               </option>
             ))}
           </select>
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="fullName">Họ và tên:</label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            value={newAddress.fullName}
+            onChange={handleAddressInputChange}
+            required
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="phone">Số điện thoại:</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={newAddress.phone}
+            onChange={handleAddressInputChange}
+            required
+          />
         </div>
         <div className={styles.formActions}>
           <button type="submit" className={styles.submitButton}>

@@ -31,27 +31,34 @@
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 30px;
+    
 }
-
 .profileInfo p {
-    margin: 15px 0;
+    margin: 13px 0;
     font-size: 16px;
     color: #555;
+    /* width: 500px; */
+
 }
 
 .profileInfo strong {
     display: inline-block;
-    width: 120px;
+    width: 200px;
     color: #333;
+    /* width: 500px; */
+    
 }
 
 .form {
     max-width: 600px;
     margin: 0 auto;
+    
 }
 
 .formGroup {
     margin-bottom: 20px;
+    margin-left: 20px;
+    
 }
 
 .formGroup label {
@@ -59,11 +66,14 @@
     margin-bottom: 8px;
     color: #555;
     font-weight: 500;
+
 }
+
+
 
 .formGroup input,
 .formGroup select {
-    width: 100%;
+    /* width: 100%; */
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -130,6 +140,8 @@
 .editButton {
     background: #000;
     color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .deleteButton {
@@ -153,9 +165,10 @@
 }
 
 .submitButton {
-    background: #000;
+    background: #4CAF50;
     color: white;
     margin-right: 10px;
+    margin-top: 32px;
 }
 
 .cancelButton {
