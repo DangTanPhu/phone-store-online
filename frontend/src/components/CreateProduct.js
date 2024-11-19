@@ -186,14 +186,14 @@ const CreateProduct = () => {
           accept="image/*"
         />
         <div className={styles.formGroup}>
-          <label>Size Guide:</label>
+          <label>Kiểu:</label>
           <select
             name="sizeGuideType"
             value={product.sizeGuideType}
             onChange={handleProductChange}
             required
           >
-            <option value="">Select Size Guide</option>
+            <option value="">Chọn</option>
             {Object.entries(SIZE_GUIDES).map(([key, guide]) => (
               <option key={key} value={key}>
                 {guide.name}

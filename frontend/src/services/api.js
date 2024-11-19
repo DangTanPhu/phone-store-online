@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:7070/api'; // Đảm bảo port này khớp v�
 // Tạo một instance của axios với cấu hình mặc định
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/api`,
-  baseURL:`${API_URL}`,
+  baseURL: `${API_URL}`,  
   headers: {
     'Content-Type': 'application/json',
   },
@@ -515,6 +515,7 @@ export const updateUserInfo = async (userInfo) => {
   console.log('Sending user info to server:', userInfo);
   try {
     const response = await api.put('/user/profile', userInfo);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error updating user info:', error.response?.data || error.message);

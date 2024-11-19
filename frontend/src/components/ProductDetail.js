@@ -176,7 +176,7 @@ return (
           )}
           <p className={styles.price}>{formatPrice(product.price)}</p>
           
-          {product.sizes && product.sizes.length > 0 && (
+          {/* {product.sizes && product.sizes.length > 0 && (
             <div className={styles.sizeSection}>
               <p>SIZE</p>
               <div className={styles.sizeButtons}>
@@ -191,9 +191,9 @@ return (
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
-          {product.sizeGuideType && (
+          {/* {product.sizeGuideType && (
             <>
               <button 
                 className={styles.viewSizeGuide}
@@ -208,13 +208,13 @@ return (
                 guideType={product.sizeGuideType}
               />
             </>
-          )}
+          )} */}
 
           {product.stock === 0 ? (
             <div className={styles.outOfStock}>
               <p>NHẬN THÔNG BÁO NGAY KHI CÓ HÀNG</p>
-              <input type="text" placeholder="Nguyễn Trương Nhật Hào" className={styles.input} />
-              <input type="email" placeholder="nguyentruongnhathao1922@gmail.com" className={styles.input} />
+              <input type="text" placeholder="Đặng Tấn Phong" className={styles.input} />
+              <input type="email" placeholder="tanphong2525@gmail.com" className={styles.input} />
               <button className={styles.subscribeButton}>SUBSCRIBE NOW</button>
             </div>
           ) : (
@@ -253,12 +253,12 @@ return (
               Danh mục: {categoryPath.map((cat, index) => (
                 <span key={cat.id}>
                   {index > 0 && " > "}
-                  <Link to={`/category/${cat.slug}`}>{cat.name}</Link>
+                  <Link to={`/category/${cat.slug}`} >{cat.name}</Link>
                 </span>
               ))}
             </p>
           )}
-          <p className={styles.sku}>SKU: {product._id}</p>
+          <p className={styles.sku}>Mã sản phẩm: {product._id}</p>
 
           <div className={styles.additionalInfo}>
             <p className={styles.deliveryReturns}>GIAO HÀNG & ĐỔI TRẢ</p>

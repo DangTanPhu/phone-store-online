@@ -5,7 +5,7 @@ import { getProducts } from '../services/api';
 
 const imageUrl = (img) => {
 
-  if (!img) return '/assets/placeholder-image.jpg';
+  if (!img) return '/images/placeholder-image.jpg';
   if (img.startsWith('http')) return img;
   return `${process.env.REACT_APP_API_URL}/uploads/${img}`;
 };
@@ -93,7 +93,7 @@ const HomePage = () => {
                   alt={product.name} 
                   onError={(e) => {
                     e.target.onerror = null; 
-                    e.target.src = '/assets/placeholder-image.jpg';
+                    e.target.src = '/images/placeholder-image.jpg';
                   }}
                 />
               </div>

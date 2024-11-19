@@ -383,20 +383,21 @@ exports.toggleUserStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
-    
     if (!user) {
       return res.status(404).json({ message: 'Không tìm thấy người dùng' });
     }
-
-    // Đảm bảo admin không thể tự khóa tài khoản của mình
+    
+    // Prevent self-locking for the current logged-in admin
     if (user._id.toString() === req.user._id.toString()) {
       return res.status(400).json({ 
         message: 'Không thể khóa tài khoản của chính mình' 
       });
     }
 
+    // Toggle isActive status
     user.isActive = !user.isActive;
     await user.save();
+    
 
     res.json({
       message: `Tài khoản đã được ${user.isActive ? 'mở khóa' : 'khóa'} thành công`,
@@ -411,7 +412,8 @@ exports.toggleUserStatus = async (req, res) => {
   } catch (error) {
     console.error('Error toggling user status:', error);
     res.status(500).json({ 
-      message: 'Lỗi khi thay đổi trạng thái người dùng' 
+      message: 'Lỗi khi thay đổi trạng thái người dùng',
+      error: error.message 
     });
   }
 };

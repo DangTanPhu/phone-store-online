@@ -1,89 +1,127 @@
 .userManagement {
     padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f0f4f8; /* Light, neutral background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .userManagement h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #1f2937; /* Darker gray for better text contrast */
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 600;
 }
 
 .searchBar {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .searchBar input {
     flex-grow: 1;
-    border: none;
-    margin-left: 10px;
-    font-size: 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.searchBar input:focus {
+    border-color: #3b82f6;
+    outline: none;
 }
 
 .userTable {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .userTable th, .userTable td {
-    padding: 12px;
+    padding: 12px 16px;
     text-align: left;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .userTable th {
-    background-color: #f1f3f5;
+    background-color: #f3f4f6;
     font-weight: bold;
+    color: #374151;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .userTable th:hover {
-    background-color: #e9ecef;
+    background-color: #e5e7eb;
+}
+
+.userTable td {
+    color: #4b5563;
 }
 
 .status {
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: 12px;
     font-weight: bold;
+    text-align: center;
 }
 
 .active {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: #e6fffa;
+    color: #047857;
 }
 
 .inactive {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #ffe6eb;
+    color: #c53030;
 }
 
 .actionButton {
     padding: 6px 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.actionButton:hover {
+    transform: translateY(-2px);
+}
+
+.actionButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .lockButton {
-    background-color: #dc3545;
-    color: #fff;
+    background-color: #f87171;
+    color: white;
 }
 
 .unlockButton {
-    background-color: #28a745;
-    color: #fff;
+    background-color: #34d399;
+    color: white;
+}
+
+.lockButton:hover {
+    background-color: #e11d48;
+}
+
+.unlockButton:hover {
+    background-color: #10b981;
 }
 
 .pagination {
@@ -94,95 +132,75 @@
 
 .pagination button {
     margin: 0 5px;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #3b82f6;
+    color: white;
     cursor: pointer;
     border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+    background-color: #2563eb;
 }
 
 .pagination button.active {
-    background-color: #0056b3;
+    background-color: #1d4ed8;
 }
 
 .loading, .error {
     text-align: center;
     padding: 20px;
-    font-size: 18px;
+    font-size: 1.1rem;
+    border-radius: 6px;
 }
 
 .error {
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 4px;
+    color: #b91c1c;
+    background-color: #fef2f2;
+    border: 1px solid #fca5a5;
 }
 
 .roleSelect {
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1rem;
     transition: border-color 0.3s ease;
 }
 
 .roleSelect:hover {
-    border-color: #666;
+    border-color: #3b82f6;
 }
 
 .roleSelect:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .statusBadge {
-    padding: 4px 8px;
+    padding: 6px 12px;
     border-radius: 12px;
-    font-size: 0.85em;
+    font-size: 0.9rem;
     font-weight: 500;
+    text-align: center;
 }
 
 .statusActive {
-    background-color: #e6f4ea;
-    color: #1e7e34;
+    background-color: #ecfdf5;
+    color: #065f46;
 }
 
 .statusInactive {
-    background-color: #fbe9e7;
-    color: #d32f2f;
+    background-color: #fef3f2;
+    color: #9b1c1c;
 }
 
 .statusLocked {
-    background-color: #fff3e0;
-    color: #f57c00;
-}
-
-.actionButton {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.actionButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.lockButton {
-    background-color: #fbe9e7;
-    color: #d32f2f;
-}
-
-.unlockButton {
-    background-color: #e6f4ea;
-    color: #1e7e34;
+    background-color: #fffbeb;
+    color: #92400e;
 }

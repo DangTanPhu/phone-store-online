@@ -42,7 +42,6 @@ const UserProfile = () => {
       setError('Không thể tải thông tin người dùng. Vui lòng thử lại sau.');
     }
   };
-
   const fetchShippingAddresses = async () => {
     try {
       const response = await getShippingAddresses();
@@ -240,7 +239,7 @@ const UserProfile = () => {
               onChange={handleInputChange}
             />
           </div>
-          <button type="submit" className={styles.submitButton}>Save Changes</button>
+          <button type="submit" className={styles.submitButton} >Save Changes</button>
           <button type="button" onClick={() => setEditMode(false)} className={styles.cancelButton}>Cancel</button>
         </form>
       ) : (

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './style.component/Footer.module.css';
 
 const Footer = () => {
-  const encodedSvgLogo = "";
+  const encodedSvgLogo = "https://i.imgur.com/5xLuM2p.jpeg";
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>

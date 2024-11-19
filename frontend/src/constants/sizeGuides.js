@@ -1,22 +1,18 @@
 export const SIZE_GUIDES = {
-  TSHIRT: {
-    name: "",
-    image: "/images/size-guides/tshirt-size-guide.png",
+  Foldable: {
+    name: "Gập",
+    image: "",
   },
-  MENSHIRT: {
-    name: "",
-    image: "/images/size-guides/men_shirt_size.png",
+  Medium: {
+    name: "Tầm trung",
+    image: "",
   },
-  PANTS: {
-    name: "Pants Size Guide",
-    image: "/images/size-guides/pants-size-guide.jpg",
+  Large: {
+    name: "Lớn",
+    image: "",
   },
-  SHOES: {
-    name: "Shoes Size Guide",
-    image: "/images/size-guides/shoes-size-guide.jpg",
-  },
-  HOODIE: {
-    name: "Hoodie Size Guide",
-    image: "/images/size-guides/hoodie-size-guide.jpg",
+  Compact: {
+    name: "Nhỏ gọn",
+    image: "",
   },
 };

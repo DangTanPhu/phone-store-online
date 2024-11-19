@@ -87,7 +87,7 @@ strokeLinejoin="round"
               {user ? (
                 <>
                   <Link to={user.role === 'admin' ? "/admin/profile" : "/user/profile"} className={styles.navLink}>
-                    Tài Khoản
+                    Thông tin
                   </Link>
                   {user.role === 'admin' && (
                     <Link to="/admin" className={styles.navLink}>

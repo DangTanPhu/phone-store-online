@@ -21,44 +21,37 @@ const Lookbook = () => {
       {
         id: 1,
         image: "/assets/lookbook-1.jpg",
-        season: "Hè",
-        type: "Thường ngày",
-        color: "Trắng",
+        season: "CU",
+        type: "To",
+        color: "Xanh",
       },
-      {
+      { 
         id: 2,
         image: "/assets/lookbook-2.jpg",
-        season: "Đông",
-        type: "Đường phố",
+        season: "BA",
+        type: "Nhỏ",
         color: "Đen",
       },
       {
         id: 3,
         image: "/assets/lookbook-3.jpg",
-        season: "Hè",
-        type: "Thường ngày",
-        color: "Trắng",
+        season: "BA",
+        type: "Nhỏ",
+        color: "Xanh",
       },
       {
         id: 4,
         image: "/assets/lookbook-4.jpg",
-        season: "Đông",
-        type: "Đường phố",
-        color: "Đen",
+        season: "CU",
+        type: "To",
+        color: "Xanh",
       },
       {
         id: 5,
         image: "/assets/lookbook-5.jpg",
-        season: "Hè",
-        type: "Thường ngày",
+        season: "CU",
+        type: "To",
         color: "Trắng",
-      },
-      {
-        id: 6,
-        image: "/assets/lookbook-6.jpg",
-        season: "Đông",
-        type: "Đường phố",
-        color: "Đen",
       },
     ];
 
@@ -67,12 +60,26 @@ const Lookbook = () => {
     const endIndex = startIndex + 6;
     const pageData = newLooks.slice(startIndex, endIndex);
 
-    if (pageData.length > 0) {
-      setLooks((prevLooks) => [...prevLooks, ...pageData]);
+    // Filter the looks based on the selected filters
+    const filteredPageData = pageData.filter(
+      (look) =>
+        (filters.season === "all" || look.season === filters.season) &&
+        (filters.type === "all" || look.type === filters.type) &&
+        (filters.color === "all" || look.color === filters.color)
+    );
+
+    if (filteredPageData.length > 0) {
+      setLooks((prevLooks) => [...prevLooks, ...filteredPageData]);
     } else {
       setHasMore(false);
     }
-  }, [page]);
+  }, [page, filters]);
+
+  useEffect(() => {
+    setLooks([]); // Reset looks when filters change
+    setHasMore(true); // Reset "hasMore" when filters change
+    setPage(1); // Reset page to 1
+  }, [filters]);
 
   useEffect(() => {
     fetchLooks();
@@ -80,17 +87,7 @@ const Lookbook = () => {
 
   const handleFilterChange = (filterType, value) => {
     setFilters((prevFilters) => ({ ...prevFilters, [filterType]: value }));
-    setPage(1);
-    setLooks([]);
-    setHasMore(true);
   };
-
-  const filteredLooks = looks.filter(
-    (look) =>
-      (filters.season === "all" || look.season === filters.season) &&
-      (filters.type === "all" || look.type === filters.type) &&
-      (filters.color === "all" || look.color === filters.color)
-  );
 
   const breakpointColumnsObj = {
     default: 4,
@@ -101,23 +98,24 @@ const Lookbook = () => {
 
   return (
     <div className={styles.lookbookContainer}>
-      <h1 className={styles.lookbookTitle}>Bộ Sưu Tập OBEY</h1>
+      <h1 className={styles.lookbookTitle}>Bộ Sưu Tập của PomDu</h1>
 
       <div className={styles.filterContainer}>
         <select onChange={(e) => handleFilterChange("season", e.target.value)}>
-          <option value="all">Tất cả mùa</option>
-          <option value="Hè">Mùa Hè</option>
-          <option value="Đông">Mùa Đông</option>
+          <option value="all">Tất cả loại</option>
+          <option value="CU">Cảm ứng</option>
+          <option value="BA">Bấm</option>
         </select>
         <select onChange={(e) => handleFilterChange("type", e.target.value)}>
           <option value="all">Tất cả kiểu</option>
-          <option value="Thường ngày">Thường ngày</option>
-          <option value="Đường phố">Đường phố</option>
+          <option value="To">To</option>
+          <option value="Nhỏ">Nhỏ</option>
         </select>
         <select onChange={(e) => handleFilterChange("color", e.target.value)}>
           <option value="all">Tất cả màu</option>
-          <option value="Trắng">Trắng</option>
+          <option value="Xanh">Xanh</option>
           <option value="Đen">Đen</option>
+          <option value="Vàng">Vàng</option>
         </select>
       </div>
 
@@ -126,7 +124,7 @@ const Lookbook = () => {
         className={styles.lookbookGrid}
         columnClassName={styles.lookbookGridColumn}
       >
-        {filteredLooks.map((look) => (
+        {looks.map((look) => (
           <motion.div
             key={`${look.id}-${filters.season}-${filters.type}-${filters.color}`}
             className={styles.lookItem}
@@ -175,7 +173,7 @@ const Lookbook = () => {
               />
               <div className={styles.modalContent}>
                 <h2>Chi tiết Bộ sưu tập</h2>
-                <p>Mùa: {selectedLook.season}</p>
+                <p>Loại: {selectedLook.season}</p>
                 <p>Kiểu: {selectedLook.type}</p>
                 <p>Màu sắc: {selectedLook.color}</p>
                 <button className={styles.shopButton}>Mua ngay</button>
@@ -193,7 +191,7 @@ const Lookbook = () => {
 
       <div className={styles.instagramFeed}>
         <h2>
-          <FaInstagram /> Theo dõi chúng tôi trên Instagram
+          
         </h2>
         <InstagramFeed />
       </div>

@@ -36,24 +36,24 @@ const Checkout = () => {
 			id: 'cod',
 			name: 'Thanh toán khi nhận hàng',
 			description: 'Thanh toán bằng tiền mặt khi nhận hàng',
-			icon: 'cash-icon.png'
+			icon: 'cash.jpg'
 		},
 		{
 			id: 'paypal',
 			name: 'PayPal',
 			description: 'Thanh toán qua PayPal',
-			icon: 'paypal-icon.png'
+			icon: 'paypol.png'
 		},
 		{
 			id: 'banking',
 			name: 'Chuyển khoản ngân hàng',
 			description: 'Chuyển khoản qua ngân hàng nội địa',
-			icon: 'bank-icon.jpg',
+			icon: 'Logo_MB_new.png',
 			bankInfo: {
-				bankName: 'Techcombank',
-				accountNumber: '167199999999',
-				accountName: 'OBEY CLOTHING',
-				branch: 'Chi nhánh HCM'
+				bankName: 'MB Bank',
+				accountNumber: '0392072887',
+				accountName: 'PomDu',
+				branch: 'Chủ'
 			}
 		}
 	];
@@ -395,7 +395,7 @@ const Checkout = () => {
 							onClick={handleCheckout}
 							disabled={!selectedAddressId}
 						>
-							Đặt hàng ({totalWithShipping.toLocaleString('vi-VN')} đ)
+							Đặt hàng ({totalWithShipping.toLocaleString('US')} đ)
 						</button>
 					)}
 				</div>

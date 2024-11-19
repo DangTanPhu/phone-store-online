@@ -2,33 +2,36 @@
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f8fafc; /* Light grey background for contrast */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
 }
 
 .createProduct h2 {
-  font-size: 2rem;
-  color: #333;
+  font-size: 2.2rem;
+  color: #1f2937; /* Darker text for better contrast */
   margin-bottom: 1.5rem;
   text-align: center;
+  font-weight: 600;
 }
 
 .message {
   padding: 1rem;
   margin-bottom: 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: bold;
 }
 
 .message.success {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #e6ffed; /* Softer green background */
+  color: #047857; /* Darker green text */
+  border-left: 5px solid #10b981; /* Accent border */
 }
 
 .message.error {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #ffe6e9; /* Softer red background */
+  color: #b91c1c; /* Darker red text */
+  border-left: 5px solid #ef4444; /* Accent border */
 }
 
 .createProduct form {
@@ -40,88 +43,97 @@
 .createProduct textarea {
   margin-bottom: 1rem;
   padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #cbd5e1; /* Subtle border color */
+  border-radius: 6px;
   font-size: 1rem;
+  background-color: #ffffff;
+  transition: border-color 0.3s;
+}
+
+.createProduct input:focus,
+.createProduct textarea:focus {
+  border-color: #60a5fa; /* Highlight on focus */
+  outline: none;
 }
 
 .createProduct textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
 .createProduct button {
-  padding: 1rem;
-  background-color: #3498db;
+  padding: 0.9rem;
+  background-color: #3b82f6; /* Vibrant blue button */
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .createProduct button:hover {
-  background-color: #2980b9;
+  background-color: #2563eb; /* Darker blue on hover */
+  transform: translateY(-2px); /* Lift on hover */
 }
 
-@media (max-width: 768px) {
-  .createProduct {
-    padding: 1rem;
-  }
+.createProduct button:active {
+  background-color: #1d4ed8;
+  transform: translateY(0);
 }
 
 .categoryList {
   margin-top: 20px;
+  padding: 1rem;
+  background-color: #e5e7eb; /* Light grey section for distinction */
+  border-radius: 6px;
 }
 
 .categoryList ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .categoryList li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #d1d5db; /* Light separator */
+}
+
+.categoryList li:last-child {
+  border-bottom: none;
 }
 
 .categoryList button {
-  background-color: #ff4d4d;
+  background-color: #ef4444; /* Red delete button */
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 3px;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .categoryList button:hover {
-  background-color: #ff3333;
+  background-color: #dc2626;
 }
 
 .categorySelect {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 1rem;
 }
 
 .categorySelect option:disabled {
-  color: #888;
+  color: #6b7280; /* Muted color for disabled option */
   font-weight: bold;
-}
-
-.categoryList ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.categoryList li {
-  margin-bottom: 5px;
-}
-
-.categoryList button {
-  margin-left: 10px;
 }
 
 .formGroup {
@@ -131,11 +143,21 @@
 .sizeGuidePreview {
   margin-top: 1rem;
   max-width: 300px;
-  border: 1px solid #ddd;
-  padding: 0.5rem;
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background-color: #f3f4f6; /* Light background */
 }
 
 .sizeGuidePreview img {
   width: 100%;
   height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+@media (max-width: 768px) {
+  .createProduct {
+    padding: 1.5rem;
+  }
 }

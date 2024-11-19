@@ -28,7 +28,14 @@ const voucherSchema = new mongoose.Schema({
   },
   startDate: {
     type: Date,
-    required: true
+    required: true,
+    validate: {
+      validator: function(value) {
+        // Ensure the startDate is not in the past
+        return value >= new Date();
+      },
+      message: 'Ngày bắt đầu không thể là trong quá khứ'
+    }
   },
   endDate: {
     type: Date,

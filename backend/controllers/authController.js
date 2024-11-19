@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
     if (!user.isActive) {
       return res.status(403).json({
         message:
-          "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ email: admin@obeyclothing.com để được hỗ trợ.",
+          "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ email: tanphong@gmail.com để được hỗ trợ.",
         status: "locked",
       });
     }

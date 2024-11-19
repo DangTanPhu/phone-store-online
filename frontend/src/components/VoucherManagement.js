@@ -22,6 +22,7 @@ const VoucherManagement = () => {
     usageLimit: 1,
     isActive: true,
   });
+  const [startDateError, setStartDateError] = useState("");
 
   useEffect(() => {
     fetchVouchers();
@@ -39,7 +40,6 @@ const VoucherManagement = () => {
       console.log("Dữ liệu voucher nhận được:", response);
 
       if (response && response.data && Array.isArray(response.data)) {
-        // Format dữ liệu trước khi cập nhật state
         const formattedVouchers = response.data.map((voucher) => ({
           ...voucher,
           startDate: new Date(voucher.startDate).toLocaleDateString(),
@@ -64,36 +64,65 @@ const VoucherManagement = () => {
     }
   };
 
+  const validateStartDate = (date) => {
+    const selectedDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Xóa phần giờ để so sánh chính xác
+  
+    if (selectedDate < today) {
+      alert("Ngày bắt đầu không được là ngày trong quá khứ!"); // Hiển thị thông báo bằng alert
+      return false;
+    }
+    return true;
+  };
+  
+  const validateEndDate = (date) => {
+    const selectedDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Xóa phần giờ để so sánh chính xác
+  
+    if (selectedDate < today) {
+      alert("Ngày kết thúc không được là ngày trong quá khứ!"); // Hiển thị thông báo bằng alert
+      return false;
+    }
+    return true;
+  };
+  
+  
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
+  
+    // Validate start and end dates
+    if (!validateStartDate(newVoucher.startDate) || !validateEndDate(newVoucher.endDate)) {
+      return; // Dừng lại nếu có lỗi
+    }
+  
     console.log("Đang tạo voucher mới:", newVoucher);
     try {
       // Gọi API tạo voucher
       const response = await createVoucher(newVoucher);
       console.log("Response từ server:", response);
-
+  
       // Đảm bảo response.data có đầy đủ thông tin
       const createdVoucher = response.data;
-
+  
       // Cập nhật state với dữ liệu đầy đủ
       setVouchers((prevVouchers) => {
-        // Chuyển đổi ngày thành định dạng phù hợp
         const formattedVoucher = {
           ...createdVoucher,
           startDate: new Date(createdVoucher.startDate).toLocaleDateString(),
           endDate: new Date(createdVoucher.endDate).toLocaleDateString(),
-          // Đảm bảo các trường khác được định dạng đúng
           discountType:
             createdVoucher.discountType === "percentage"
               ? "Phần trăm"
               : "Cố định",
           isActive: createdVoucher.isActive ? "Hoạt động" : "Không hoạt động",
         };
-
+  
         console.log("Voucher đã được format:", formattedVoucher);
         return [...prevVouchers, formattedVoucher];
       });
-
+  
       // Reset form
       setNewVoucher({
         code: "",
@@ -106,7 +135,7 @@ const VoucherManagement = () => {
         usageLimit: 1,
         isActive: true,
       });
-
+  
       // Gọi lại API để lấy danh sách mới nhất
       await fetchVouchers();
     } catch (error) {
@@ -114,6 +143,9 @@ const VoucherManagement = () => {
       setError("Không thể tạo voucher. Vui lòng thử lại sau.");
     }
   };
+  
+  
+  
 
   const handleUpdateVoucher = async (id, updatedData) => {
     try {
@@ -194,21 +226,27 @@ const VoucherManagement = () => {
           required
         />
         <input
-          type="date"
-          value={newVoucher.startDate}
-          onChange={(e) =>
-            setNewVoucher({ ...newVoucher, startDate: e.target.value })
-          }
-          required
-        />
-        <input
-          type="date"
-          value={newVoucher.endDate}
-          onChange={(e) =>
-            setNewVoucher({ ...newVoucher, endDate: e.target.value })
-          }
-          required
-        />
+  type="date"
+  value={newVoucher.startDate}
+  onChange={(e) => {
+    setNewVoucher({ ...newVoucher, startDate: e.target.value });
+    validateStartDate(e.target.value); // Kiểm tra ngày khi thay đổi
+  }}
+  required
+/>
+
+       
+<input
+  type="date"
+  value={newVoucher.endDate}
+  onChange={(e) => {
+    setNewVoucher({ ...newVoucher, endDate: e.target.value });
+    validateEndDate(e.target.value); // Kiểm tra ngày khi thay đổi
+  }}
+  required
+/>
+
+       
         <input
           type="number"
           value={newVoucher.usageLimit}
@@ -218,7 +256,7 @@ const VoucherManagement = () => {
           placeholder="Giới hạn sử dụng"
           required
         />
-        <button type="submit">Tạo Voucher</button>
+        <button type="submit" disabled={startDateError}>Tạo Voucher</button>
       </form>
       <table className={styles.voucherTable}>
         <thead>
@@ -250,33 +288,23 @@ const VoucherManagement = () => {
               <td>{voucher.minPurchase}</td>
               <td>{new Date(voucher.startDate).toLocaleDateString()}</td>
               <td>{new Date(voucher.endDate).toLocaleDateString()}</td>
-              <td>{voucher.usedCount || 0}</td>
+              <td>{voucher.usedTimes}</td>
               <td>{voucher.usageLimit}</td>
-              <td>
-                {voucher.isActive ? (
-                  <span style={{ color: "green" }}>Hoạt động</span>
-                ) : (
-                  <span style={{ color: "red" }}>Không hoạt động</span>
-                )}
-              </td>
+              <td>{voucher.isActive}</td>
               <td>
                 <button
                   onClick={() =>
                     handleUpdateVoucher(voucher._id, {
+                      ...voucher,
                       isActive: !voucher.isActive,
                     })
                   }
-                  className={
-                    voucher.isActive ? styles.deactivateBtn : styles.activateBtn
-                  }
-                  disabled={voucher.usedCount >= voucher.usageLimit}
                 >
-                  {voucher.isActive ? "Vô hiệu hóa" : "Kích hoạt"}
+                  {voucher.isActive === "Hoạt động"
+                    ? "Vô hiệu hóa"
+                    : "Kích hoạt"}
                 </button>
-                <button
-                  onClick={() => handleDeleteVoucher(voucher._id)}
-                  className={styles.deleteBtn}
-                >
+                <button onClick={() => handleDeleteVoucher(voucher._id)}>
                   Xóa
                 </button>
               </td>

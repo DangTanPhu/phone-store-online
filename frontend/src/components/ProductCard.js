@@ -4,9 +4,10 @@ import styles from './style.component/ProductCard.module.css';
 
 const ProductCard = ({ product }) => {
   const imageUrl = (img) => {
-    if (!img) return '/images/placeholder-image.jpg';
-    if (img.startsWith('http')) return img;
-    return `${process.env.REACT_APP_API_URL}/uploads/${img}`;
+    // Log the result of the image URL function to see what's being generated
+    const url = img ? (img.startsWith('https') ? img : `${process.env.REACT_APP_API_URL}/uploads/${img}`) : '/images/placeholder-image.jpg';
+    console.log('Generated Image URL:', url);  // Log the final image URL here
+    return url;
   };
 
   // Kiểm tra sản phẩm mới (ví dụ: trong vòng 7 ngày)
@@ -34,12 +35,12 @@ const ProductCard = ({ product }) => {
             </span>
           )}
           <img 
-            src={imageUrl(product.image)}
+            src={imageUrl(product.image)}  // Use the imageUrl function to set the image source
             alt={product.name} 
             className={styles.productImage}
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = '/images/placeholder-image.jpg';
+              e.target.src = '/images/placeholder-image.jpg';  // Fallback image in case of error
             }}
           />
         </div>

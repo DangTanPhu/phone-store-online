@@ -112,7 +112,7 @@ const CategoryManagement = () => {
           name="slug"
           value={newCategory.slug}
           onChange={handleInputChange}
-          placeholder="Nhập slug (tùy chọn)"
+          placeholder=""
           className={styles.input}
         />
         <select

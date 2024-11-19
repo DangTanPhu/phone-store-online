@@ -6,6 +6,7 @@ exports.createVoucher = async (req, res) => {
     const newVoucher = new Voucher(req.body);
     await newVoucher.save();
     res.status(201).json(newVoucher);
+    
   } catch (error) {
     res.status(400).json({ message: 'Lỗi khi tạo voucher', error: error.message });
   }
