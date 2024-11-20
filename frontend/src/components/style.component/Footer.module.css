@@ -148,11 +148,20 @@
     }
   
     .socialLinks {
-      justify-content: center;
+      flex-wrap: wrap; /* Allow icons to wrap onto the next line */
+      gap: 20px; /* Decrease gap between icons for smaller screens */
+      justify-content: center; /* Center the icons */
     }
-  
+    
     .socialLinks a {
-      height: 32px;
+      height: 40px; /* Adjust height of the icons on mobile */
+      width: 40px; /* Ensure icons are square */
+    }
+
+    .socialLinks img {
+      height: 100%;
+      width: 100%; /* Ensure the icons fill their container */
+      object-fit: contain;
     }
   }
   

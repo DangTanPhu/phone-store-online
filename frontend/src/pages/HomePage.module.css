@@ -12,13 +12,17 @@
   .heroSection {
     position: relative;
     height: 100vh;
+    width: 100%;
     overflow: hidden;
   }
   
   .heroVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;  /* Ensure the video fills the container while maintaining its aspect ratio */
   }
   
   .heroOverlay {
@@ -422,7 +426,7 @@
     font-family: 'Roboto', sans-serif;
     text-align: center;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: visible;
     margin-bottom: 20px;
@@ -460,13 +464,6 @@
     text-shadow: -2px 0 #00fff9;
     clip: rect(85px, 550px, 140px, 0);
     animation: glitch-anim 2s infinite linear alternate-reverse;
-  }
-  
-  .separator {
-    font-size: 3em;
-    display: inline-block;
-    animation: rotate 3s infinite linear;
-    margin-bottom: 10px; /* Thêm khoảng cách dưới dấu hai chấm */
   }
   
   .sloganContainer {
@@ -557,25 +554,78 @@
     }
   }
   
-  @keyframes slide {
-    0% {
-      top: 0;
+  @media (max-width: 1024px) {
+    .heroOverlay {
+      padding: 0 15px;
     }
-    50% {
-      top: -60px;
+
+    .heroVideo {
+      /* You can adjust the height based on screen size if needed */
+      height: 100%;
+      width: 100%;
     }
-    100% {
-      top: 0;
+  
+    .glitchSlogan {
+      font-size: 2.5em; /* Adjust font size for tablets */
+    }
+  
+    .brand {
+      font-size: 3.5em; /* Adjust brand size */
+      letter-spacing: 5px; /* Adjust spacing */
+    }
+  
+    .ctaButton {
+      font-size: 1rem;
+      padding: 12px 25px;
     }
   }
   
   @media (max-width: 768px) {
     .glitchSlogan {
-      font-size: 0.8em;
+      font-size: 2em; /* Adjust font size for smaller screens */
     }
-    
+
+    .heroVideo {
+      height: 100%;
+      width: 100%;
+    }
+  
+    .brand {
+      font-size: 3em;
+      letter-spacing: 5px;
+    }
+  
     .sloganText {
-      font-size: 1.5em;
+      font-size: 1.4em;
+    }
+  
+    .ctaButton {
+      font-size: 0.9rem;
+      padding: 10px 20px;
     }
   }
   
+  @media (max-width: 480px) {
+    .glitchSlogan {
+      font-size: 1.5em; /* Adjust font size for mobile */
+    }
+
+    .heroVideo {
+      height: 100%;
+      width: 100%;
+    }
+  
+    .brand {
+      font-size: 2.5em;
+      letter-spacing: 3px;
+    }
+  
+    .sloganText {
+      font-size: 1.2em;
+    }
+  
+    .ctaButton {
+      font-size: 0.8rem;
+      padding: 8px 15px;
+    }
+  }
