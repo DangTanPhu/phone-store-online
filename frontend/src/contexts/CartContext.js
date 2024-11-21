@@ -34,12 +34,25 @@ export const CartProvider = ({ children }) => {
 
   // Calculate total whenever cartItems change
   useEffect(() => {
-    const newTotal = cartItems.reduce((sum, item) => 
-      sum + (item.quantity * item.product.price), 0
-    );
-    setTotal(newTotal);
-    setFinalAmount(newTotal - (discountAmount || 0));
+    if (Array.isArray(cartItems)) {
+      const newTotal = cartItems.reduce((sum, item) => {
+        // Kiểm tra `item` và các thuộc tính cần thiết
+        const quantity = item?.quantity || 0;
+        const price = item?.product?.price || 0;
+        return sum + quantity * price;
+      }, 0);
+  
+      setTotal(newTotal);
+      
+      // Kiểm tra discountAmount trước khi áp dụng
+      const discount = typeof discountAmount === "number" ? discountAmount : 0;
+      setFinalAmount(newTotal - discount);
+    } else {
+      setTotal(0);
+      setFinalAmount(0);
+    }
   }, [cartItems, discountAmount]);
+ 
 
   const addToCart = async (product, quantity, size, color) => {
     try {

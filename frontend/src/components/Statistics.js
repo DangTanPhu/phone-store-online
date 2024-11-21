@@ -56,7 +56,7 @@ const Statistics = () => {
       }).toString();
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/admin/statistics/download?${queryParams}`,
+        `http://localhost:7070/api/admin/statistics/download?${queryParams}`,
         {
           method: 'GET',
           headers: {

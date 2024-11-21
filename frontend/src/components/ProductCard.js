@@ -5,7 +5,7 @@ import styles from './style.component/ProductCard.module.css';
 const ProductCard = ({ product }) => {
   const imageUrl = (img) => {
     // Log the result of the image URL function to see what's being generated
-    const url = img ? (img.startsWith('https') ? img : `${process.env.REACT_APP_API_URL}/uploads/${img}`) : '/images/placeholder-image.jpg';
+    const url = img ? (img.startsWith('https') ? img : `http://localhost:7070/uploads/${img}`) : '/images/placeholder-image.jpg';
     console.log('Generated Image URL:', url);  // Log the final image URL here
     return url;
   };

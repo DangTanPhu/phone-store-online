@@ -326,7 +326,7 @@ const Checkout = () => {
 					<h2>Thông tin đơn hàng</h2>
 					{cartItems.map(item => (
 						<div key={item._id} className={styles.orderItem}>
-							<img src={`${process.env.REACT_APP_API_URL}/uploads/${item.product.image}`} alt={item.product.name} />
+							<img src={`http://localhost:7070/uploads/${item.product.image}`} alt={item.product.name} />
 							<div>
 								<h3>{item.product.name}</h3>
 								<p>Số lượng: {item.quantity}</p>

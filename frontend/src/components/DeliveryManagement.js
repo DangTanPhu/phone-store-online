@@ -97,7 +97,7 @@ const DeliveryManagement = () => {
   const handleDownloadDeliveryNote = async (deliveryId) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/deliveries/${deliveryId}/delivery-note`,
+        `http://localhost:7070/api/deliveries/${deliveryId}/delivery-note`,
         {
           method: "GET",
           headers: {

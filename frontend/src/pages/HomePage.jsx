@@ -89,7 +89,7 @@ const HomePage = () => {
             <div key={product._id} className={styles.productCard}>
               <div className={styles.imageContainer}>
                 <img 
-                  src={imageUrl(product.image)} 
+                  src={`http://localhost:7070/uploads/${product.image}`} 
                   alt={product.name} 
                   onError={(e) => {
                     e.target.onerror = null; 
@@ -124,7 +124,7 @@ const HomePage = () => {
       <section className={styles.obeyLookbook}>
         <h2>Bộ Sưu Tập PomDu</h2>
         <div className={styles.lookbookGrid}>
-          {[1, 2, 3, 4, 5, 6].map((item) => (
+          {[1, 2, 3, 4, 5].map((item) => (
             <div key={item} className={styles.lookbookItem}>
               <img src={`/assets/lookbook-${item}.jpg`} alt={`Hình ảnh bộ sưu tập ${item}`} />
             </div>

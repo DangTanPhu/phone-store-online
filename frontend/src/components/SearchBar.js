@@ -18,17 +18,27 @@ const SearchBar = ({ onClose }) => {
 
   useEffect(() => {
     const fetchSuggestions = async () => {
-      if (searchTerm.length < 2) {
+      if (searchTerm.length < 1) {
         setSuggestions([]);
         return;
       }
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/products/search/suggestions?q=${searchTerm}`
+          `http://localhost:7070/api/products/search/suggestions?q=${searchTerm}`
         );
         const data = await response.json();
-        setSuggestions(data);
+
+        // Lọc sản phẩm theo điều kiện bắt đầu bằng chữ cái đầu hoặc số
+        const filteredSuggestions = data.filter((product) => {
+          const firstChar = searchTerm.charAt(0).toLowerCase();
+          return (
+            (/[a-zA-Z0-9]/.test(firstChar) && product.name.charAt(0).toLowerCase() === firstChar) ||
+            product.name.includes(searchTerm)
+          );
+        });
+
+        setSuggestions(filteredSuggestions);
         setShowSuggestions(true);
       } catch (error) {
         console.error('Error fetching suggestions:', error);
@@ -92,9 +102,9 @@ const SearchBar = ({ onClose }) => {
               }}
             >
               <img 
-                src={imageUrl(product.image)}
-                alt={product.name}
-/>
+                  src={`http://localhost:7070/uploads/${product.image}`} 
+                  alt={product.name}
+              />
               <div>
                 <span>{product.name}</span>
                 <span>{product.price.toLocaleString('vi-VN')}đ</span>

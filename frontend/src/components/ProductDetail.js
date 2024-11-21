@@ -136,8 +136,8 @@ return (
               onClick={() => setSelectedImage(index)}
             >
               <img
-                src={imageUrl(img)}
-                alt={`Thumbnail ${index + 1}`}
+                  src={`http://localhost:7070/uploads/${product.image}`} 
+                  alt={`Thumbnail ${index + 1}`}
                 className={styles.thumbnail}
                 onError={(e) => {
                   console.error("Error loading image:", e.target.src);
@@ -151,7 +151,7 @@ return (
         <div className={styles.mainImageContainer}>
           <img
             className={styles.mainImage}
-            src={imageUrl([product.image, ...(product.detailImages || [])][selectedImage])}
+            src={`http://localhost:7070/uploads/${product.image}`} 
             alt={product.name}
             onError={(e) => {
               console.error("Error loading image:", e.target.src);
@@ -280,7 +280,7 @@ return (
                 className={styles.relatedProductCard}
               >
                 <img 
-                  src={imageUrl(product.image)} 
+                  src={`http://localhost:7070/uploads/${product.image}`} 
                   alt={product.name} 
                   className={styles.relatedProductImage}
                 />
