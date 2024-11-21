@@ -140,6 +140,8 @@ const ProductManagement = () => {
               <th onClick={() => handleSort('name')}>Tên sản phẩm <FaSort /></th>
               <th onClick={() => handleSort('price')}>Giá <FaSort /></th>
               <th onClick={() => handleSort('category')}>Danh mục <FaSort /></th>
+              <th>Hình ảnh</th>
+              <th>Mô tả</th>
               <th>Hành động</th>
             </tr>
           </thead>
@@ -157,52 +159,68 @@ const ProductManagement = () => {
                     type="number" 
                     value={editingProduct.price} 
                     onChange={(e) => setEditingProduct({...editingProduct, price: e.target.value})}
-                  /> : `${product.price.toLocaleString('vi-VN')} đ`}
-                </td>
+                  /> : `${product.price.toLocaleString('vi-VN')} đ`}</td>
                 <td>
                   {editingProduct && editingProduct._id === product._id ? (
                     <>
                       <select
-                      value={editingProduct.category}
-                      onChange={(e) => setEditingProduct({...editingProduct, category: e.target.value})}
-                    >
-                      {Object.entries(categories).map(([id, name]) => (
-                        <option key={id} value={id}>
-                          {name}
-                        </option>
-                      ))}
-                    </select>
-                  </>
-                ) : (
-                  categories[product.category] || 'N/A'
-                )}
-              </td>
-              <td>
-                {editingProduct && editingProduct._id === product._id ? (
-                  <>
-                    <button className={styles.saveButton} onClick={handleUpdate}><FaSave /> Lưu</button>
-                    <button className={styles.cancelButton} onClick={() => setEditingProduct(null)}><FaTimes /> Hủy</button>
-                  </>
-                ) : (
-                  <>
-                    <button className={styles.editButton} onClick={() => handleEdit(product)}><FaEdit /> Sửa</button>
-                    <button className={styles.deleteButton} onClick={() => handleDelete(product._id)}><FaTrash /> Xóa</button>
-                  </>
-                )}
-              </td>
-            </tr>
+                        value={editingProduct.category}
+                        onChange={(e) => setEditingProduct({...editingProduct, category: e.target.value})}
+                      >
+                        {Object.entries(categories).map(([id, name]) => (
+                          <option key={id} value={id}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
+                    </>
+                  ) : (
+                    categories[product.category] || 'N/A'
+                  )}
+                </td>
+                <td>
+                  {editingProduct && editingProduct._id === product._id ? 
+                    <input 
+                      value={editingProduct.image} 
+                      onChange={(e) => setEditingProduct({...editingProduct, image: e.target.value})}
+                    /> : <img src={`http://localhost:7070/uploads/${product.image}`} 
+                    alt={product.name} style={{ width: '100px', height: 'auto' }} />
+                  }
+                </td>
+                <td>
+                  {editingProduct && editingProduct._id === product._id ? 
+                    <textarea 
+                      value={editingProduct.description} 
+                      onChange={(e) => setEditingProduct({...editingProduct, description: e.target.value})}
+                    /> : product.description}
+                </td>
+                <td>
+                  {editingProduct && editingProduct._id === product._id ? (
+                    <>
+                      <button className={styles.saveButton} onClick={handleUpdate}><FaSave /> Lưu</button>
+                      <button className={styles.cancelButton} onClick={() => setEditingProduct(null)}><FaTimes /> Hủy</button>
+                    </>
+                  ) : (
+                    <>
+                      <button className={styles.editButton} onClick={() => handleEdit(product)}><FaEdit /> Sửa</button>
+                      <button className={styles.deleteButton} onClick={() => handleDelete(product._id)}><FaTrash /> Xóa</button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className={styles.pagination}>
+          {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, i) => (
+            <button key={i} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? styles.active : ''}>
+              {i + 1}
+            </button>
           ))}
-        </tbody>
-      </table>
-      <div className={styles.pagination}>
-        {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, i) => (
-          <button key={i} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? styles.active : ''}>
-            {i + 1}
-          </button>
-        ))}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+
 
 export default ProductManagement;

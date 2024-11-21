@@ -7,7 +7,9 @@ import { provinces, getDistricts, getWards } from '../data/vietnamData';
 import { useNavigate } from 'react-router-dom';
 import AddressSection from './AddressSection';
 
-import { createCodOrder } from '../services/orderService';
+import { createCodOrder} from '../services/orderService';
+// import {createPaypalOrder} from '../services/api';
+import { toLower } from 'lodash';
 
 const Checkout = () => {
 	const { cartItems, total, voucher, discountAmount, finalAmount, clearCart } = useCart();
@@ -19,7 +21,7 @@ const Checkout = () => {
 		phone: '',
 		streetAddress: '',
 		provinceCode: '',
-		districtCode: '',
+		districtCode: '', 
 		wardCode: '',
 		provinceName: '',
 		districtName: '',
@@ -58,6 +60,8 @@ const Checkout = () => {
 		}
 	];
 
+	
+
 	const fetchShippingAddresses = useCallback(async () => {
 		try {
 			const response = await getShippingAddresses();
@@ -86,6 +90,7 @@ const Checkout = () => {
 		console.log('Selected shipping address:', shippingAddresses.find(addr => addr._id === selectedAddressId));
 	}, [selectedAddressId, shippingAddresses]);
 
+	
 	const handleInputChange = (e) => {
         const { name, value } = e.target;
 		const updatedAddress = editingAddress || newAddress;
@@ -293,6 +298,24 @@ const Checkout = () => {
 					alert('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.');
 				}
 			}
+			// else if (selectedPaymentMethod === 'paypal') {
+			// 	// Handle PayPal order creation
+			// 	try {
+			// 		const paypalResponse = await createPaypalOrder(orderData);
+		  
+			// 	  if (paypalResponse && paypalResponse.order._id) {
+			// 		// Handle the PayPal order response (e.g., redirect to PayPal for payment)
+			// 		window.location.href = `/paypal-success/${paypalResponse.order._id}`;
+			// 	  } else {
+			// 		throw new Error('Invalid response from PayPal API');
+			// 	  }
+			// 	} catch (error) {
+			// 	  console.error('Error in PayPal order:', error);
+			// 	  alert('Có lỗi xảy ra khi đặt hàng qua PayPal. Vui lòng thử lại.');
+			// 	}
+			//   } else {
+			// 	alert('Invalid payment method selected');
+			//   }
 		} catch (error) {
 			console.error('Checkout error:', error);
 				alert('Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.');
@@ -382,7 +405,7 @@ const Checkout = () => {
 			
 			{selectedAddressId && (
 				<div className={styles.checkoutActions}>
-                    {selectedPaymentMethod === 'paypal' ? (
+                    {selectedPaymentMethod === 'Paypal' ? (
 						<div className={styles.paypalContainer}>
 							<PayPalCheckout 
 								amount={totalWithShipping} 
@@ -393,7 +416,8 @@ const Checkout = () => {
 						<button 
 							className={styles.checkoutButton}
 							onClick={handleCheckout}
-							disabled={!selectedAddressId}
+							// disabled={!selectedAddressId}
+							disabled={!selectedAddressId || !selectedPaymentMethod}
 						>
 							Đặt hàng ({totalWithShipping.toLocaleString('US')} đ)
 						</button>
