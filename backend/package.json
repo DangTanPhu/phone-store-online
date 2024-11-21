@@ -24,7 +24,8 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.16",
     "pdf": "^0.1.0",
-    "pdfkit": "^0.15.1"
+    "pdfkit": "^0.15.1",
+    "qrcode.react": "^4.1.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
