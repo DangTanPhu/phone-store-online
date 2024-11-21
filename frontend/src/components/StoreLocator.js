@@ -10,7 +10,7 @@ const StoreLocator = () => {
 
   const fetchStores = () => {
     const dummyStores = [
-      { id: 1, name: 'OBEY Store Đồng Khởi', address: '74 Đồng Khởi, Quận 1, TP.HCM', lat: 10.774305, lng: 106.701748 },
+      { id: 1, name: 'PomDu Mobile ', address: '74 Đồng Khởi, Quận 1, TP.HCM', lat: 10.774305, lng: 106.701748 },
       { id: 2, name: 'OBEY Store Nguyễn Trãi', address: '180 Nguyễn Trãi, Quận 1, TP.HCM', lat: 10.768845, lng: 106.693048 },
       { id: 3, name: 'OBEY Store Lê Văn Sỹ', address: '350 Lê Văn Sỹ, Quận 3, TP.HCM', lat: 10.785226, lng: 106.675908 },
       { id: 4, name: 'OBEY Store Sư Vạn Hạnh', address: '828 Sư Vạn Hạnh, Phường 13, Quận 10, TP. HCM', lat: 10.7712, lng: 106.6676 },

@@ -1,0 +1,143 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Main Container */
+  .contact-book {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Left Section - Contact Info */
+  .contact-info {
+    flex: 1;
+    padding: 20px;
+    background: #f4f4f4;
+    border-right: 2px solid #ddd;
+  }
+  
+  .contact-header {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .contact-details {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  
+  .contact-details li {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .contact-details li strong {
+    color: #333;
+  }
+  
+  .social-media {
+    margin-top: 20px;
+  }
+  
+  .social-media h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .icons .icon {
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  
+  .icons .youtube {
+    background: #FF0000;
+  }
+  
+  .icons .facebook {
+    background: #3b5998;
+  }
+  
+  .icons .twitter {
+    background: #1da1f2;
+  }
+  
+  .icons .icon:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  
+  /* Right Section - Contact Form */
+  .contact-form {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .form-header {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+  }
+  
+  .form-group textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .submit-btn {
+    padding: 10px 20px;
+    background: #007BFF;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #0056b3;
+  }
+  

@@ -19,7 +19,7 @@ const Footer = () => {
         <div className={styles.footerColumn}>
           <h3>THÔNG TIN CỬA HÀNG</h3>
           <Link to="/stores">Hệ thống cửa hàng</Link>
-          <Link to="/lien-he">Liên hệ</Link>
+          <Link to="/contact">Liên hệ</Link>
           <Link to="/bao-ve-thuong-hieu">Bảo vệ thương hiệu</Link>
         </div>
         <div className={styles.footerColumn}>
@@ -61,7 +61,7 @@ rel="noopener noreferrer"
       <div className={styles.footerSeparator}></div>
       <div className={styles.footerBottom}>
         <div className={styles.copyright}>
-          <img src={encodedSvgLogo} alt="OBEY Logo" className={styles.footerLogo} />
+          <img src={encodedSvgLogo} alt="Logo" className={styles.footerLogo} />
           <span>PomDu VIỆT NAM</span>
         </div>
         <div className={styles.legalLinks}>
