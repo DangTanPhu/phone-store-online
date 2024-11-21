@@ -9,6 +9,26 @@ const imageUrl = (img) => {
   if (img.startsWith('http')) return img;
   return `${process.env.REACT_APP_API_URL}/uploads/${img}`;
 };
+const newsItems = [
+  {
+    title: "Xiaomi HyperOS 2",
+    description: "Trải nghiệm người dùng tối ưu kết nối thông minh liền mạch , nhấn mạnh cải tiến vượt trội",
+    image: "https://i02.appmifile.com/793_operator_vn/19/11/2024/616aafe8521b56e5c14689bf6d190031.jpg?thumb=1&w=660&f=webp&q=85",
+    link: "https://www.mi.com/vn/hyperos/"
+  },
+  {
+    title: "Thiết kế huyền thoại , hình ảnh kiệt tác",
+    description: "Ống kính quang học Leica Summilux tái tạo hình ảnh siêu thực đậm chất nghệ thuật trên Xiaomi 14 Ultra",
+    image: "https://i02.appmifile.com/350_operator_vn/07/06/2024/8ac1a6f3509474d2ee6377348d9c2cd4.jpg?thumb=1&w=660&f=webp&q=85",
+    link:"https://i02.appmifile.com/764_operatorx_operatorx_xm/07/06/2024/0fa9dff302dadee645bb0542526ab521.mp4"
+  },
+  {
+    title: "Chụp ảnh thiêú sáng cùng với Xiaomi 14T Pro",
+    description: "Với ông kính sắc nối , có thể chụp ảnh bất kỳ ở đâu với ánh sáng như nào",
+    image: "https://i02.appmifile.com/693_operator_vn/15/11/2024/2feec50cde971da7acc38475bcc9f650.jpg?thumb=1&w=660&f=webp&q=85",
+    link:"https://www.mi.com/vn/discover/article?id=3870"
+  },
+];
 
 const HomePage = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -81,6 +101,30 @@ const HomePage = () => {
           </div>
         </div>
       </section> */}
+       <section className={styles.valueAndNewsSection}>
+      <div className={styles.featuredValues}>
+        <h2>Giá Trị Nổi Bật</h2>
+        <div className={styles.valuesGrid}>
+          <div className={styles.valueItem}>
+            <img src="/assets/icons8-quality-50.png" alt="" />
+            <p>Đảm bảo chất lượng</p>
+          </div>
+          <div className={styles.valueItem}>
+            <img src="/assets/icons8-check-mark-48.png" alt="" />
+            <p>Hàng chính hãng</p>
+          </div>
+          <div className={styles.valueItem}>
+            <img src="/assets/icons8-change-48.png" alt="" />
+            <p>Thua mua đổi trọn đời</p>
+          </div>
+          <div className={styles.valueItem}>
+            <img src="/assets/icons8-truck-48.png" alt="" />
+            <p>Giao hàng tận nơi</p>
+          </div>
+        </div>
+      </div>
+     </section>
+
 
       <section className={styles.featuredProducts}>
         <h2>Sản phẩm nổi bật</h2>
@@ -120,6 +164,27 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      <section className={styles.valueAndNewsSection}>
+    
+
+    {/* Tin tức mới nhất */}
+    <div className={styles.latestNews}>
+  <h2>Latest News</h2>
+  <div className={styles.newsGrid}>
+    {newsItems.map((item, index) => (
+      <div key={index} className={styles.newsItem}>
+        <img src={item.image} alt={item.title} />
+        <h3>
+          <a href={item.link} className={styles.newsLink}>
+            {item.title}
+          </a>
+        </h3>
+        <p>{item.description}</p>
+      </div>
+    ))}
+  </div>
+</div>
+  </section>
 
       <section className={styles.obeyLookbook}>
         <h2>Bộ Sưu Tập PomDu</h2>
