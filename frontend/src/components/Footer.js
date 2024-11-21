@@ -12,15 +12,15 @@ const Footer = () => {
             PomDu <br />
             VIỆT NAM
           </h3>
-          <Link to="/chinh-sach-giao-hang">Chính sách giao hàng</Link>
-          <Link to="/chinh-sach-doi-tra">Chính sách đổi trả</Link>
+          <Link to="/ship">Chính sách giao hàng</Link>
+          <Link to="/return">Chính sách đổi trả</Link>
           <Link to="/the-qua-tang">Thẻ quà tặng PomDu</Link>
         </div>
         <div className={styles.footerColumn}>
           <h3>THÔNG TIN CỬA HÀNG</h3>
           <Link to="/stores">Hệ thống cửa hàng</Link>
           <Link to="/lien-he">Liên hệ</Link>
-          <Link to="/bao-ve-thuong-hieu">Bảo vệ thương hiệu</Link>
+          <Link to="/brand">Bảo vệ thương hiệu</Link>
         </div>
         <div className={styles.footerColumn}>
           <h3>HỖ TRỢ KHÁCH HÀNG</h3>
@@ -65,8 +65,8 @@ const Footer = () => {
           <span>PomDu VIỆT NAM</span>
         </div>
         <div className={styles.legalLinks}>
-          <Link to="/dieu-khoan-dich-vu">Điều khoản dịch vụ</Link>
-          <Link to="/chinh-sach-bao-mat">Chính sách bảo mật</Link>
+          <Link to="/service">Điều khoản dịch vụ</Link>
+          <Link to="/privacy">Chính sách bảo mật</Link>
         </div>
       </div>
     </footer>

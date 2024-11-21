@@ -31,6 +31,11 @@ import StoreLocator from './components/StoreLocator';
 import OrderDetails from './components/OrderDetails';
 import AboutPage from './pages/AboutPage';
 import SearchResults from './pages/SearchResults';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import ServiceTerms from './components/ServiceTerms';
+import ShippingPolicy from './components/ShippingPolicy';
+import ReturnPolicy from './components/ReturnPolicy';
+import BrandProtection from './components/BrandProtection';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
@@ -55,6 +60,11 @@ const AppRoutes = () => {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/lookbook" element={<Lookbook />} />
       <Route path="/stores" element={<StoreLocator />} />
+      <Route path="/privacy" element={<PrivacyPolicy/>}/>
+      <Route path="/service" element={<ServiceTerms/>}/>
+      <Route path="/ship" element={<ShippingPolicy/>}/>
+      <Route path="/return" element={<ReturnPolicy/>}/>
+      <Route path="/brand" element={<BrandProtection/>}/>
       <Route path="/about" element={<AboutPage />} />
       <Route 
         path="/user/*" 

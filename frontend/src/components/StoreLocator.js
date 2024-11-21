@@ -10,10 +10,10 @@ const StoreLocator = () => {
 
   const fetchStores = () => {
     const dummyStores = [
-      { id: 1, name: 'OBEY Store Đồng Khởi', address: '74 Đồng Khởi, Quận 1, TP.HCM', lat: 10.774305, lng: 106.701748 },
-      { id: 2, name: 'OBEY Store Nguyễn Trãi', address: '180 Nguyễn Trãi, Quận 1, TP.HCM', lat: 10.768845, lng: 106.693048 },
-      { id: 3, name: 'OBEY Store Lê Văn Sỹ', address: '350 Lê Văn Sỹ, Quận 3, TP.HCM', lat: 10.785226, lng: 106.675908 },
-      { id: 4, name: 'OBEY Store Sư Vạn Hạnh', address: '828 Sư Vạn Hạnh, Phường 13, Quận 10, TP. HCM', lat: 10.7712, lng: 106.6676 },
+      { id: 1, name: 'PomDu Store Sư Vạn Hạnh', address: '828 Đ. Sư Vạn Hạnh, Phường 12, Quận 10, thành phố Hồ Chí Minh', lat: 10.776047121263808, lng: 106.66737787754859 },
+      { id: 2, name: 'PomDu Store Hóc Môn', address: '806 QL22, ấp Mỹ Hoà 3, Hóc Môn, thành phố Hồ Chí Minh', lat: 10.865717228892738, lng: 106.60054545412493 },
+      { id: 3, name: 'PomDu Store Ba Gia', address: '52-70 Ba Gia, Phường 7, Tân Bình, thành phố Hồ Chí Minh', lat: 10.785068857175446, lng: 106.65462303236737 },
+      { id: 4, name: 'PomDu Store Trường Sơn', address: '32 Đ. Trường Sơn, Phường 2, Tân Bình, thành phố Hồ Chí Minh', lat: 10.809086667370536, lng: 106.66502622396764 },
     ];
     setStores(dummyStores);
   };
@@ -39,7 +39,7 @@ const StoreLocator = () => {
 
   return (
     <div className={styles.storeLocator}>
-      <h1 className={styles.title}>Tìm cửa hàng OBEY</h1>
+      <h1 className={styles.title}>Cửa hàng của PomDu</h1>
       <div className={styles.container}>
         <div className={styles.mapContainer}>
           {googleMapsApiKey ? (
