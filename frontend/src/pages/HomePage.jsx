@@ -27,7 +27,7 @@ const imageUrl = (img) => {
       title: "Chụp ảnh thiêú sáng cùng với Xiaomi 14T Pro",
       description: "Với ông kính sắc nối , có thể chụp ảnh bất kỳ ở đâu với ánh sáng như nào",
       image: "https://i02.appmifile.com/693_operator_vn/15/11/2024/2feec50cde971da7acc38475bcc9f650.jpg?thumb=1&w=660&f=webp&q=85",
-      link:"https://www.mi.com/vn/discover/article?id=3870"
+      link:""
     },
   ];
 
