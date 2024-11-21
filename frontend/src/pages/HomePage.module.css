@@ -1,7 +1,7 @@
 .homePage {
     display: flex;
     flex-direction: column;
-    background-color: #F5FFFA		;
+    background-color: #fff	;
   }
   
   .headerSpacer {
@@ -629,3 +629,103 @@
       padding: 8px 15px;
     }
   }
+  /* new*/
+  .valueAndNewsSection {
+    margin: 50px 0;
+  }
+  
+  /* Giá Trị Nổi Bật */
+  .featuredValues {
+    background-color: #e9f8fe; /* Màu xanh nhạt giống hình */
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left:100px;
+    margin-right: 100px;
+    margin-top:10px;
+  }
+  
+  .featuredValues h2 {
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .valuesGrid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .valueItem {
+    text-align: center;
+    width: 20%;
+  }
+  
+  .valueItem img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .valueItem p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  /* Latest News */
+  .latestNews {
+    padding: 40px 20px;
+    margin-left :100px;
+    margin-right :100px;
+    margin-top:10px;
+    margin-right: 100px;
+  }
+  
+  .latestNews h2 {
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .newsGrid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .newsItem {
+    width: 30%;
+    text-align: center;
+  }
+
+  .newsItem img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 0px;
+  }
+  .newsItem a {
+    color:black;
+    text-decoration: none;
+  }
+  .newsItem h3 {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-decoration: none;
+  }
+  
+  .newsItem p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.5;
+  }
+  
