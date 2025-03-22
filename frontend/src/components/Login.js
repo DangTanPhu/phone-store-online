@@ -76,7 +76,7 @@ const Login = () => {
         </div> */}
         <div className={styles.loginForm}>
           <h1 className={styles.loginTitle}>Đăng nhập</h1>
-          <p className={styles.loginSubtitle}>Chào mừng bạn đến với thế giới thời trang của chúng tôi</p>
+          <p className={styles.loginSubtitle}>Chào mừng bạn đến với thế giới điện thoại của chúng tôi</p>
           {error && <div className={styles.errorMessage}>{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>

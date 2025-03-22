@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { resetPassword } from "../services/api";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import axios from "axios"; // Thêm axios vào đây
 import styles from "./style.component/ResetPassword.module.css";
 import { FaLock, FaKey } from "react-icons/fa";
 
@@ -9,7 +9,8 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const { token } = useParams();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token"); // Lấy token từ URL
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,14 +20,15 @@ const ResetPassword = () => {
       return;
     }
     try {
-      const response = await resetPassword(token, password);
+      const response = await axios.post("http://localhost:5000/api/reset-password", {
+        token,
+        password,
+      });
       setMessage(response.data.message);
       setError("");
       setTimeout(() => navigate("/login"), 3000);
     } catch (error) {
-      setError(
-        error.response?.data?.message || "Đã xảy ra lỗi khi đặt lại mật khẩu"
-      );
+      setError(error.response?.data?.message || "Đã xảy ra lỗi khi đặt lại mật khẩu");
     }
   };
 
@@ -37,9 +39,7 @@ const ResetPassword = () => {
           <h1 className={styles.resetPasswordTitle}>
             <FaKey /> Đặt lại mật khẩu
           </h1>
-          <p className={styles.resetPasswordSubtitle}>
-            Nhập mật khẩu mới của bạn
-          </p>
+          <p className={styles.resetPasswordSubtitle}>Nhập mật khẩu mới của bạn</p>
         </div>
 
         {message && <div className={styles.successMessage}>{message}</div>}

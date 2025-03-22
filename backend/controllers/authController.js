@@ -3,48 +3,59 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const User = require("../models/User");
 const { sendResetPasswordEmail } = require("../utils/emailService");
+require("dotenv").config();
 
+// Đăng ký người dùng
 exports.register = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password, fullName, phoneNumber, address, role } = req.body;
     console.log("Registration attempt:", { username, email, role });
 
-    // Kiểm tra người dùng đã tồn tại chưa
+    // Kiểm tra email có phải là Gmail không
+    if (!email.endsWith("@gmail.com")) {
+      return res.status(400).json({ message: "Vui lòng sử dụng email Gmail (@gmail.com)" });
+    }
+
+    // Kiểm tra tài khoản đã tồn tại chưa
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Mặc định vai trò là 'user', nếu role === 'admin' thì chỉ cần tạo tài khoản admin
-    let userRole = "user";
-    if (role === "admin") {
-      userRole = "admin";
-    }
+    // Mặc định vai trò là 'user'
+    let userRole = role === "admin" ? "admin" : "user";
 
     // Băm mật khẩu
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Tạo người dùng mới
-    const user = new User({
+    // Lưu thông tin người dùng
+    const newUser = new User({
       username,
       email,
       password: hashedPassword,
+      fullName, // Optional field
+      phoneNumber, // Optional field with validation
+      address, // Optional field
       role: userRole,
     });
+    await newUser.save();
 
-    // Lưu người dùng vào cơ sở dữ liệu
-    await user.save();
-    res
-      .status(201)
-      .json({ message: "User created successfully", role: userRole });
+    return res.status(200).json({ message: "Đăng ký thành công! Bạn có thể đăng nhập ngay." });
   } catch (error) {
     console.error("Registration error:", error);
-    res
-      .status(500)
-      .json({ message: "Error creating user", error: error.message });
+    if (error.code === 11000) {
+      return res.status(400).json({ message: "Username or email already exists" });
+    }
+    // Handle validation errors from Mongoose
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ message: "Validation error", errors: messages });
+    }
+    res.status(500).json({ message: "Error creating user", error: error.message });
   }
 };
 
+// Đăng nhập
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -74,14 +85,16 @@ exports.login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      await user.incrementLoginAttempts();
+      await user.incrementLoginAttempts(); // Sử dụng phương thức từ schema
       return res.status(400).json({ message: "Mật khẩu không đúng" });
     }
 
+    // Reset login attempts nếu đăng nhập thành công
     if (user.loginAttempts > 0) {
-      user.loginAttempts = 0;
-      user.lockUntil = undefined;
-      await user.save();
+      await user.updateOne({
+        $set: { loginAttempts: 0 },
+        $unset: { lockUntil: 1 },
+      });
     }
 
     const token = jwt.sign(
@@ -94,7 +107,7 @@ exports.login = async (req, res) => {
       token,
       user: {
         id: user._id,
-        name: user.name,
+        fullName: user.fullName, // Sử dụng fullName thay vì name
         email: user.email,
         role: user.role,
         isActive: user.isActive,
@@ -106,82 +119,65 @@ exports.login = async (req, res) => {
   }
 };
 
+// Xử lý quên mật khẩu
 exports.forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy người dùng với email này" });
+      return res.status(404).json({ message: "Không tìm thấy người dùng với email này" });
     }
 
     const resetToken = crypto.randomBytes(20).toString("hex");
     user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 giờ
     await user.save();
 
-    const resetUrl = `http://ObeyClothing/reset-password/${resetToken}`;
+    const resetUrl = `http://localhost:3000/reset-password?token=${resetToken}`;
     await sendResetPasswordEmail(email, resetUrl);
 
-    res.json({
-      message: "Liên kết đặt lại mật khẩu đã được gửi đến email của bạn",
-    });
+    res.json({ message: "Liên kết đặt lại mật khẩu đã được gửi đến email của bạn" });
   } catch (error) {
-    console.error("Forgot password error:", error);
-    res
-      .status(500)
-      .json({ message: "Lỗi xử lý yêu cầu", error: error.message });
+    res.status(500).json({ message: "Lỗi xử lý yêu cầu", error: error.message });
   }
 };
 
+// Đặt lại mật khẩu
 exports.resetPassword = async (req, res) => {
   try {
-    const { token } = req.params;
-    const { password } = req.body;
-
-    console.log("Received token:", token);
-    console.log("Received password:", password);
+    const { token, password } = req.body;
 
     const user = await User.findOne({
       resetPasswordToken: token,
       resetPasswordExpires: { $gt: Date.now() },
     });
 
-    console.log("Found user:", user);
-
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: "Token không hợp lệ hoặc đã hết hạn" });
+      return res.status(400).json({ message: "Token không hợp lệ hoặc đã hết hạn" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-    user.password = hashedPassword;
+    user.password = await bcrypt.hash(password, 12);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
 
-    console.log("Password reset successful");
-
     res.json({ message: "Mật khẩu đã được đặt lại thành công" });
   } catch (error) {
-    console.error("Error resetting password:", error);
-    res
-      .status(500)
-      .json({ message: "Lỗi khi đặt lại mật khẩu", error: error.message });
+    res.status(500).json({ message: "Lỗi khi đặt lại mật khẩu" });
   }
 };
 
+// Lấy danh sách tất cả người dùng
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}, "-password");
+    const users = await User.find({}, "-password").populate("shippingInfo");
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error: error.message });
   }
 };
 
+// Thay đổi vai trò người dùng
 exports.changeUserRole = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -191,7 +187,7 @@ exports.changeUserRole = async (req, res) => {
       return res.status(400).json({ message: "Vai trò không hợp lệ" });
     }
 
-    const user = await User.findByIdAndUpdate(userId, { role }, { new: true });
+    const user = await User.findByIdAndUpdate(userId, { role }, { new: true }).select("-password");
 
     if (!user) {
       return res.status(404).json({ message: "Không tìm thấy người dùng" });

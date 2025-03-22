@@ -1,35 +1,54 @@
 const nodemailer = require('nodemailer');
-
+require ("dotenv").config();
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, 
+  service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
-  },
-  tls: {
-    rejectUnauthorized: false
   }
 });
+exports.sendVerificationEmail = async (email, token) => {
+  const verificationLink = `http://localhost:3000/api/auth/verify/${token}`;
 
-exports.sendResetPasswordEmail = async (email, resetUrl) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: 'Đặt lại mật khẩu',
-    html: `<p>Bạn đã yêu cầu đặt lại mật khẩu. Vui lòng click vào link sau để đặt lại mật khẩu: <a href="${resetUrl}">${resetUrl}</a></p>`
+    subject: "Xác thực tài khoản của bạn",
+    html: `
+      <p>Chào bạn,</p>
+      <p>Vui lòng nhấn vào link dưới đây để xác thực tài khoản của bạn:</p>
+      <a href="${verificationLink}">Xác thực tài khoản</a>
+      <p>Link này có hiệu lực trong 1 giờ.</p>
+    `,
   };
 
   try {
-    console.log('Attempting to send email...');
-    console.log('Email options:', JSON.stringify(mailOptions, null, 2));
     await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully');
+    console.log("Email xác thực đã được gửi đến:", email);
   } catch (error) {
-    console.error('Error sending email:', error);
-    throw new Error('Không thể gửi email đặt lại mật khẩu');
+    console.error("Lỗi khi gửi email xác thực:", error);
   }
+};
+
+const sendResetPasswordEmail = async (email, resetUrl) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Đặt lại mật khẩu",
+    html: `<p>Nhấp vào liên kết sau để đặt lại mật khẩu của bạn:</p>
+           <a href="${resetUrl}">${resetUrl}</a>
+           <p>Liên kết sẽ hết hạn trong 1 giờ.</p>`,
+  };
+
+  await transporter.sendMail(mailOptions);
 };
 
 exports.sendOrderConfirmationEmail = async (email, order, invoice) => {
@@ -119,3 +138,26 @@ exports.sendOrderConfirmationEmail = async (email, order, invoice) => {
     throw error;
   }
 };
+
+
+const sendVerificationEmail = async (email, verificationToken) => {
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const verificationUrl = `http://localhost:3000/verify-email?token=${verificationToken}`;
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Xác thực email",
+    text: `Vui lòng nhấp vào liên kết sau để xác thực email của bạn: ${verificationUrl}`,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+module.exports = { sendVerificationEmail, sendResetPasswordEmail };

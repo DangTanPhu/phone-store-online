@@ -1,206 +1,216 @@
-.userManagement {
-    padding: 20px;
-    background-color: #f0f4f8; /* Light, neutral background for contrast */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.userManagement h2 {
+/* Reset Password Page */
+.resetPasswordPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .resetPasswordContainer {
+    width: 90%;
+    max-width: 500px;
+    background-color: #262626;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+    padding: 40px;
+    color: #ffffff;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .formHeader {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .resetPasswordTitle {
+    font-size: 2rem;
+    color: #ff0000;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+  }
+  
+  .resetPasswordSubtitle {
+    font-size: 1rem;
+    color: #cccccc;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .inputGroup {
+    position: relative;
     margin-bottom: 20px;
-    color: #1f2937; /* Darker gray for better text contrast */
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid #cc0000;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 6px;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #ff3333;
+  }
+  
+  .inputIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff4d4d;
+  }
+  
+  .successMessage {
+    background-color: #166534;
+    color: #dcfce7;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .errorMessage {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .submitButton:hover {
+    background-color: #cc0000;
+  }
+  
+  /* User Management */
+  .userManagement {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+    color: #ffffff;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .userManagement h2 {
+    margin-bottom: 20px;
+    color: #ff0000;
     font-size: 1.8rem;
     text-align: center;
     font-weight: 600;
-}
-
-.searchBar {
+    font-family: "Playfair Display", serif;
+  }
+  
+  .searchBar {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     padding: 12px;
-    background-color: #ffffff;
+    background-color: #333333;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.searchBar input {
+  }
+  
+  .searchBar input {
     flex-grow: 1;
-    border: 1px solid #cbd5e1;
+    border: 1px solid #ff0000;
     border-radius: 4px;
     padding: 8px 12px;
     font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.searchBar input:focus {
-    border-color: #3b82f6;
+    background-color: #262626;
+    color: #ffffff;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .searchBar input:focus {
+    border-color: #ff4d4d;
     outline: none;
-}
-
-.userTable {
+  }
+  
+  .userTable {
     width: 100%;
     border-collapse: collapse;
-    background-color: #ffffff;
+    background-color: #262626;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.userTable th, .userTable td {
+    box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
+  }
+  
+  .userTable th, .userTable td {
     padding: 12px 16px;
     text-align: left;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.userTable th {
-    background-color: #f3f4f6;
+    border-bottom: 1px solid #ff3333;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .userTable th {
+    background-color: #333333;
     font-weight: bold;
-    color: #374151;
+    color: #ff0000;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.userTable th:hover {
-    background-color: #e5e7eb;
-}
-
-.userTable td {
-    color: #4b5563;
-}
-
-.status {
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.active {
-    background-color: #e6fffa;
-    color: #047857;
-}
-
-.inactive {
-    background-color: #ffe6eb;
-    color: #c53030;
-}
-
-.actionButton {
+    font-family: "Playfair Display", serif;
+  }
+  
+  .userTable td {
+    color: #ffffff;
+  }
+  
+  .actionButton {
     padding: 6px 12px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
     font-size: 0.95rem;
     transition: background-color 0.3s, transform 0.2s;
-}
-
-.actionButton:hover {
-    transform: translateY(-2px);
-}
-
-.actionButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.lockButton {
-    background-color: #f87171;
     color: white;
-}
-
-.unlockButton {
-    background-color: #34d399;
-    color: white;
-}
-
-.lockButton:hover {
-    background-color: #e11d48;
-}
-
-.unlockButton:hover {
-    background-color: #10b981;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination button {
-    margin: 0 5px;
-    padding: 8px 12px;
-    border: none;
-    background-color: #3b82f6;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.pagination button:hover {
-    background-color: #2563eb;
-}
-
-.pagination button.active {
-    background-color: #1d4ed8;
-}
-
-.loading, .error {
-    text-align: center;
-    padding: 20px;
-    font-size: 1.1rem;
-    border-radius: 6px;
-}
-
-.error {
-    color: #b91c1c;
-    background-color: #fef2f2;
-    border: 1px solid #fca5a5;
-}
-
-.roleSelect {
-    padding: 8px 14px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    background-color: #ffffff;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.roleSelect:hover {
-    border-color: #3b82f6;
-}
-
-.roleSelect:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-
-.statusBadge {
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.statusActive {
-    background-color: #ecfdf5;
-    color: #065f46;
-}
-
-.statusInactive {
-    background-color: #fef3f2;
-    color: #9b1c1c;
-}
-
-.statusLocked {
-    background-color: #fffbeb;
-    color: #92400e;
-}
+    font-family: "Playfair Display", serif;
+  }
+  
+  .lockButton {
+    background-color: #ff0000;
+  }
+  
+  .unlockButton {
+    background-color: #008000;
+  }
+  
+  .lockButton:hover {
+    background-color: #cc0000;
+  }
+  
+  .unlockButton:hover {
+    background-color: #006400;
+  }
+  

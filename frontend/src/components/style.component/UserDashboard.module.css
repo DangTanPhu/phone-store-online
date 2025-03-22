@@ -3,22 +3,24 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px;
-  background-color: #f1f5f9; /* Light gray background for a soft appearance */
+  background-color: #121212; /* Nền đen */
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for a floating effect */
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2); /* Hiệu ứng bóng đỏ */
   display: flex;
   flex-direction: column;
   gap: 30px;
+  font-family: "Playfair Display", serif;
 }
 
 /* Dashboard Heading */
 .userDashboard h1 {
   font-size: 32px;
   font-weight: 700;
-  color: #2c3e50;
+  color: #ff3b30; /* Đỏ rực */
   margin-bottom: 20px;
   text-align: center;
-  letter-spacing: -0.5px; /* Slightly tighter letter spacing for a modern look */
+  letter-spacing: -0.5px;
+  font-family: "Playfair Display", serif;
 }
 
 /* Main Content Layout */
@@ -39,8 +41,8 @@
 
 .navButton {
   padding: 14px 25px;
-  background-color: #6c5ce7; /* Purple button for a more distinctive look */
-  color: white;
+  background-color: #ff3b30; /* Màu đỏ chủ đạo */
+  color: black;
   text-decoration: none;
   border-radius: 10px;
   text-align: center;
@@ -49,28 +51,31 @@
   letter-spacing: 0.5px;
   transition: all 0.3s ease-in-out;
   width: 100%;
+  font-family: "Playfair Display", serif;
 }
 
 .navButton:hover,
 .navButton.active {
-  background-color: #5e33c2; /* Darker shade for hover effect */
+  background-color: #b22222; /* Đỏ đậm hơn khi hover */
   transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Deep shadow effect on hover */
+  box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
 }
 
 .navButton:focus {
   outline: none;
-  border: 2px solid #5e33c2; /* Outline for better accessibility */
+  border: 2px solid #ff3b30;
 }
 
 /* Main Content Area */
 .dashboardOutlet {
-  background-color: #ffffff;
+  background-color: #1e1e1e; /* Nền đen xám */
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Slightly larger shadow for the main content */
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
   flex-grow: 1;
   overflow: hidden;
+  color: white;
+  font-family: "Playfair Display", serif;
 }
 
 /* Responsive Layout for smaller screens */
@@ -112,32 +117,41 @@
 
 /* Utility classes for modern typography */
 .text-primary {
-  color: #6c5ce7;
+  color: #ff3b30;
+  font-family: "Playfair Display", serif;
 }
 
 .text-muted {
-  color: #7f8c8d;
+  color: #bdc3c7;
+  font-family: "Playfair Display", serif;
 }
 
 .bg-light {
-  background-color: #ecf0f1;
+  background-color: #1e1e1e;
+  font-family: "Playfair Display", serif;
 }
 
 .bg-white {
-  background-color: #ffffff;
+  background-color: #2c2c2c;
+  font-family: "Playfair Display", serif;
 }
 
 /* Add rounded corners and shadows to specific elements like cards */
 .card {
-  background-color: #fff;
+  background-color: #222;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.2);
   padding: 25px;
+  color: white;
+  font-family: "Playfair Display", serif;
 }
 
 /* Accent borders for inputs or selected items */
 .accent-border {
-  border: 2px solid #6c5ce7;
+  border: 2px solid #ff3b30;
   padding: 8px 12px;
   border-radius: 6px;
+  background-color: #1e1e1e;
+  color: white;
+  font-family: "Playfair Display", serif;
 }

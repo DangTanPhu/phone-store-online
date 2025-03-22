@@ -349,7 +349,7 @@ const PurchaseOrderManagement = () => {
                     Xác nhận nhận hàng
                   </button>
                 )}
-                <button onClick={() => handleDownloadPDF(order._id, "order")}>
+                <button onClick={() => handleDownloadPDF(order._id, "order") } style={{marginBottom:'10px'}}>
                   Tải phiếu đặt hàng
                 </button>
                 {order.status === "received" && (

@@ -1,236 +1,152 @@
-/* Định nghĩa style cho trang đăng nhập */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .loginPage {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f5f5f5;
-    font-family: 'Playfair Display', serif;
-  }
-  
-  .loginContainer {
-    display: flex;
-    width: 80%;
-    /* max-width: 1000px; */
-    max-width: 520px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .loginImage {
-    flex: 1;
-    background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1470&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    min-height: 600px;
-    position: relative;
-  }
-  
-  .loginImage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.1)
-    );
-  }
-  
-  .loginForm {
-    flex: 1;
-    padding: 50px;
+    background: url('D:\phone-store-online\frontend\public\images\4.jpg') no-repeat center center/cover;
+}
+
+.loginContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-  }
-  
-  .formHeader {
+    width: 420px;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(255, 50, 50, 0.7);
+    padding: 40px;
     text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .loginTitle {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-  
-  .loginSubtitle {
-    text-align: center ;
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .errorMessage {
-    background-color: #fee2e2;
-    color: #dc2626;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .inputGroup {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .input {
-    width: 120%;
-    padding: 12px 40px 12px 40px;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    background-color: transparent;
-  }
-  
-  .input:focus {
-    outline: none;
-    border-color: #4f46e5;
-  }
-  
-  .inputGroup .inputIcon {
-    position: absolute;
-    left: 12px;
-    top: 20px ;
-    transform: translateY(-50%);
-    color: #666;
-  }
-  
-  .loginButton {
+    backdrop-filter: blur(8px);
+}
+
+.loginTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4747;
+    text-transform: uppercase;
+}
+
+/* Căn chỉnh input với icon */
+.inputGroup {
+    display: flex;
+    align-items: center;
     width: 100%;
-    padding: 12px;
-    background-color: rgb(127,255,172);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+}
+
+.input {
+    width: 100%;
+    padding: 14px 14px 14px 40px; /* Dành chỗ cho icon */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: 0.3s;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 12px #ff4747;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ff4747;
+}
+
+/* Căn chỉnh button */
+.loginButton {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #ff4747, #ff0000);
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.loginButton:hover {
+    background: linear-gradient(90deg, #ff0000, #b30000);
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.9);
+}
+
+/* Căn chỉnh quên mật khẩu và tạo tài khoản */
+.extraOptions {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .loginButton:hover {
-    background-color: rgb(127,255,172);
-  }
-  
-  .divider {
-    text-align: center;
-    margin: 20px 0;
-    position: relative;
-  }
-  
-  .divider::before,
-  .divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 45%;
-    height: 1px;
-    background-color: #ddd;
-  }
-  
-  .divider::before {
-    left: 0;
-  }
-  
-  .divider::after {
-    right: 0;
-  }
-  
-  .divider span {
-    background-color: white;
-    padding: 0 10px;
-    color: #666;
+    justify-content: space-between;
+    margin-top: 15px;
     font-size: 0.9rem;
-  }
-  
-  .socialLogin {
+}
+
+.footerLink {
+    color: #ff4747;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 0 5px;
+}
+
+.footerLink:hover {
+    color: #ffffff;
+}
+
+/* Căn chỉnh icon cho Google và Facebook */
+.socialLogin {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .socialButton {
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.socialButton {
     flex: 1;
     padding: 12px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .googleButton {
-    background-color: #ea4335;
+    transition: 0.3s;
+}
+
+.socialButton i {
+    margin-right: 10px; /* Cách icon ra một dấu cách */
+}
+
+.googleButton {
+    background: #ea4335;
     color: white;
-  }
-  
-  .googleButton:hover {
-    background-color: #d33426;
-  }
-  
-  .facebookButton {
-    background-color: #1877f2;
+}
+
+.facebookButton {
+    background: #1877f2;
     color: white;
-  }
-  
-  .facebookButton:hover {
-    background-color: #166fe5;
-  }
-  
-  .loginFooter {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .footerLink {
-    color: #4f46e5;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    transition: color 0.3s ease;
-  }
-  
-  .footerLink:hover {
-    color: #4338ca;
-  }
-  
-  .buttonIcon {
-    font-size: 1.2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .loginContainer {
-      width: 95%;
-      flex-direction: column;
-    }
-  
-    .loginImage {
-      display: none;
-    }
-  
-    .loginForm {
-      padding: 30px;
-    }
-  }
-  
+}
+
+.googleButton:hover, .facebookButton:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}

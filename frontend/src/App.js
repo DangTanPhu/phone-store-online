@@ -12,7 +12,11 @@ const paypalOptions = {
   "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
   currency: "USD"
 };
+const API_URL = "http://localhost:3000/api/authController"; // Thay đổi theo backend của bạn
 
+export const resetPassword = (token, password) => {
+  return axios.post(`${API_URL}/reset-password`, { token, password });
+};
 function App() {
   return (
     <PayPalScriptProvider options={paypalOptions}>

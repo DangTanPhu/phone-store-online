@@ -2,17 +2,17 @@
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #f8fafc; /* Light grey background for contrast */
+  background-color: #1a1a1a; /* Nền đen */
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2); /* Hiệu ứng bóng đỏ */
 }
 
 .createProduct h2 {
   font-size: 2.2rem;
-  color: #1f2937; /* Darker text for better contrast */
+  color: #ff3b3b; /* Màu đỏ */
   margin-bottom: 1.5rem;
   text-align: center;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .message {
@@ -23,15 +23,15 @@
 }
 
 .message.success {
-  background-color: #e6ffed; /* Softer green background */
-  color: #047857; /* Darker green text */
-  border-left: 5px solid #10b981; /* Accent border */
+  background-color: #003300; /* Xanh đậm */
+  color: #00ff00; /* Xanh lá neon */
+  border-left: 5px solid #00ff00;
 }
 
 .message.error {
-  background-color: #ffe6e9; /* Softer red background */
-  color: #b91c1c; /* Darker red text */
-  border-left: 5px solid #ef4444; /* Accent border */
+  background-color: #550000; /* Đỏ tối */
+  color: #ff3b3b;
+  border-left: 5px solid #ff3b3b;
 }
 
 .createProduct form {
@@ -43,16 +43,17 @@
 .createProduct textarea {
   margin-bottom: 1rem;
   padding: 0.8rem;
-  border: 1px solid #cbd5e1; /* Subtle border color */
+  border: 1px solid #ff3b3b;
   border-radius: 6px;
   font-size: 1rem;
-  background-color: #ffffff;
+  background-color: #262626;
+  color: white;
   transition: border-color 0.3s;
 }
 
 .createProduct input:focus,
 .createProduct textarea:focus {
-  border-color: #60a5fa; /* Highlight on focus */
+  border-color: #ff6b6b;
   outline: none;
 }
 
@@ -63,9 +64,9 @@
 
 .createProduct button {
   padding: 0.9rem;
-  background-color: #3b82f6; /* Vibrant blue button */
+  background-color: #8b0000;
   color: white;
-  border: none;
+  border: 1px solid #ff3b3b;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
@@ -73,19 +74,19 @@
 }
 
 .createProduct button:hover {
-  background-color: #2563eb; /* Darker blue on hover */
-  transform: translateY(-2px); /* Lift on hover */
+  background-color: #ff3b3b;
+  transform: translateY(-2px);
 }
 
 .createProduct button:active {
-  background-color: #1d4ed8;
+  background-color: #550000;
   transform: translateY(0);
 }
 
 .categoryList {
   margin-top: 20px;
   padding: 1rem;
-  background-color: #e5e7eb; /* Light grey section for distinction */
+  background-color: #262626;
   border-radius: 6px;
 }
 
@@ -100,7 +101,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid #d1d5db; /* Light separator */
+  border-bottom: 1px solid #ff3b3b;
 }
 
 .categoryList li:last-child {
@@ -108,9 +109,9 @@
 }
 
 .categoryList button {
-  background-color: #ef4444; /* Red delete button */
+  background-color: #8b0000;
   color: white;
-  border: none;
+  border: 1px solid #ff3b3b;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -118,21 +119,22 @@
 }
 
 .categoryList button:hover {
-  background-color: #dc2626;
+  background-color: #ff3b3b;
 }
 
 .categorySelect {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #ff3b3b;
   border-radius: 6px;
-  background-color: #ffffff;
+  background-color: #262626;
   font-size: 1rem;
+  color: white;
 }
 
 .categorySelect option:disabled {
-  color: #6b7280; /* Muted color for disabled option */
+  color: #ff3b3b;
   font-weight: bold;
 }
 
@@ -143,17 +145,17 @@
 .sizeGuidePreview {
   margin-top: 1rem;
   max-width: 300px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #ff3b3b;
   padding: 0.75rem;
   border-radius: 6px;
-  background-color: #f3f4f6; /* Light background */
+  background-color: #262626;
 }
 
 .sizeGuidePreview img {
   width: 100%;
   height: auto;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {

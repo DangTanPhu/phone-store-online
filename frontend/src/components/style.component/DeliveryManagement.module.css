@@ -1,19 +1,26 @@
 .deliveryManagement {
   padding: 20px;
+  background-color: #1a1a1a; /* Nền đen */
+  font-family: Arial, sans-serif; /* Phông chữ chuẩn */
+  color: white;
 }
 
 .deliveryTable {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  background: #262626; /* Bảng nền đen xám */
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 .deliveryTable th {
-  background: #f8f9fa;
+  background: #8b0000; /* Đỏ đậm */
   padding: 16px;
-  font-weight: 600;
-  color: #2c3e50;
-  border-bottom: 2px solid #e0e0e0;
+  font-weight: normal;
+  color: white;
+  border-bottom: 2px solid #ff3b3b;
+  font-family: Arial, sans-serif;
 }
 
 .headerCell {
@@ -24,11 +31,11 @@
 }
 
 .headerCell:hover {
-  color: #4a90e2;
+  color: #ff3b3b; /* Màu đỏ khi hover */
 }
 
 .active {
-  color: #4a90e2;
+  color: #ff3b3b;
 }
 
 .tableRow {
@@ -36,13 +43,14 @@
 }
 
 .tableRow:hover {
-  background-color: #f5f8ff;
+  background-color: #333; /* Hover đổi sang xám đậm */
 }
 
 .deliveryTable td {
   padding: 16px;
-  border-bottom: 1px solid #e0e0e0;
-  color: #4a4a4a;
+  border-bottom: 1px solid #ff3b3b;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 .userCell {
@@ -70,27 +78,27 @@
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: normal;
 }
 
 .pending {
-  background: #fff3e0;
-  color: #f57c00;
+  background: #8b0000;
+  color: #ffcc00;
 }
 
 .shipping {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #262626;
+  color: #ff3b3b;
 }
 
 .delivered {
-  background: #e8f5e9;
-  color: #388e3c;
+  background: #003300;
+  color: #00ff00;
 }
 
 .cancelled {
-  background: #fbe9e7;
-  color: #d32f2f;
+  background: #550000;
+  color: #ff3b3b;
 }
 
 .actions {
@@ -100,33 +108,38 @@
 
 .statusSelect {
   padding: 8px 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #ff3b3b;
   border-radius: 4px;
-  background: white;
+  background: #1a1a1a;
   font-size: 13px;
+  color: white;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: Arial, sans-serif;
 }
 
 .statusSelect:hover:not(:disabled) {
-  border-color: #4a90e2;
+  border-color: #ff6b6b;
 }
 
 .statusSelect:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background: #f5f5f5;
+  background: #333;
 }
 
 .loading {
   text-align: center;
   padding: 20px;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 .error {
-  color: red;
+  color: #ff3b3b;
   text-align: center;
   padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 /* Styles cho search và filter */
@@ -136,16 +149,18 @@
   gap: 8px;
   margin-bottom: 20px;
   padding: 8px;
-  background-color: #f4f4f4;
+  background-color: #333;
   border-radius: 4px;
 }
 
 .searchBar input {
   flex: 1;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff3b3b;
   border-radius: 4px;
-  
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 /* Styles cho pagination */
@@ -158,10 +173,12 @@
 
 .pagination button {
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff3b3b;
   border-radius: 4px;
-  background-color: white;
+  background-color: black;
+  color: white;
   cursor: pointer;
+  font-family: Arial, sans-serif;
 }
 
 .pagination button:disabled {
@@ -170,15 +187,14 @@
 }
 
 .pagination button.active {
-  background-color: #007bff;
+  background-color: #ff3b3b;
   color: white;
-  border-color: #007bff;
+  border-color: #ff3b3b;
 }
 
 .tableWrapper {
-  background: white;
+  background: #1a1a1a;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
   overflow: hidden;
-  
 }

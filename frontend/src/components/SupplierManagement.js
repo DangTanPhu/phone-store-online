@@ -147,7 +147,7 @@ const SupplierManagement = () => {
               <td>{supplier.email}</td>
               <td>{supplier.phone}</td>
               <td>{supplier.address}</td>
-              <td>
+              <td style={{display:'flex', marginTop:'2px'}}>
                 <button onClick={() => handleEdit(supplier)}>Sửa</button>
                 <button onClick={() => handleDelete(supplier._id)}>Xóa</button>
               </td>

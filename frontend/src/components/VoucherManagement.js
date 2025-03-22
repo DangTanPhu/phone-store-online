@@ -22,37 +22,23 @@ const VoucherManagement = () => {
     usageLimit: 1,
     isActive: true,
   });
-  const [startDateError, setStartDateError] = useState("");
 
   useEffect(() => {
     fetchVouchers();
   }, []);
 
-  useEffect(() => {
-    console.log("Current vouchers:", vouchers);
-  }, [vouchers]);
-
   const fetchVouchers = async () => {
-    console.log("Đang lấy danh sách voucher");
     try {
       setLoading(true);
       const response = await getVouchers();
-      console.log("Dữ liệu voucher nhận được:", response);
-
       if (response && response.data && Array.isArray(response.data)) {
         const formattedVouchers = response.data.map((voucher) => ({
           ...voucher,
           startDate: new Date(voucher.startDate).toLocaleDateString(),
           endDate: new Date(voucher.endDate).toLocaleDateString(),
-          discountType:
-            voucher.discountType === "percentage" ? "Phần trăm" : "Cố định",
-          isActive: voucher.isActive ? "Hoạt động" : "Không hoạt động",
         }));
-
         setVouchers(formattedVouchers);
-        console.log("Đã cập nhật state vouchers:", formattedVouchers);
       } else {
-        console.error("Định dạng dữ liệu không mong đợi:", response);
         setVouchers([]);
       }
       setLoading(false);
@@ -67,63 +53,48 @@ const VoucherManagement = () => {
   const validateStartDate = (date) => {
     const selectedDate = new Date(date);
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Xóa phần giờ để so sánh chính xác
-  
+    today.setHours(0, 0, 0, 0); // Đặt thời gian về 0 để so sánh chỉ ngày
+
     if (selectedDate < today) {
-      alert("Ngày bắt đầu không được là ngày trong quá khứ!"); // Hiển thị thông báo bằng alert
-      return false;
+      return "Ngày bắt đầu không được là ngày trong quá khứ!";
     }
-    return true;
+    return null;
   };
-  
+
   const validateEndDate = (date) => {
     const selectedDate = new Date(date);
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Xóa phần giờ để so sánh chính xác
-  
+    today.setHours(0, 0, 0, 0); // Đặt thời gian về 0 để so sánh chỉ ngày
+
     if (selectedDate < today) {
-      alert("Ngày kết thúc không được là ngày trong quá khứ!"); // Hiển thị thông báo bằng alert
-      return false;
+      return "Ngày kết thúc không được là ngày trong quá khứ!";
     }
-    return true;
+    return null;
   };
-  
-  
+
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
-  
-    // Validate start and end dates
-    if (!validateStartDate(newVoucher.startDate) || !validateEndDate(newVoucher.endDate)) {
-      return; // Dừng lại nếu có lỗi
+
+    if (
+      !validateStartDate(newVoucher.startDate) ||
+      !validateEndDate(newVoucher.endDate)
+    ) {
+      return;
     }
-  
-    console.log("Đang tạo voucher mới:", newVoucher);
+
     try {
-      // Gọi API tạo voucher
       const response = await createVoucher(newVoucher);
-      console.log("Response từ server:", response);
-  
-      // Đảm bảo response.data có đầy đủ thông tin
       const createdVoucher = response.data;
-  
-      // Cập nhật state với dữ liệu đầy đủ
-      setVouchers((prevVouchers) => {
-        const formattedVoucher = {
+
+      setVouchers((prevVouchers) => [
+        ...prevVouchers,
+        {
           ...createdVoucher,
           startDate: new Date(createdVoucher.startDate).toLocaleDateString(),
           endDate: new Date(createdVoucher.endDate).toLocaleDateString(),
-          discountType:
-            createdVoucher.discountType === "percentage"
-              ? "Phần trăm"
-              : "Cố định",
-          isActive: createdVoucher.isActive ? "Hoạt động" : "Không hoạt động",
-        };
-  
-        console.log("Voucher đã được format:", formattedVoucher);
-        return [...prevVouchers, formattedVoucher];
-      });
-  
-      // Reset form
+        },
+      ]);
+
       setNewVoucher({
         code: "",
         discountType: "percentage",
@@ -135,22 +106,24 @@ const VoucherManagement = () => {
         usageLimit: 1,
         isActive: true,
       });
-  
-      // Gọi lại API để lấy danh sách mới nhất
-      await fetchVouchers();
+
+      fetchVouchers();
     } catch (error) {
       console.error("Lỗi khi tạo voucher:", error);
       setError("Không thể tạo voucher. Vui lòng thử lại sau.");
     }
   };
-  
-  
-  
 
   const handleUpdateVoucher = async (id, updatedData) => {
     try {
-      await updateVoucher(id, updatedData);
-      fetchVouchers();
+      const response = await updateVoucher(id, updatedData);
+      if (response && response.data) {
+        setVouchers((prevVouchers) =>
+          prevVouchers.map((voucher) =>
+            voucher._id === id ? { ...voucher, ...updatedData } : voucher
+          )
+        );
+      }
     } catch (error) {
       console.error("Lỗi khi cập nhật voucher:", error);
     }
@@ -159,7 +132,9 @@ const VoucherManagement = () => {
   const handleDeleteVoucher = async (id) => {
     try {
       await deleteVoucher(id);
-      fetchVouchers();
+      setVouchers((prevVouchers) =>
+        prevVouchers.filter((voucher) => voucher._id !== id)
+      );
     } catch (error) {
       console.error("Lỗi khi xóa voucher:", error);
     }
@@ -226,37 +201,44 @@ const VoucherManagement = () => {
           required
         />
         <input
-  type="date"
-  value={newVoucher.startDate}
-  onChange={(e) => {
-    setNewVoucher({ ...newVoucher, startDate: e.target.value });
-    validateStartDate(e.target.value); // Kiểm tra ngày khi thay đổi
-  }}
-  required
-/>
-
-       
-<input
-  type="date"
-  value={newVoucher.endDate}
-  onChange={(e) => {
-    setNewVoucher({ ...newVoucher, endDate: e.target.value });
-    validateEndDate(e.target.value); // Kiểm tra ngày khi thay đổi
-  }}
-  required
-/>
-
-       
+          type="date"
+          value={newVoucher.startDate}
+          onChange={(e) => {
+            const date = e.target.value;
+            const errorMessage = validateStartDate(date);
+            if (errorMessage) {
+              alert(errorMessage);
+            }
+            setNewVoucher({ ...newVoucher, startDate: date });
+          }}
+          required
+        />
+        <input
+          type="date"
+          value={newVoucher.endDate}
+          onChange={(e) => {
+            const date = e.target.value;
+            const errorMessage = validateEndDate(date);
+            if (errorMessage) {
+              alert(errorMessage);
+            }
+            setNewVoucher({ ...newVoucher, endDate: date });
+          }}
+          required
+        />
         <input
           type="number"
           value={newVoucher.usageLimit}
           onChange={(e) =>
-            setNewVoucher({ ...newVoucher, usageLimit: Number(e.target.value) })
+            setNewVoucher({
+              ...newVoucher,
+              usageLimit: Number(e.target.value),
+            })
           }
           placeholder="Giới hạn sử dụng"
           required
         />
-        <button type="submit" disabled={startDateError}>Tạo Voucher</button>
+        <button type="submit">Tạo Voucher</button>
       </form>
       <table className={styles.voucherTable}>
         <thead>
@@ -286,23 +268,20 @@ const VoucherManagement = () => {
               <td>{voucher.discountValue}</td>
               <td>{voucher.maxDiscount}</td>
               <td>{voucher.minPurchase}</td>
-              <td>{new Date(voucher.startDate).toLocaleDateString()}</td>
-              <td>{new Date(voucher.endDate).toLocaleDateString()}</td>
+              <td>{voucher.startDate}</td>
+              <td>{voucher.endDate}</td>
               <td>{voucher.usedTimes}</td>
               <td>{voucher.usageLimit}</td>
-              <td>{voucher.isActive}</td>
+              <td>{voucher.isActive ? "Hoạt động" : "Không hoạt động"}</td>
               <td>
                 <button
                   onClick={() =>
                     handleUpdateVoucher(voucher._id, {
-                      ...voucher,
                       isActive: !voucher.isActive,
                     })
                   }
                 >
-                  {voucher.isActive === "Hoạt động"
-                    ? "Vô hiệu hóa"
-                    : "Kích hoạt"}
+                  {voucher.isActive ? "Vô hiệu hóa" : "Kích hoạt"}
                 </button>
                 <button onClick={() => handleDeleteVoucher(voucher._id)}>
                   Xóa

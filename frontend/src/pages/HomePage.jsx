@@ -70,37 +70,6 @@ const HomePage = () => {
           <Link to="/products" className={styles.ctaButton}>Mua Ngay</Link>
         </div>
       </section>
-
-      {/* <section className={styles.categoriesGrid}>
-        <div className={`${styles.categoryItem} ${styles.large}`}>
-          <img src="/assets/1_MENS-BIGWIG.jpg" alt="Bộ Sưu Tập Nam" />
-          <div className={styles.categoryOverlay}>
-            <h2>Bộ Sưu Tập Nam</h2>
-            <Link to="/category/men" className={styles.categoryLink}>Khám Phá</Link>
-          </div>
-        </div>
-        <div className={`${styles.categoryItem} ${styles.medium}`}>
-          <img src="/assets/women.jpg" alt="Bộ Sưu Tập Nữ" />
-          <div className={styles.categoryOverlay}>
-            <h2>Bộ Sưu Tập Nữ</h2>
-            <Link to="/category/women" className={styles.categoryLink}>Khám Phá</Link>
-          </div>
-        </div>
-        <div className={`${styles.categoryItem} ${styles.small}`}>
-          <img src="/assets/3_PRINTABLES.jpg" alt="Áo Thun Họa Tiết" />
-          <div className={styles.categoryOverlay}>
-            <h2>Áo Thun Họa Tiết</h2>
-            <Link to="/category/graphic-tees" className={styles.categoryLink}>Khám Phá</Link>
-          </div>
-        </div>
-        <div className={`${styles.categoryItem} ${styles.small}`}>
-          <img src="/assets/4_SHEPARD_COLLECTION.jpg" alt="Bộ Sưu Tập Shepard Fairey" />
-          <div className={styles.categoryOverlay}>
-            <h2>Bộ Sưu Tập Shepard Fairey</h2>
-            <Link to="/category/shepard-fairey" className={styles.categoryLink}>Khám Phá</Link>
-          </div>
-        </div>
-      </section> */}
        <section className={styles.valueAndNewsSection}>
       <div className={styles.featuredValues}>
         <h2>Giá Trị Nổi Bật</h2>

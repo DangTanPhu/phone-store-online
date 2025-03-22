@@ -2,47 +2,53 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px;
-  background-color: #f4f7ff; /* Light, soothing background */
+  background-color: #1a1a1a; /* Black background */
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(255, 0, 0, 0.3);
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 h2 {
   font-size: 30px;
-  color: #1e2952; /* Deep blue for emphasis */
+  color: #ff3b3b; /* Red for emphasis */
   margin-bottom: 25px;
-  border-bottom: 3px solid #cfd8e3;
+  border-bottom: 3px solid #b22222;
   padding-bottom: 12px;
   letter-spacing: 0.5px;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierForm {
-  background-color: #ffffff;
+  background-color: #262626;
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 35px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierForm input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #d0d4de;
+  border: 1px solid #ff3b3b;
   border-radius: 6px;
   font-size: 16px;
+  background-color: #1a1a1a;
+  color: white;
   transition: border 0.3s ease;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierForm input:focus {
-  border: 1px solid #1e88e5; /* Focus state color */
+  border: 1px solid #ff6b6b;
   outline: none;
 }
 
 .supplierForm button {
-  background-color: #00796b; /* Rich teal */
+  background-color: #b22222;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -50,34 +56,38 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s, transform 0.2s;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierForm button:hover {
-  background-color: #005b4f;
+  background-color: #8b0000;
   transform: translateY(-2px);
 }
 
 .supplierTable {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #262626;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
   border-radius: 12px;
   overflow: hidden;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierTable th,
 .supplierTable td {
   padding: 15px 18px;
   text-align: left;
-  border-bottom: 1px solid #e4e7eb;
+  border-bottom: 1px solid #ff3b3b;
   font-size: 16px;
+  color: white;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierTable th {
-  background-color: #eef2f9; /* Light blue-gray */
+  background-color: #8b0000;
   font-weight: bold;
-  color: #2d3a50;
+  color: white;
   text-transform: uppercase;
 }
 
@@ -93,25 +103,26 @@ h2 {
   cursor: pointer;
   font-size: 15px;
   transition: background-color 0.3s, transform 0.2s;
+  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierTable button:first-of-type {
-  background-color: #0288d1; /* Blue for edit */
+  background-color: #ff4500; /* Orange-Red for edit */
   color: white;
 }
 
 .supplierTable button:first-of-type:hover {
-  background-color: #0277bd;
+  background-color: #ff6347;
   transform: translateY(-2px);
 }
 
 .supplierTable button:last-of-type {
-  background-color: #d32f2f; /* Red for delete */
+  background-color: #b22222; /* Dark Red for delete */
   color: white;
 }
 
 .supplierTable button:last-of-type:hover {
-  background-color: #b71c1c;
+  background-color: #8b0000;
   transform: translateY(-2px);
 }
 

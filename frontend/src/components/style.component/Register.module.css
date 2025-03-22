@@ -1,179 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .registerPage {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f5f5f5;
-    font-family: 'Playfair Display', serif;
-  }
-  
-  .registerContainer {
-    display: flex;
-    width: 80%;
-    max-width: 1000px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .registerImage {
-    flex: 1;
-    background-image: url('https://i.pinimg.com/736x/6e/e0/eb/6ee0eb1f971e54eaab3485f29ae62343.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 600px;
-    position: relative;
-  }
-  
-  .registerImage::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.1)
-    );
-  }
-  
-  .registerForm {
-    flex: 1;
-    padding: 40px;
+    background: url('D:\phone-store-online\frontend\public\images\4.jpg') no-repeat center center/cover;
+    background-size: no-repeat;  /* Giúp hình nền phủ đầy mà không méo */
+
+}
+
+.registerContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-  }
-  
-  .formHeader {
+    width: 420px;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px rgba(255, 50, 50, 0.7);
+    padding: 40px;
     text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .registerTitle {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: 700;
+    backdrop-filter: blur(8px);
+}
+
+.registerTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4747;
+    text-transform: uppercase;
+}
+
+/* Căn chỉnh input với icon */
+.inputGroup {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .registerSubtitle {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .titleIcon {
-    font-size: 2rem;
-  }
-  
-  .inputGroup {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .input {
-    width: 135%;
-    padding: 12px 40px;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: transparent;
-  }
-  
-  .input:focus {
-    outline: none;
-    border-color: #4f46e5;
-  }
-  
-  .inputGroup .inputIcon {
-    position: absolute;
-    left: 12px;
-    top: 20px;
-    transform: translateY(-50%);
-    color: #666;
-  }
-  
-  .errorText {
-    color: #dc2626;
-    font-size: 0.8rem;
-    margin-top: 5px;
-    display: block;
-  }
-  
-  .errorMessage {
-    background-color: #fee2e2;
-    color: #dc2626;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .registerButton {
     width: 100%;
-    padding: 12px;
-    background-color: #4f46e5;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+}
+
+.input {
+    width: 100%;
+    padding: 14px 14px 14px 40px; /* Dành chỗ cho icon */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: 0.3s;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 12px #ff4747;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ff4747;
+}
+
+/* Căn chỉnh button */
+.registerButton {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #ff4747, #ff0000);
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.registerButton:hover {
+    background: linear-gradient(90deg, #ff0000, #b30000);
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.9);
+}
+
+/* Căn chỉnh quên mật khẩu và tạo tài khoản */
+.extraOptions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.footerLink {
+    color: #ff4747;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 0 5px;
+}
+
+.footerLink:hover {
+    color: #ffffff;
+}
+
+/* Căn chỉnh icon cho Google và Facebook */
+.socialRegister {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.socialButton {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-  }
-  
-  .registerButton:hover {
-    background-color: #4338ca;
-  }
-  
-  .registerFooter {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .footerLink {
-    color: #4f46e5;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    transition: color 0.3s ease;
-  }
-  
-  .footerLink:hover {
-    color: #4338ca;
-  }
-  
-  .buttonIcon {
-    font-size: 1.2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .registerContainer {
-      width: 95%;
-      flex-direction: column;
-    }
-  
-    .registerImage {
-      display: none;
-    }
-  
-    .registerForm {
-      padding: 30px;
-    }
-  }
+    transition: 0.3s;
+}
+
+.socialButton i {
+    margin-right: 10px; /* Cách icon ra một dấu cách */
+}
+
+.googleButton {
+    background: #ea4335;
+    color: white;
+}
+
+.facebookButton {
+    background: #1877f2;
+    color: white;
+}
+
+.googleButton:hover, .facebookButton:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}

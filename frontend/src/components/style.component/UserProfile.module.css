@@ -2,18 +2,20 @@
     max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
-    background: #f3f6fc; /* Soft background color for a soothing look */
+    background: #1a1a1a; /* Dark background for a bold look */
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+    font-family: "Playfair Display", serif;
 }
 
 .title {
     font-size: 28px;
-    color: #1f3c88; /* Dark blue for a strong heading presence */
+    color: #ff0000; /* Bright red for strong heading presence */
     text-align: center;
     margin-bottom: 30px;
     position: relative;
-    font-weight: 600;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
 }
 
 .title:after {
@@ -24,26 +26,29 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: #3a6ea5; /* Complementary blue for a sleek underline effect */
+    background: #990000; /* Darker red for contrast */
 }
 
 .profileInfo {
-    background: #ffffff;
+    background: #262626;
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.2);
+    font-family: "Playfair Display", serif;
 }
+
 .profileInfo p {
     margin: 13px 0;
     font-size: 16px;
-    color: #333;
+    color: #ffffff;
+    font-family: "Playfair Display", serif;
 }
 
 .profileInfo strong {
     display: inline-block;
     width: 200px;
-    color: #2d2f7f; /* Slightly darker color for contrast */
+    color: #ff4d4d; /* Lighter red for contrast */
 }
 
 .form {
@@ -58,24 +63,27 @@
 .formGroup label {
     display: block;
     margin-bottom: 8px;
-    color: #1a202c;
+    color: #ff0000;
     font-weight: 600;
+    font-family: "Playfair Display", serif;
 }
 
 .formGroup input,
 .formGroup select {
     width: 50%;
     padding: 12px;
-    border: 1px solid #ccd1e4;
+    border: 1px solid #cc0000;
     border-radius: 6px;
     font-size: 15px;
     transition: border-color 0.3s ease;
-    background-color: #fbfcff; /* Light background for inputs */
+    background-color: #333333; /* Darker background for inputs */
+    color: #ffffff;
+    font-family: "Playfair Display", serif;
 }
 
 .formGroup input:focus,
 .formGroup select:focus {
-    border-color: #5b77a6;
+    border-color: #ff3333;
     outline: none;
 }
 
@@ -87,16 +95,18 @@
 }
 
 .addressCard {
-    background: #ffffff;
-    border: 1px solid #e0e4f0;
+    background: #262626;
+    border: 1px solid #cc0000;
     border-radius: 8px;
     padding: 20px;
     position: relative;
     transition: all 0.3s ease;
+    color: #ffffff;
+    font-family: "Playfair Display", serif;
 }
 
 .addressCard:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
     transform: translateY(-2px);
 }
 
@@ -108,11 +118,12 @@
 }
 
 .defaultBadge {
-    background: #10b981;
+    background: #ff0000;
     color: white;
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
+    font-family: "Playfair Display", serif;
 }
 
 .addressActions {
@@ -128,6 +139,7 @@
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
+    font-family: "Playfair Display", serif;
 }
 
 .actionButton:hover {
@@ -135,17 +147,17 @@
 }
 
 .editButton {
-    background: #1f78d1; /* Deep blue for edit actions */
+    background: #990000;
     color: white;
 }
 
 .deleteButton {
-    background: #f44336; /* Vibrant red for delete actions */
+    background: #ff0000;
     color: white;
 }
 
 .defaultButton {
-    background: #10b981; /* Green for default actions */
+    background: #cc0000;
     color: white;
 }
 
@@ -157,26 +169,27 @@
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
+    font-family: "Playfair Display", serif;
 }
 
 .submitButton {
-    background: #34c759; /* Green for submission */
+    background: #ff1a1a;
     color: white;
     margin-right: 10px;
     margin-top: 32px;
 }
 
 .submitButton:hover {
-    background: #28a745;
+    background: #cc0000;
 }
 
 .cancelButton {
-    background: #6c757d; /* Grey for cancel button */
+    background: #4d4d4d;
     color: white;
 }
 
 .cancelButton:hover {
-    background: #5a6268;
+    background: #333333;
 }
 
 @media (max-width: 768px) {

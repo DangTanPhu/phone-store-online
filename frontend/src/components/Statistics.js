@@ -143,7 +143,7 @@ const Statistics = () => {
         />
         <StatCard
           icon={<FaShoppingCart />}
-          title="Tổng số đơn hàng đã giao"
+          title="Tổng đơn hàng đã giao"
           value={stats.totalOrders}
           delay={0.2}
         />

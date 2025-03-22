@@ -1,7 +1,7 @@
 .homePage {
     display: flex;
     flex-direction: column;
-    background-color: #F5FFFA		;
+    background-color: #ffffff		;
   }
   
   .headerSpacer {
@@ -636,10 +636,10 @@
   
   /* Giá Trị Nổi Bật */
   .featuredValues {
-    background-color: #e9f8fe; /* Màu xanh nhạt giống hình */
+    background-color: #f1efef; /* Màu xanh nhạt giống hình */
     padding: 40px 20px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 30px;
     margin-bottom: 30px;
     margin-left:100px;
     margin-right: 100px;
