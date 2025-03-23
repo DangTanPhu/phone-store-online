@@ -63,8 +63,8 @@
   gap: 4px;
 }
 
-.addressCell {
-  max-width: 300px;
+.addressCell {  
+  max-width: 150px;
 }
 
 .address {
@@ -115,11 +115,12 @@
   color: white;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: Arial, sans-serif;
+  
 }
 
 .statusSelect:hover:not(:disabled) {
   border-color: #ff6b6b;
+  
 }
 
 .statusSelect:disabled {

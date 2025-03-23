@@ -102,10 +102,10 @@ const Statistics = () => {
   };
 
   return (
-    <div className={styles.statisticsContainer}>
-      <h2 className={styles.title}>Thống kê</h2>
+    <div className={styles.statisticsContainer} >
+      <h2 className={styles.title}>THỐNG KÊ</h2>
       
-      <div className={styles.dateControls}>
+      <div className={styles.dateControls}  >
         <DatePicker
           selected={startDate}
           onChange={date => setStartDate(date)}
@@ -137,19 +137,19 @@ const Statistics = () => {
       <div className={styles.statsGrid}>
         <StatCard
           icon={<FaChartLine />}
-          title="Tổng doanh thu"
+          title="TỔNG DOANH THU"
           value={formatCurrency(stats.totalRevenue)}
           delay={0.1}
         />
         <StatCard
           icon={<FaShoppingCart />}
-          title="Tổng đơn hàng đã giao"
+          title="TỔNG ĐƠN HÀNG ĐÃ GIAO"
           value={stats.totalOrders}
           delay={0.2}
         />
         <StatCard
           icon={<FaUsers />}
-          title="Tổng số người dùng"
+          title="TỔNG SỐ NGƯỜI DÙNG"
           value={stats.totalUsers}
           delay={0.3}
         />
@@ -196,7 +196,7 @@ const SalesChart = ({ data, period, formatCurrency }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h3>Biểu đồ doanh thu và đơn hàng</h3>
+      <h3>BIỂU ĐỒ DOANH THU VÀ ĐƠN HÀNG</h3>
       {data && data.length > 0 ? (
         <ResponsiveContainer width="100%" height={400}>
           <BarChart data={data}>
@@ -272,7 +272,7 @@ const TopProductsChart = ({ data, colors }) => {
 
   return (
     <motion.div className={styles.chartContainer}>
-      <h3>Top 5 sản phẩm bán chạy</h3>
+      <h3>TOP 5 SẢN PHẨM BÁN CHẠY</h3>
       {formattedData.length > 0 ? (
         <>
           <ResponsiveContainer width="100%" height={300}>

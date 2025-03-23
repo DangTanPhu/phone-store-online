@@ -5,7 +5,7 @@
   background-color: #1a1a1a; /* Black background */
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(255, 0, 0, 0.3);
-  font-family: Arial, sans-serif; /* Normal font */
+  
 }
 
 h2 {
@@ -15,7 +15,7 @@ h2 {
   border-bottom: 3px solid #b22222;
   padding-bottom: 12px;
   letter-spacing: 0.5px;
-  font-family: Arial, sans-serif; /* Normal font */
+  
 }
 
 .supplierForm {
@@ -27,11 +27,11 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
-  font-family: Arial, sans-serif; /* Normal font */
+  
 }
 
 .supplierForm input {
-  width: 100%;
+  width: 80%;
   padding: 12px;
   border: 1px solid #ff3b3b;
   border-radius: 6px;
@@ -39,6 +39,7 @@ h2 {
   background-color: #1a1a1a;
   color: white;
   transition: border 0.3s ease;
+  
   font-family: Arial, sans-serif; /* Normal font */
 }
 
@@ -48,7 +49,7 @@ h2 {
 }
 
 .supplierForm button {
-  background-color: #b22222;
+  background-color: #0dc807;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -60,7 +61,7 @@ h2 {
 }
 
 .supplierForm button:hover {
-  background-color: #8b0000;
+  background-color: #078a02;
   transform: translateY(-2px);
 }
 
@@ -71,7 +72,7 @@ h2 {
   box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
   border-radius: 12px;
   overflow: hidden;
-  font-family: Arial, sans-serif; /* Normal font */
+    
 }
 
 .supplierTable th,
@@ -81,14 +82,12 @@ h2 {
   border-bottom: 1px solid #ff3b3b;
   font-size: 16px;
   color: white;
-  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierTable th {
   background-color: #8b0000;
   font-weight: bold;
   color: white;
-  text-transform: uppercase;
 }
 
 .supplierTable tr:last-child td {
@@ -103,21 +102,20 @@ h2 {
   cursor: pointer;
   font-size: 15px;
   transition: background-color 0.3s, transform 0.2s;
-  font-family: Arial, sans-serif; /* Normal font */
 }
 
 .supplierTable button:first-of-type {
-  background-color: #ff4500; /* Orange-Red for edit */
+  background-color: #0dc807; /* Orange-Red for edit */
   color: white;
 }
 
 .supplierTable button:first-of-type:hover {
-  background-color: #ff6347;
+  background-color: #0a8206;
   transform: translateY(-2px);
 }
 
 .supplierTable button:last-of-type {
-  background-color: #b22222; /* Dark Red for delete */
+  background-color: #f63737; /* Dark Red for delete */
   color: white;
 }
 

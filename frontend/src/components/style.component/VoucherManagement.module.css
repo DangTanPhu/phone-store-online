@@ -1,42 +1,103 @@
+/* Voucher Form */
+.voucherForm {
+  background-color: #262626;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+}
+
+/* Voucher Table */
+.voucherTable {
+  width: 100%;
+  background-color: #333333;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
+}
+
+.voucherTable th, .voucherTable td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ff3333;
+  font-family: "Playfair Display", serif;
+}
+
+.voucherTable th {
+  background-color: #1a1a1a;
+  color: #ff0000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.voucherTable td {
+  color: #ffffff;
+}
+
+/* Nút Hành Động */
+.actionButton {
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: normal;
+  font-family: "Playfair Display", serif;
+  background-color: #00ff00;
+}
+
+/* Nút Vô Hiệu Hóa */
 .deactivateBtn {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-.activateBtn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-
-.deleteBtn {
   background-color: #ff0000;
   color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
 }
 
-.deactivateBtn:disabled,
-.activateBtn:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.deactivateBtn:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
 }
 
-/* Thêm style cho các trạng thái */
+/* Nút Kích Hoạt */
+.activateBtn {
+  background-color: #008000;
+  color: white;
+}
+
+.activateBtn:hover {
+  background-color: #006400;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Nút Xóa */
+.deleteBtn {
+  background-color: #b30000;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background-color: #ff0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Trạng thái */
 .active {
-  color: green;
+  color: #00ff00;
   font-weight: bold;
 }
 
 .inactive {
-  color: red;
+  color: #56ff4d;
   font-weight: bold;
+}
+
+/* Khi nút bị vô hiệu hóa */
+.deactivateBtn:disabled,
+.activateBtn:disabled {
+  background-color: #090404;
+  cursor: not-allowed;
+  opacity: 0.6;
 }

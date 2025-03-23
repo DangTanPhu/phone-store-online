@@ -1,34 +1,36 @@
 .orderManagement {
   padding: 20px;
-  background-color: #121212;
+  background-color: #1a1a1a;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
   color: white;
 }
 
 .orderManagement h2 {
   margin-bottom: 20px;
-  color: #ff3b30;
+  color: #ff0000;
   text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .searchBar {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  padding: 10px;
-  background-color: #1e1e1e;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(255, 0, 0, 0.2);
+  padding: 12px;
+  background-color: #333333;
+  border-radius: 8px;
 }
 
 .searchBar input {
   flex-grow: 1;
-  border: none;
-  margin-left: 10px;
-  font-size: 16px;
-  background: transparent;
-  color: white;
+  border: 1px solid #ff0000;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #262626;
+  color: #ffffff;
 }
 
 .searchBar input::placeholder {
@@ -38,25 +40,32 @@
 .orderTable {
   width: 100%;
   border-collapse: collapse;
-  background-color: #1e1e1e;
-  box-shadow: 0 1px 3px rgba(255, 0, 0, 0.2);
+  background-color: #262626;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.3);
 }
 
 .orderTable th, .orderTable td {
-  padding: 12px;
+  padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ff3333;
   color: white;
 }
 
 .orderTable th {
-  background-color: #ff3b30;
+  background-color: #333333;
   font-weight: bold;
+  color: #ffffff;
   cursor: pointer;
 }
 
 .orderTable th:hover {
   background-color: #b22222;
+}
+
+.orderTable tr:hover {
+  background-color: #333333;
 }
 
 .status {
@@ -73,12 +82,12 @@
 .processing { background-color: #ff6600; color: white; }
 .shipped { background-color: #33cc33; color: white; }
 .delivered { background-color: #00b894; color: white; }
-.cancelled { background-color: #ff4444; color: white; }
+.cancelled { background-color: #ff0000; color: white; }
 
 .statusSelect {
   padding: 6px;
   border-radius: 4px;
-  border: 1px solid #ff3b30;
+  border: 1px solid #ff0000;
   margin-right: 8px;
   background-color: black;
   font-size: 14px;
@@ -88,7 +97,7 @@
 
 .statusSelect:focus {
   outline: none;
-  border-color: #ff3b30;
+  border-color: #ff0000;
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
@@ -108,7 +117,7 @@
   margin: 0 5px;
   padding: 5px 10px;
   border: none;
-  background-color: #ff3b30;
+  background-color: #ff0000;
   color: white;
   cursor: pointer;
   border-radius: 4px;
@@ -126,7 +135,7 @@
 
 .error {
   color: white;
-  background-color: #ff3b30;
+  background-color: #ff0000;
   border: 1px solid #b22222;
   border-radius: 4px;
 }
@@ -139,7 +148,7 @@
 
 .viewDetailsButton {
   padding: 6px 12px;
-  background-color: #ff3b30;
+  background-color: #ff0000;
   color: white;
   border: none;
   border-radius: 4px;

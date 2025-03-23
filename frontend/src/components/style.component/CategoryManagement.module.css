@@ -3,15 +3,16 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 40px;
-  background-color: #ffffff;
+  background-color: #262626; /* Dark background */
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.1); /* Red shadow */
+  color: #ffffff; /* White text */
 }
 
 /* Header */
 h2 {
   font-size: 30px;
-  color: #333;
+  color: #ff0000; /* Red color */
   margin-bottom: 25px;
   border-bottom: 3px solid #e0e0e0;
   padding-bottom: 12px;
@@ -28,14 +29,14 @@ h2 {
 }
 
 .error {
-  background-color: #ffe0e0;
-  color: #c62828;
-  border: 1px solid #ef9a9a;
+  background-color: #ff0000; /* Red error background */
+  color: #ffffff;
+  border: 1px solid #cc0000;
 }
 
 .success {
-  background-color: #e0f7fa;
-  color: #00796b;
+  background-color: #166534; /* Success green background */
+  color: #dcfce7;
   border: 1px solid #80cbc4;
 }
 
@@ -53,21 +54,23 @@ select {
   flex: 1;
   min-width: 220px;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #cc0000; /* Red border */
   border-radius: 6px;
   font-size: 16px;
   transition: border-color 0.3s ease;
+  background-color: #333333; /* Dark input background */
+  color: #ffffff;
 }
 
 input:focus,
 select:focus {
-  border-color: #1976d2;
+  border-color: #ff3333; /* Focus state with lighter red */
   outline: none;
 }
 
 /* Button */
 .button {
-  background-color: #1976d2;
+  background-color: #0fe636; /* Red button */
   color: white;
   padding: 12px 25px;
   border: none;
@@ -79,21 +82,21 @@ select:focus {
 }
 
 .button:hover {
-  background-color: #1565c0;
+  background-color: #cc0000; /* Darker red on hover */
 }
 
 /* Category List Container */
 .categoryListContainer {
-  background-color: #fafafa;
+  background-color: #333333; /* Dark background */
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.1); /* Red shadow */
 }
 
 /* Category List Header */
 .categoryListContainer h3 {
   font-size: 22px;
-  color: #333;
+  color: #ffffff; /* Red color */
   margin-bottom: 18px;
   font-weight: 500;
 }
@@ -104,25 +107,26 @@ select:focus {
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background-color: #fff;
+  background-color: #262626; /* Dark background */
   border-radius: 8px;
   margin-bottom: 15px;
   transition: background-color 0.3s ease;
   font-size: 16px;
+  color: #ffffff;
 }
 
 .categoryItem:hover {
-  background-color: #e3f2fd;
+  background-color: #a4b92c; /* Light blue hover effect */
 }
 
 .categoryName {
   font-weight: 500;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Delete Button */
 .deleteButton {
-  background-color: #f44336;
+  background-color: #f44336; /* Red delete button */
   color: white;
   border: none;
   padding: 8px 15px;
@@ -132,7 +136,7 @@ select:focus {
 }
 
 .deleteButton:hover {
-  background-color: #d32f2f;
+  background-color: #d32f2f; /* Darker red on hover */
 }
 
 /* Responsive Styles */

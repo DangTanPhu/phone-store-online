@@ -1,115 +1,144 @@
+
 .statisticsContainer {
-  padding: 2rem;
-  background-color: #1e1e2f; /* Darker background for a sleek look */
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  color: #e0e0e0; /* Light text for better contrast */
+  max-width: 1000px;
+  
+  padding: 6rem;
+  background: linear-gradient(135deg, #1a1a1a, #262626);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(255, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Title */
 .title {
-  font-size: 2rem;
-  color: #00d4ff; /* Neon blue for futuristic touch */
-  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #ff3b3b;
+  margin-bottom: 1.5rem;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-weight: bold;
+  border-bottom: 3px solid #ff3b3b;
+  padding-bottom: 12px;
 }
 
+/* Date Controls */
 .dateControls {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 1rem;
 }
 
 .dateControls input,
 .dateControls select {
-  padding: 10px;
-  border: 1px solid #3a3a4e;
-  border-radius: 6px;
-  background: #2a2a3c; /* Dark input background */
-  color: #e0e0e0;
-  transition: border-color 0.3s ease, background 0.3s ease;
-  
+  padding: 0.8rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #222;
+  color: white;
+  transition: 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
 .dateControls input:focus,
 .dateControls select:focus {
-  border-color: #00c0ff; /* Focus color to match the theme */
+  border-color: #ff6b6b;
   outline: none;
-  background: #1c1c2a;
-  
+  background-color: #333;
 }
 
+/* Stats Grid */
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-bottom: 2rem;
-  
 }
 
+/* Stat Card */
 .statCard {
-  background-color: #27273e; /* Dark card background */
+  background: linear-gradient(135deg, #1a1a1a, #222);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .statCard:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(255, 0, 0, 0.4);
 }
 
+.statCard::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+  transform: rotate(30deg);
+  transition: opacity 0.4s ease-in-out;
+}
+
+.statCard:hover::before {
+  opacity: 1;
+}
+
+/* Icon */
 .icon {
   font-size: 3rem;
-  color: #ff4dc4; /* Vibrant pink for visual interest */
+  color: #1ebf06;
   margin-bottom: 1rem;
 }
 
+/* Stat Text */
 .statCard h3 {
   font-size: 1.2rem;
-  color: #e0e0e0;
+  color: #f0f0f0;
   margin-bottom: 0.5rem;
-  text-transform: uppercase;
 }
 
 .statCard p {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: #00ffb3; /* Bright green for strong emphasis */
+  color: #ff3b3b;
 }
 
+/* Chart Container */
 .chartContainer {
-  background-color: #27273e;
+  background: linear-gradient(135deg, #1a1a1a, #222);
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
   margin-bottom: 2rem;
 }
 
 .chartContainer h3 {
   font-size: 1.5rem;
-  color: #00c0ff;
+  color: #ffffff;
   margin-bottom: 1rem;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
+/* Loading & Error */
 .loading,
 .error {
   text-align: center;
   padding: 2rem;
   font-size: 1.2rem;
-  color: #ccc;
+  color: #f0f0f0;
 }
 
 .error {
-  color: #ff4c4c; /* Bright red for error messages */
+  color: #ff4c4c;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .statsGrid {
     grid-template-columns: 1fr;

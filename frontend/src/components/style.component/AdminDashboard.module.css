@@ -1,15 +1,18 @@
 /* Container for Admin Dashboard */
+body {
+  font-family: "Times New Roman", Times, serif;
+}
 .adminDashboard {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f3f4f6, #e5e7eb); /* Smooth gradient for a sleek, futuristic look */
+  background: linear-gradient(135deg, #000000, #e5e7eb); /* Smooth gradient for a sleek, futuristic look */
 }
 
 /* Sidebar Styling */
 .sidebar {
   width: 260px;
   background: #000000; /* Deep, dark background for contrast */
-  color: #e5e7eb;
+  color: #ebe9e5;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -19,7 +22,7 @@
 .dashboardTitle {
   font-size: 32px;
   font-weight: 700;
-  color: #e5e7eb;
+  color: #ff0000;
   text-align: center;
   letter-spacing: 0.05em;
   margin-bottom: 30px;
@@ -62,9 +65,9 @@
 /* Main Content Area */
 .mainContent {
   flex-grow: 1;
-  padding: 25px;
   background-color: #f9fafb;
   border-radius: 12px;
+  
 }
 
 /* Header Styling */
@@ -86,7 +89,7 @@
 /* Content Section */
 .dashboardOutlet {
   background: #ffffff;
-  padding: 30px;
+  padding: 15px;
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.3s ease;

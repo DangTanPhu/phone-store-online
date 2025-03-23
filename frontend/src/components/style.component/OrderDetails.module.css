@@ -1,0 +1,89 @@
+.orderDetails {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .orderInfo p {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+  
+  strong {
+    color: #555;
+  }
+  
+  .productList {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .productItem {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .productItem span {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .downloadButton {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    display: block;
+    width: 200px;
+    margin-left: auto;
+  }
+  
+  .downloadButton:hover {
+    background-color: #45a049;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 50px;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 50px;
+  }
+  
+  .orderInfo {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orderInfo p {
+    margin-bottom: 10px;
+  }
+  

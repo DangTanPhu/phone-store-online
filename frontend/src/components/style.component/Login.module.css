@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 
 body {
     background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('D:\phone-store-online\frontend\public\images\4.jpg') no-repeat center center/cover;
+    background: url('D:\STORE_PHONE\phone-store-online\frontend\public\images\8.jpg') no-repeat center center/cover;
 }
 
 .loginContainer {

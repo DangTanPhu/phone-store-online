@@ -21,24 +21,24 @@ const AdminDashboard = () => {
   }
 
   const navItems = [
-    { path: '/admin/statistics', icon: <FaChartLine />, text: 'Thống kê' },  
-    { path: '/admin/products', icon: <FaBox />, text: 'Quản lý sản phẩm' },  
-    { path: '/admin/categories', icon: <FaTags />, text: 'Quản lý danh mục' },  
-    { path: '/admin/orders', icon: <FaShoppingCart />, text: 'Quản lý đơn hàng' },
-    { path: '/admin/users', icon: <FaUsers />, text: 'Quản lý người dùng' },
-    { path: '/admin/create-product', icon: <FaPlus />, text: 'Tạo sản phẩm mới' }, 
     { path: '/admin/profile', icon: <FaUser />, text: 'Thông tin cá nhân' },
-    { path: '/admin/inventory', icon: <FaWarehouse />, text: 'Quản lý kho hàng' },
+    { path: '/admin/statistics', icon: <FaChartLine />, text: 'Thống kê' },  
+    { path: '/admin/users', icon: <FaUsers />, text: 'Quản lý người dùng' },
+    { path: '/admin/categories', icon: <FaTags />, text: 'Quản lý danh mục' }, 
+    { path: '/admin/products', icon: <FaBox />, text: 'Quản lý sản phẩm' }, 
+    { path: '/admin/create-product', icon: <FaPlus />, text: 'Thêm sản phẩm' },
+    { path: '/admin/vouchers', icon: <FaTicketAlt />, text: 'Quản lý khuyến mãi' },  
+    { path: '/admin/orders', icon: <FaShoppingCart />, text: 'Quản lý đơn hàng' }, 
+    { path: '/admin/inventory', icon: <FaWarehouse />, text: 'Quản lý kho' },
     { path: '/admin/purchase-orders', icon: <FaFileInvoiceDollar />,text: 'Quản lý đơn đặt hàng' },
     { path: '/admin/suppliers', icon: <FaUserTie />, text: 'Quản lý nhà cung cấp' },
     { path: '/admin/deliveries', icon: <FaTruck />, text: 'Quản lý giao hàng' },
-    { path: '/admin/vouchers', icon: <FaTicketAlt />, text: 'Quản lý voucher' },
   ];
 
   return (
     <div className={styles.adminDashboard}>
       <aside className={styles.sidebar}>
-        <h1 className={styles.dashboardTitle}>Quản lý hệ thống</h1>
+        <h1 className={styles.dashboardTitle}>QUẢN LÝ</h1>
         <nav className={styles.dashboardNav}>
           {navItems.map((item) => (
             <Link
@@ -53,12 +53,6 @@ const AdminDashboard = () => {
         </nav>
       </aside>
       <main className={styles.mainContent}>
-        <header className={styles.header}>
-          <h2>Chào mừng đến với trang quản trị</h2>
-          <div className={styles.userMenu}>
-            {/* Thêm các mục menu người dùng nếu cần */}
-          </div>
-        </header>
         <div className={styles.dashboardOutlet}>
           <Outlet />
         </div>

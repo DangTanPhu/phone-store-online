@@ -10,6 +10,7 @@
     transform: translateX(-100%); /* Ẩn menu ban đầu */
     transition: transform 0.3s ease-in-out 0.1s; /* Giữ delay 0.1s */
     overflow: hidden; /* Ẩn thanh cuộn */
+    font-weight: normal; /* Đặt phông chữ về bình thường */
 }
 
 .menuWrapper.open {
@@ -20,6 +21,7 @@
     padding: 20px;
     height: 100%; /* Đảm bảo overlay lấp đầy toàn bộ chiều cao của wrapper */
     overflow-y: auto; /* Cho phép cuộn trong menu nếu nội dung dài */
+    font-weight: normal;
 }
 
 .closeButton {
@@ -30,10 +32,12 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
+    font-weight: normal;
 }
 
 .categoryItem {
     margin-bottom: 10px;
+    font-weight: normal;
 }
 
 .categoryHeader {
@@ -41,27 +45,30 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    font-weight: normal;
 }
 
 .categoryLink {
     color: #333;
     font-size: 16px;
-    font-weight: bold;
     text-decoration: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 5px 0;
+    font-weight: normal;
 }
 
 .toggleIndicator {
     font-size: 12px;
+    font-weight: normal;
 }
 
 .subcategoryList {
     padding-left: 20px;
     margin-top: 5px;
+    font-weight: normal;
 }
 
 .subcategoryLink {
@@ -71,6 +78,7 @@
     font-size: 14px;
     padding: 5px 0;
     transition: color 0.3s ease;
+    font-weight: normal;
 }
 
 .subcategoryLink:hover {
@@ -80,6 +88,7 @@
 /* Thêm style cho danh mục đặc biệt */
 .categoryTitle[data-category="SALE"] {
     color: red;
+    font-weight: normal;
 }
 
 @media (max-width: 768px) {

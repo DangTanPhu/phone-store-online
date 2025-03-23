@@ -74,27 +74,15 @@ const VoucherManagement = () => {
 
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
-
-    if (
-      !validateStartDate(newVoucher.startDate) ||
-      !validateEndDate(newVoucher.endDate)
-    ) {
+  
+    if (validateStartDate(newVoucher.startDate) || validateEndDate(newVoucher.endDate)) {
       return;
     }
-
+  
     try {
       const response = await createVoucher(newVoucher);
-      const createdVoucher = response.data;
-
-      setVouchers((prevVouchers) => [
-        ...prevVouchers,
-        {
-          ...createdVoucher,
-          startDate: new Date(createdVoucher.startDate).toLocaleDateString(),
-          endDate: new Date(createdVoucher.endDate).toLocaleDateString(),
-        },
-      ]);
-
+      console.log("Voucher vừa tạo:", response.data); // Kiểm tra voucher trả về từ API
+  
       setNewVoucher({
         code: "",
         discountType: "percentage",
@@ -106,13 +94,14 @@ const VoucherManagement = () => {
         usageLimit: 1,
         isActive: true,
       });
-
-      fetchVouchers();
+  
+      await fetchVouchers(); // Load lại danh sách
     } catch (error) {
       console.error("Lỗi khi tạo voucher:", error);
       setError("Không thể tạo voucher. Vui lòng thử lại sau.");
     }
   };
+  
 
   const handleUpdateVoucher = async (id, updatedData) => {
     try {
@@ -273,17 +262,17 @@ const VoucherManagement = () => {
               <td>{voucher.usedTimes}</td>
               <td>{voucher.usageLimit}</td>
               <td>{voucher.isActive ? "Hoạt động" : "Không hoạt động"}</td>
-              <td>
-                <button
+              <td > 
+                <button className={styles.actionButton}
                   onClick={() =>
                     handleUpdateVoucher(voucher._id, {
                       isActive: !voucher.isActive,
-                    })
+                    } ) 
                   }
                 >
                   {voucher.isActive ? "Vô hiệu hóa" : "Kích hoạt"}
                 </button>
-                <button onClick={() => handleDeleteVoucher(voucher._id)}>
+                <button onClick={() => handleDeleteVoucher(voucher._id)} className={styles.deleteBtn}>
                   Xóa
                 </button>
               </td>
