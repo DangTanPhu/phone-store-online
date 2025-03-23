@@ -10,11 +10,11 @@
 }
 
 /* Header */
-h2 {
+.categoryManagement h2 {
   font-size: 30px;
   color: #ff0000; /* Red color */
   margin-bottom: 25px;
-  border-bottom: 3px solid #e0e0e0;
+  border-bottom: 3px solid #e50909;
   padding-bottom: 12px;
   font-weight: 600;
 }

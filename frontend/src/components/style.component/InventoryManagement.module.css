@@ -8,12 +8,10 @@
   font-family: sans-serif; /* Sử dụng font mặc định của trình duyệt */
 }
 
-h2 {
+.inventoryManagement h2 {
   font-size: 28px;
   color: #ff3b3b; /* Tiêu đề đỏ */
   margin-bottom: 20px;
-  border-bottom: 2px solid #b22222;
-  padding-bottom: 10px;
   letter-spacing: 0.5px;
   font-weight: normal; /* Giữ độ dày chữ bình thường */
 }
