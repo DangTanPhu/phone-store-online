@@ -66,6 +66,7 @@ const Register = () => {
             <div className={styles.inputGroup}>
               <FaUser className={styles.inputIcon} />
               <input
+                id="inputDKND"
                 type="text"
                 placeholder="Tên người dùng"
                 value={username}
@@ -78,6 +79,7 @@ const Register = () => {
             <div className={styles.inputGroup}>
               <FaEnvelope className={styles.inputIcon} />
               <input
+                id="inputDKEM"
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -90,6 +92,7 @@ const Register = () => {
             <div className={styles.inputGroup}>
               <FaLock className={styles.inputIcon} />
               <input
+                id="inoutDKPW"
                 type="password"
                 placeholder="Mật khẩu"
                 value={password}
@@ -102,6 +105,7 @@ const Register = () => {
             <div className={styles.inputGroup}>
               <FaLock className={styles.inputIcon} />
               <input
+                id="inputDKXNPW"
                 type="password"
                 placeholder="Xác nhận mật khẩu"
                 value={confirmPassword}
@@ -113,7 +117,7 @@ const Register = () => {
               )}
             </div>
 
-            <button type="submit" className={styles.registerButton}>
+            <button type="submit" id="btndk"  className={styles.registerButton}>
               <FaUserPlus className={styles.buttonIcon} /> Đăng ký
             </button>
           </form>

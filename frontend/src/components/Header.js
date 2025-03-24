@@ -99,7 +99,7 @@ strokeLinejoin="round"
                   </button>
                 </>
               ) : (
-                <Link to="/login" className={styles.navLink}>Đăng Nhập</Link>
+                <Link to="/login" id="nav-login" className={styles.navLink}>Đăng Nhập</Link>
               )}
               <Link to="/cart" className={styles.bagLink}>
                 Giỏ Hàng <span className={styles.bagCount}></span>

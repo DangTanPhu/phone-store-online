@@ -1,39 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { getAdminUsers, toggleAdminUserStatus, changeUserRole } from '../services/api';
+import { getAdminUsers, toggleAdminUserStatus, changeUserRole, updateUser, deleteUser } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
-import { FaSearch, FaSort, FaLock, FaLockOpen } from 'react-icons/fa';
+import { FaSearch, FaSort, FaLock, FaLockOpen, FaEdit, FaTrash } from 'react-icons/fa';
 import styles from './style.component/UserManagement.module.css';
 import { toast } from 'react-toastify';
-
-const StatusBadge = ({ isActive, isLocked }) => {
-  const getStatusInfo = () => {
-    if (!isActive) {
-      return {
-        text: 'Bị khóa',
-        className: styles.statusInactive
-      };
-    } 
-    if (isLocked) {
-      return {
-        text: 'Tạm khóa',
-        className: styles.statusLocked
-      };
-    }
-    return {
-      text: 'Hoạt động',
-      className: styles.statusActive
-    };
-  };
-
-  const { text, className } = getStatusInfo();
-
-  return (
-    <span className={`${styles.statusBadge} ${className}`}>
-      {text}
-    </span>
-  );
-};
-
+import axios from 'axios';
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,13 +13,17 @@ const UserManagement = () => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
-  const { user, user: currentUser } = useAuth();
+  const { user: currentUser } = useAuth();
+
+  // State để quản lý form cập nhật user
+  const [editingUser, setEditingUser] = useState(null);
+  const [updatedData, setUpdatedData] = useState({ username: '', email: '' });
 
   useEffect(() => {
-    if (user && user.role === 'admin') {
+    if (currentUser && currentUser.role === 'admin') {
       fetchUsers();
     }
-  }, [user]);
+  }, [currentUser]);
 
   const fetchUsers = async () => {
     try {
@@ -63,84 +38,80 @@ const UserManagement = () => {
     }
   };
 
-  const toggleUserStatus = async (userId, isActive) => {
+  // Bật modal chỉnh sửa
+  const handleEditClick = (user) => {
+    setEditingUser(user);
+    setUpdatedData({ username: user.username, email: user.email });
+  };
+
+  // Cập nhật state khi chỉnh sửa input
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedData({ ...updatedData, [name]: value });
+  };
+
+  // Gửi yêu cầu cập nhật
+  const handleUpdateUser = async () => {
     try {
-      const response = await toggleAdminUserStatus(userId, !isActive);
-      if (response && response.data) {
-        await fetchUsers();
-        return response.data;
+      if (!editingUser) {
+        toast.error("Không tìm thấy thông tin người dùng.");
+        return;
       }
-      throw new Error('Không nhận được phản hồi từ server');
+  
+      const { username, email } = updatedData;
+      if (!username.trim() || !email.trim()) {
+        toast.error("Tên người dùng và email không được để trống.");
+        return;
+      }
+  
+      const userId = editingUser._id;
+      if (!userId) {
+        toast.error("Lỗi: ID người dùng không hợp lệ.");
+        return;
+      }
+  
+      // Gọi API để cập nhật
+      const response = await updateUser(userId, { username, email });
+  
+      if (response && !response.success) {
+        toast.success("Cập nhật người dùng thành công!");
+        await fetchUsers(); // Cập nhật lại danh sách
+        setEditingUser(null); // Đóng modal sau khi cập nhật thành công
+      } else {  
+        throw new Error(response.message || "Cập nhật thất bại.");
+      }
     } catch (error) {
-      console.error('Error toggling user status:', error);
-      throw error;
+   
+      toast.error(error.message || "Có lỗi xảy ra khi cập nhật người dùng.");
     }
   };
-
+ 
   const handleSort = (key) => {
-    let direction = 'ascending';
-    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-      direction = 'descending';
-    }
-    setSortConfig({ key, direction });
-  };
-
-  const sortedUsers = React.useMemo(() => {
-    let sortableUsers = [...users];
-    if (sortConfig.key !== null) {
-      sortableUsers.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? 1 : -1;
-        }
+    setSortConfig((prev) => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === 'ascending' ? 'descending' : 'ascending' };
+      }
+      return { key, direction: 'ascending' };
+    });
+  
+    setUsers((prevUsers) => {
+      return [...prevUsers].sort((a, b) => {
+        if (a[key] < b[key]) return sortConfig.direction === 'ascending' ? -1 : 1;
+        if (a[key] > b[key]) return sortConfig.direction === 'ascending' ? 1 : -1;
         return 0;
       });
-    }
-    return sortableUsers;
-  }, [users, sortConfig]);
-
-  const filteredUsers = sortedUsers.filter(user =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.role.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  // Pagination
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleRoleChange = async (userId, newRole) => {
+    });
+  };
+  const handleDeleteUser = async (id) => {
+    if (!window.confirm('Bạn có chắc chắn muốn xóa người dùng này?')) return;
     try {
-      await changeUserRole(userId, newRole);
-      fetchUsers(); // Tải lại danh sách người dùng
-      alert('Thay đổi vai trò người dùng thành công');
+      await deleteUser(id);
+      toast.success('Xóa người dùng thành công!');
+      setUsers(users.filter(user => user._id !== id));
     } catch (error) {
-      console.error('Error changing user role:', error);
-      alert('Không thể thay đổi vai trò người dùng. Vui lòng thử lại sau.');
+      toast.error('Xóa người dùng thất bại.');
     }
   };
-
-  const handleToggleStatus = async (userId, currentStatus) => {
-    try {
-      const result = await toggleUserStatus(userId, currentStatus);
-      setUsers(users.map(user => 
-        user._id === userId 
-          ? { ...user, isActive: !currentStatus }
-          : user
-      ));
-      toast.success(result.message || 'Thay đổi trạng thái người dùng thành công');
-    } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message || 'Có lỗi xảy ra khi thay đổi trạng thái người dùng';
-      toast.error(errorMessage);
-      console.error('Error toggling user status:', error);
-    }
-  };
-
   if (loading) return <div className={styles.loading}>Đang tải...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
@@ -161,20 +132,20 @@ const UserManagement = () => {
           <tr>
             <th onClick={() => handleSort('username')}>Tên <FaSort /></th>
             <th onClick={() => handleSort('email')}>Email <FaSort /></th>
-            <th onClick={() => handleSort('role')}>Vai trò <FaSort /></th>
-            <th onClick={() => handleSort('isActive')}>Trạng thái <FaSort /></th>
+            <th>Vai trò</th>
+            <th>Trạng thái</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
-          {currentUsers.map(user => (
+          {users.map(user => (
             <tr key={user._id}>
               <td>{user.username}</td>
               <td>{user.email}</td>
               <td>
                 <select
                   value={user.role}
-                  onChange={(e) => handleRoleChange(user._id, e.target.value)}
+                  onChange={(e) => changeUserRole(user._id, e.target.value)}
                   className={styles.roleSelect}
                 >
                   <option value="user">User</option>
@@ -182,30 +153,51 @@ const UserManagement = () => {
                 </select>
               </td>
               <td>
-                <StatusBadge isActive={user.isActive} isLocked={user.isLocked} />
+                <span className={`${styles.statusBadge} ${user.isActive ? styles.active : styles.inactive}`}>
+                  {user.isActive ? 'Hoạt động' : 'Bị khóa'}
+                </span>
               </td>
               <td>
                 <button 
-                  onClick={() => handleToggleStatus(user._id, user.isActive)}
-                  className={`${styles.actionButton} ${user.isActive ? styles.lockButton : styles.unlockButton}`}
-                  disabled={user._id === currentUser?._id}
-                  title={user._id === currentUser?._id ? 'Không thể khóa tài khoản của chính mình' : ''}
+                  onClick={() => handleEditClick(user)}
+                  className={styles.editButton}
+                >
+                  <FaEdit /> Chỉnh sửa
+                </button>
+                <button 
+                  onClick={() => toggleAdminUserStatus(user._id, user.isActive)}
+                  className={styles.actionButton}
                 >
                   {user.isActive ? <FaLock /> : <FaLockOpen />}
                   {user.isActive ? 'Khóa' : 'Mở khóa'}
+                </button>
+              </td>
+              <td>
+                <button onClick={() => handleDeleteUser(user._id)} className={styles.deleteButton}>
+                  <FaTrash /> Xóa
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className={styles.pagination}>
-        {Array.from({ length: Math.ceil(filteredUsers.length / usersPerPage) }, (_, i) => (
-          <button key={i} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? styles.active : ''}>
-            {i + 1}
-          </button>
-        ))}
-      </div>
+
+      {/* Modal chỉnh sửa */}
+      {editingUser && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h3>Cập nhật thông tin</h3>
+            <label>Tên người dùng</label>
+            <input type="text" name="username" value={updatedData.username} onChange={handleChange} />
+            <label>Email</label>
+            <input type="email" name="email" value={updatedData.email} onChange={handleChange} />
+            <div className={styles.modalActions}>
+              <button className={styles.saveButton} onClick={handleUpdateUser}>Lưu</button>
+              <button className={styles.cancelButton} onClick={() => setEditingUser(null)}>Hủy</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

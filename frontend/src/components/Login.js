@@ -82,26 +82,28 @@ const Login = () => {
             <div className={styles.inputGroup}>
               <FaEnvelope className={styles.inputIcon} />
               <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className={styles.input}
+               id="email" // Thêm id cho ô nhập email
+               type="email"
+               placeholder="Email"
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
+               required
+               className={styles.input}
               />
             </div>
             <div className={styles.inputGroup}>
               <FaLock className={styles.inputIcon} />
               <input
-                type="password"
-                placeholder="Mật khẩu"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className={styles.input}
+               id="password" // Thêm id cho ô nhập mật khẩu
+               type="password"
+               placeholder="Mật khẩu"
+               value={password}
+               onChange={(e) => setPassword(e.target.value)}
+               required
+               className={styles.input}
               />
             </div>
-            <button type="submit" className={styles.loginButton}>
+            <button type="submit" id='btndn' className={styles.loginButton}>
               {/* <FaSignInAlt className={styles.buttonIcon} /> Đăng nhập */}
               Đăng nhập
             </button>

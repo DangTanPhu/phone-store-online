@@ -115,6 +115,7 @@ const CreateProduct = () => {
       {error && <p className={styles.error}>{error}</p>}
       <form onSubmit={handleProductSubmit}>
         <input
+          id="cp"
           type="text"
           name="name"
           placeholder="Tên sản phẩm"

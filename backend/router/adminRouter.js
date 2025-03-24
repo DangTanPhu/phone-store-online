@@ -31,7 +31,8 @@ router.get("/users", adminController.getAllUsers);
 router.put("/users/:id", adminController.updateUserStatus);
 router.put("/users/:userId/role", adminController.changeUserRole);
 router.patch("/users/:id/toggle-status", adminController.toggleUserStatus);
-
+router.put("/updateUser/:id", adminController.updateUser);
+router.delete("/deleteUser/:id", adminController.deleteUser);
 // Thống kê
 router.get("/statistics", adminController.getStatistics);
 

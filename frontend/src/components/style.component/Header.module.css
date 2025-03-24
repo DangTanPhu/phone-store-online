@@ -1,4 +1,7 @@
 /* Định nghĩa style cho header */
+body {
+  font-family: "Times New Roman", Times, serif;
+}
 .header {
   /* Đặt vị trí tương đối cho header */
   position: relative;

@@ -276,12 +276,12 @@ const PurchaseOrderManagement = () => {
       <table className={styles.orderTable}>
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Suggested Quantity</th>
-            <th>Actual Quantity</th>
-            <th>Status</th>
-            <th>Notes</th>
-            <th>Actions</th>
+            <th>Sản phẩm</th>
+            <th>Số lượng đề xuất</th>
+            <th>Số lượng thực tế</th>
+            <th>Trạng thái</th>
+            <th>Ghi chú</th>
+            <th>Yêu cầu</th>
           </tr>
         </thead>
         <tbody>

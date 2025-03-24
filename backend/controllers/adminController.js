@@ -108,6 +108,37 @@ exports.updateUserStatus = async (req, res) => {
   }
 };
 
+exports.updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username, email } = req.body;
+
+    // Tạo một object chứa dữ liệu cần cập nhật
+    const updateData = { username, email };
+
+    const updatedUser = await User.findByIdAndUpdate(id, updateData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Không tìm thấy người dùng" });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error("Lỗi cập nhật người dùng:", error);
+    res.status(500).json({ message: "Lỗi khi cập nhật người dùng" });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Người dùng đã được xóa' });
+  } catch (error) {
+    res.status(500).json({ message: 'Lỗi khi xóa sản phẩm' });
+  }
+};
+
+
 exports.getStatistics = async (req, res) => {
   try {
     const { startDate, endDate, period } = req.query;

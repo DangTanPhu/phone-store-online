@@ -144,8 +144,8 @@ export const createProduct = async (productData) => {
 };
 export const updateProduct = (id, productData) => api.put(`/products/${id}`, productData);
 export const deleteProduct = (id) => api.delete(`/products/${id}`);
-
-// Cart
+export const updateUser = (id, updatedData) => api.put(`/updateUser/${id}`, updatedData);
+export const deleteUser = (id) => api.delete(`/deleteUser/${id}`);
 export const getCart = async () => {
   try {
     const response = await api.get('/cart');
