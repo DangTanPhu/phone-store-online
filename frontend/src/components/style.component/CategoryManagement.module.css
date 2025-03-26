@@ -11,12 +11,13 @@
 
 /* Header */
 .categoryManagement h2 {
-  font-size: 30px;
+  font-size: 32px;
   color: #ff0000; /* Red color */
   margin-bottom: 25px;
   border-bottom: 3px solid #e50909;
   padding-bottom: 12px;
   font-weight: 600;
+  text-align: center;
 }
 
 /* Error & Success Messages */

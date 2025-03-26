@@ -1,157 +1,297 @@
-  /* Reset Password Page */
-  .resetPasswordPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #1a1a1a;
-    font-family: "Playfair Display", serif;
-  }
- 
-  .resetPasswordContainer { 
-    width: 90%;
-    max-width: 500px;
-    background-color: #262626;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
-    padding: 40px;
-    color: #ffffff;
-    font-family: "Playfair Display", serif;
-  }
+/* Reset Password Page */
+.resetPasswordPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  font-family: "Playfair Display", serif;
+}
+/* Nút Thêm Người Dùng */
+.addButton {
+background: #1e7e34;
+color: white;
+padding: 10px 16px;
+font-size: 16px;
+border-radius: 8px;
+font-weight: bold;
+display: flex;
+align-items: center;
+gap: 8px;
+transition: all 0.3s ease;
+}
+.addButton:hover {
+background: #155d27;
+}
+
+/* Nút Khóa */
+.lockButton {
+background: #c82333;
+color: white;
+padding: 8px 12px;
+border-radius: 6px;
+font-size: 14px;
+font-weight: bold;
+border: none;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.lockButton:hover {
+background: #a71d2a;
+}
+
+
+
+
+/* Điều chỉnh chung cho nút icon */
+.iconButton {
+width: 40px; /* Đảm bảo nút có kích thước đồng đều */
+height: 40px;
+}
+
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Làm mờ nền */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 420px; /* Điều chỉnh modal lớn hơn */
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #333;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #fff; /* Đổi từ màu đen sang trắng */
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.modalActions {
+  display: flex;
+  justify-content: center; /* Căn giữa */
+  gap: 15px; /* Tạo khoảng cách giữa hai nút */
+  margin-top: 20px;
+  width: 100%;
+}
+
+.modalActions button {
+  flex: 1; /* Cho hai nút đều nhau */
+  padding: 14px; /* Tăng kích thước */
+  margin: 0; /* Xóa khoảng cách thừa */
+  border: none;
+  cursor: pointer;
+  border-radius: 8px; /* Bo góc mềm mại hơn */
+  font-size: 18px; /* Tăng font chữ */
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.modalActions .btn-primary {
+  background: #28a745;
+  color: white;
+}
+
+.modalActions .btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.modalActions button:hover {
+  opacity: 0.85;
+  transform: scale(1.05); /* Hiệu ứng nhẹ khi hover */
+}  
+/* Hiệu ứng mượt */
+@keyframes fadeIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa theo chiều ngang */
+}
+.modal input,
+.modal select {
+  width: 100%; /* Điều chỉnh chiều rộng */
   
-  .formHeader {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+}
   
-  .resetPasswordTitle {
-    font-size: 2rem;
-    color: #ff0000;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: bold;
-  }
-  
-  .resetPasswordSubtitle {
-    font-size: 1rem;
-    color: #cccccc;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .inputGroup {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 12px 40px;
-    border: 1px solid #cc0000;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: #333333;
-    color: #ffffff;
-    border-radius: 6px;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .input:focus {
-    outline: none;
-    border-color: #ff3333;
-  }
-  
-  .inputIcon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ff4d4d;
-  }
-  
-  .successMessage {
-    background-color: #166534;
-    color: #dcfce7;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .errorMessage {
-    background-color: #ff0000;
-    color: #ffffff;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .submitButton {
-    width: 100%;
-    padding: 12px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-    font-weight: bold;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .submitButton:hover {
-    background-color: #cc0000;
-  }
-  
-  /* User Management */
-  .userManagement {
-    padding: 20px;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
-    color: #ffffff;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .userManagement h2 {
-    margin-bottom: 20px;
-    color: #ff0000;
-    font-size: 1.8rem;
-    text-align: center;
-    font-weight: 600;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .searchBar {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 12px;
-    background-color: #333333;
-    border-radius: 8px;
-  }
-  
-  .searchBar input {
-    flex-grow: 1;
-    border: 1px solid #ff0000;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 1rem;
-    background-color: #262626;
-    color: #ffffff;
-    font-family: "Playfair Display", serif;
+.resetPasswordContainer { 
+  width: 90%;
+  max-width: 500px;
+  background-color: #262626;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+  padding: 40px;
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.resetPasswordTitle {
+  font-size: 2rem;
+  color: #ff0000;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.resetPasswordSubtitle {
+  font-size: 1rem;
+  color: #cccccc;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 40px;
+  border: 1px solid #cc0000;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #333333;
+  color: #ffffff;
+  border-radius: 6px;
+  font-family: "Playfair Display", serif;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #ff3333;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff4d4d;
+}
+
+.successMessage {
+  background-color: #166534;
+  color: #dcfce7;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.errorMessage {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+}
+
+.submitButton:hover {
+  background-color: #cc0000;
+}
+
+/* User Management */
+.userManagement {
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+}
+
+.userManagement h2 {
+  margin-bottom: 20px;
+  color: #ff0000;
+  font-size: 32;
+  text-align: center;
+  font-weight: 600;
+  font-family: "Playfair Display", serif;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #333333;
+  border-radius: 8px;
+}
+
+.searchBar input {
+  flex-grow: 1;
+  border: 1px solid #ff0000;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #262626;
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
   }
   
   .searchBar input:focus {
@@ -172,7 +312,7 @@
     padding: 12px 16px;
     text-align: left;
     border-bottom: 1px solid #ff3333;
-    font-family: "Playfair Display", serif;
+    
   }
   
   .userTable th {
@@ -194,7 +334,7 @@
     cursor: pointer;
     font-size: 0.95rem;
     transition: background-color 0.3s, transform 0.2s;
-    color: rgb(235, 8, 8);
+    color: white;
     font-family: "Playfair Display", serif;
   }
   
@@ -213,59 +353,10 @@
   .unlockButton:hover {
     background-color: #006400;
   }
-  /* Modal overlay */
-  .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-  }
-  
-  .modal label {
-    display: block;
-    margin: 10px 0 5px;
-  }
-  
-  .modal input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .modalActions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .saveButton {
-    background: #4CAF50;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .cancelButton {
-    background: #f44336;
-    color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.pagination{
+  border-radius: 5%;
+  display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+   margin-top: 5px;
+}

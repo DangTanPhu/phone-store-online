@@ -85,7 +85,7 @@ const Cart = () => {
               <h3>{item.product.name || "Tên sản phẩm"}</h3>
               <p>Giá: {item.product.price?.toLocaleString('vi-VN') || "0"} đ</p>
               <div className={styles.itemOptions}>
-                <select 
+                <select id="chonS"
                   value={item.size} 
                   onChange={(e) => handleSizeChange(item._id, e.target.value)}
                 >
@@ -94,6 +94,7 @@ const Cart = () => {
                   ))}
                 </select>
                 <select 
+                 id="chonMau"
                   value={item.color} 
                   onChange={(e) => handleColorChange(item._id, e.target.value)}
                 >
@@ -103,7 +104,7 @@ const Cart = () => {
                 </select>
               </div>
               <div className={styles.quantityControl}>
-                <button 
+                <button id="ttoan"
                   onClick={() => handleQuantityChange(item._id, Math.max(1, item.quantity - 1))}
                   disabled={item.quantity <= 1}
                 >
@@ -116,7 +117,7 @@ const Cart = () => {
                   value={item.quantity}
                   onChange={(e) => handleQuantityChange(item._id, parseInt(e.target.value) || 1)}
                 />
-                <button 
+                <button id="clickQuantity"
                   onClick={() => handleQuantityChange(item._id, item.quantity + 1)}
                   disabled={item.quantity >= item.product.stock}
                 >

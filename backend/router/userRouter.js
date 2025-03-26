@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.use(authMiddleware);
 
 router.get('/profile', userController.getProfile);
-router.put('/profile', userController.updateProfile);
+router.put('/updateProfile/:id', userController.updateProfile);
 router.get('/orders', userController.getUserOrders);
 router.get('/shipping-addresses', userController.getShippingAddresses);
 router.post('/shipping-addresses', userController.addShippingAddress);

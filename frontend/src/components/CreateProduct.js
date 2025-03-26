@@ -11,11 +11,13 @@ const CreateProduct = () => {
     description: "",
     price: "",
     categoryId: "",
+    subcategoryId: "",
     stock: "",
     sizes: "",
     colors: "",
     sizeGuideType: "",
   });
+
   const [image, setImage] = useState(null);
   const [detailImages, setDetailImages] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -60,21 +62,16 @@ const CreateProduct = () => {
     setError("");
 
     const formData = new FormData();
-    formData.append("name", product.name);
-    formData.append("description", product.description);
-    formData.append("price", product.price);
-    formData.append("categoryId", product.categoryId);
-    formData.append("stock", product.stock);
-    formData.append("sizes", product.sizes);
-    formData.append("colors", product.colors);
-    formData.append("sizeGuideType", product.sizeGuideType);
+    Object.keys(product).forEach((key) => {
+      formData.append(key, product[key]);
+    });
 
     if (image) {
       formData.append("image", image);
     }
 
-    detailImages.forEach((img, index) => {
-      formData.append(`detailImages`, img);
+    detailImages.forEach((img) => {
+      formData.append("detailImages", img);
     });
 
     try {
@@ -83,9 +80,7 @@ const CreateProduct = () => {
       navigate("/admin/products");
     } catch (error) {
       console.error("Error creating product:", error);
-      setError(
-        error.response?.data?.message || "Có lỗi xảy ra khi tạo sản phẩm"
-      );
+      setError(error.response?.data?.message || "Có lỗi xảy ra khi tạo sản phẩm");
     }
   };
 
@@ -99,9 +94,7 @@ const CreateProduct = () => {
       >
         {"-".repeat(level)} {category.name}
       </option>,
-      ...(category.children
-        ? renderCategories(category.children, level + 1)
-        : []),
+      ...(category.children ? renderCategories(category.children, level + 1) : []),
     ]);
   };
 
@@ -111,7 +104,7 @@ const CreateProduct = () => {
 
   return (
     <div className={styles.createProduct}>
-      <h2>Tạo sản phẩm mới</h2>
+      <h2>TẠO SẢN PHẨM MỚI</h2>
       {error && <p className={styles.error}>{error}</p>}
       <form onSubmit={handleProductSubmit}>
         <input
@@ -124,6 +117,7 @@ const CreateProduct = () => {
           required
         />
         <textarea
+          id="mt"
           name="description"
           placeholder="Mô tả"
           value={product.description}
@@ -131,6 +125,7 @@ const CreateProduct = () => {
           required
         />
         <input
+          id="gia"
           type="number"
           name="price"
           placeholder="Giá"
@@ -140,7 +135,10 @@ const CreateProduct = () => {
           min="0"
           step="0.01"
         />
+        
+        {/* Chọn danh mục cha */}
         <select
+          id="chontl"
           name="categoryId"
           value={product.categoryId}
           onChange={handleProductChange}
@@ -149,7 +147,27 @@ const CreateProduct = () => {
           <option value="">Chọn danh mục</option>
           {renderCategories(categories)}
         </select>
+
+        {/* Chọn danh mục con */}
+        <select
+          id="chon-danh-muc-phu"
+          name="subcategoryId"
+          value={product.subcategoryId}
+          onChange={handleProductChange}
+          required
+        >
+          <option value="">Chọn danh mục con</option>
+          {categories
+            .filter((category) => category.parentId === product.categoryId)
+            .map((subcategory) => (
+              <option key={subcategory._id} value={subcategory._id}>
+                {subcategory.name}
+              </option>
+            ))}
+        </select>
+
         <input
+          id="slk"
           type="number"
           name="stock"
           placeholder="Số lượng trong kho"
@@ -159,6 +177,7 @@ const CreateProduct = () => {
           min="0"
         />
         <input
+          id="kt"
           type="text"
           name="sizes"
           placeholder="Kích thước (cách nhau bằng dấu phẩy)"
@@ -167,6 +186,7 @@ const CreateProduct = () => {
           required
         />
         <input
+          id="mau"
           type="text"
           name="colors"
           placeholder="Màu sắc (cách nhau bằng dấu phẩy)"
@@ -175,20 +195,24 @@ const CreateProduct = () => {
           required
         />
         <input
+          id="file1"
           type="file"
           onChange={handleImageChange}
           accept="image/*"
           required
         />
         <input
+          id="file2"
           type="file"
           multiple
           onChange={handleDetailImagesChange}
           accept="image/*"
         />
+        
         <div className={styles.formGroup}>
           <label>Kiểu:</label>
           <select
+            id="kieu"
             name="sizeGuideType"
             value={product.sizeGuideType}
             onChange={handleProductChange}
@@ -211,7 +235,7 @@ const CreateProduct = () => {
             </div>
           )}
         </div>
-        <button type="submit">Tạo sản phẩm</button>
+        <button id="btntao" type="submit">Tạo sản phẩm</button>
       </form>
     </div>
   );

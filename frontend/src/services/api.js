@@ -145,7 +145,23 @@ export const createProduct = async (productData) => {
 export const updateProduct = (id, productData) => api.put(`/products/${id}`, productData);
 export const deleteProduct = (id) => api.delete(`/products/${id}`);
 export const updateUser = (id, updatedData) => api.put(`/updateUser/${id}`, updatedData);
+export const updateCategory = (id, updatedData) => api.put(`/updateCategory/${id}`, updatedData);
 export const deleteUser = (id) => api.delete(`/deleteUser/${id}`);
+export const createUser = async (userData) => {
+  try {
+    const response = await api.post('/createUser', userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+
 export const getCart = async () => {
   try {
     const response = await api.get('/cart');
@@ -189,7 +205,7 @@ export const removeCartItem = async (productId) => {
 
 // User profile
 export const getUserProfile = () => api.get('/user/profile');
-export const updateUserProfile = (profileData) => api.put('/user/profile', profileData);
+export const updateUserProfile = (profileData) => api.put('/updateProfile/:id', profileData);
 export const getUserOrders = () => api.get('/user/orders');
 
 // Orders

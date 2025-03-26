@@ -46,6 +46,7 @@ const VoucherInput = () => {
   return (
     <div className={styles.voucherSection}>
       <input
+       id="nhapMaGG"
         type="text"
         value={voucherCode}
         onChange={(e) => setVoucherCode(e.target.value)}
@@ -53,6 +54,7 @@ const VoucherInput = () => {
         className={styles.voucherInput}
       />
       <button 
+       id="apdungVC"
         onClick={handleApplyVoucher}
         disabled={loading || !voucherCode.trim()}
         className={styles.applyButton}

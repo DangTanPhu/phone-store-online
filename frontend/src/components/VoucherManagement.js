@@ -134,9 +134,10 @@ const VoucherManagement = () => {
 
   return (
     <div className={styles.voucherManagement}>
-      <h2>Quản lý Voucher</h2>
+      <h2>QUẢN LÝ KHUYẾN MÃI</h2>
       <form onSubmit={handleCreateVoucher} className={styles.voucherForm}>
         <input
+          id="mavoucher"
           type="text"
           value={newVoucher.code}
           onChange={(e) =>
@@ -151,10 +152,11 @@ const VoucherManagement = () => {
             setNewVoucher({ ...newVoucher, discountType: e.target.value })
           }
         >
-          <option value="percentage">Phần trăm</option>
-          <option value="fixed">Số tiền cố định</option>
+          <option id="ptcd" value="percentage">Phần trăm</option>
+          <option id="stcd" value="fixed">Số tiền cố định</option>
         </select>
         <input
+          id="gtgg"
           type="number"
           value={newVoucher.discountValue}
           onChange={(e) =>
@@ -166,7 +168,8 @@ const VoucherManagement = () => {
           placeholder="Giá trị giảm giá"
           required
         />
-        <input
+        <input 
+          id="ggtd"
           type="number"
           value={newVoucher.maxDiscount}
           onChange={(e) =>
@@ -178,6 +181,7 @@ const VoucherManagement = () => {
           placeholder="Giảm giá tối đa"
         />
         <input
+          id="gtdhtt"
           type="number"
           value={newVoucher.minPurchase}
           onChange={(e) =>
@@ -190,6 +194,7 @@ const VoucherManagement = () => {
           required
         />
         <input
+          id="nbd"
           type="date"
           value={newVoucher.startDate}
           onChange={(e) => {
@@ -203,6 +208,7 @@ const VoucherManagement = () => {
           required
         />
         <input
+         id="nkt"
           type="date"
           value={newVoucher.endDate}
           onChange={(e) => {
@@ -216,6 +222,7 @@ const VoucherManagement = () => {
           required
         />
         <input
+          id="ghsd"
           type="number"
           value={newVoucher.usageLimit}
           onChange={(e) =>
@@ -227,7 +234,7 @@ const VoucherManagement = () => {
           placeholder="Giới hạn sử dụng"
           required
         />
-        <button type="submit">Tạo Voucher</button>
+        <button id="btnTVC" type="submit">Tạo Voucher</button>
       </form>
       <table className={styles.voucherTable}>
         <thead>
@@ -263,7 +270,7 @@ const VoucherManagement = () => {
               <td>{voucher.usageLimit}</td>
               <td>{voucher.isActive ? "Hoạt động" : "Không hoạt động"}</td>
               <td > 
-                <button className={styles.actionButton}
+                <button id="btnkichhoat" className={styles.actionButton}
                   onClick={() =>
                     handleUpdateVoucher(voucher._id, {
                       isActive: !voucher.isActive,
@@ -272,7 +279,7 @@ const VoucherManagement = () => {
                 >
                   {voucher.isActive ? "Vô hiệu hóa" : "Kích hoạt"}
                 </button>
-                <button onClick={() => handleDeleteVoucher(voucher._id)} className={styles.deleteBtn}>
+                <button id="xoaVC" onClick={() => handleDeleteVoucher(voucher._id)} className={styles.deleteBtn}>
                   Xóa
                 </button>
               </td>

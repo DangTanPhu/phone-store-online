@@ -4,7 +4,7 @@ const User = require('../models/User');
 const Voucher = require('../models/Voucher');
 const moment = require('moment');
 const { createStatisticsReportPDF } = require('../utils/pdfGenerator');
-
+const category = require('../models/Category');
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -107,7 +107,55 @@ exports.updateUserStatus = async (req, res) => {
     res.status(500).json({ message: 'Lỗi khi cập nhật trạng thái người dùng' });
   }
 };
-
+exports.createUser = async (req, res) => {
+  try {
+      const { username, email, password, fullName, phoneNumber, address, role } = req.body;
+      console.log("Registration attempt:", { username, email, role });
+  
+      // Kiểm tra email có phải là Gmail không
+      if (!email.endsWith("@gmail.com")) {
+        return res.status(400).json({ message: "Vui lòng sử dụng email Gmail (@gmail.com)" });
+      }
+  
+      // Kiểm tra tài khoản đã tồn tại chưa
+      const existingUser = await User.findOne({ $or: [{ email }] });
+      if (existingUser) {
+        return res.status(400).json({ message: "User already exists" });
+      }
+  
+      // Mặc định vai trò là 'user'
+      let userRole = role === "admin" ? "admin" : "user";
+  
+      // Băm mật khẩu
+      const hashedPassword = await bcrypt.hash(password, 12);
+  
+      // Lưu thông tin người dùng
+      const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+        fullName, // Optional field
+        phoneNumber, // Optional field with validation
+        address, // Optional field
+        role: userRole,
+      });
+      await newUser.save();
+  
+      return res.status(200).json({ message: "Đăng ký thành công! Bạn có thể đăng nhập ngay." });
+    } catch (error) {
+      console.error("Registration error:", error);
+      if (error.code === 11000) {
+        return res.status(400).json({ message: "Username or email already exists" });
+      }
+      // Handle validation errors from Mongoose
+      if (error.name === "ValidationError") {
+        const messages = Object.values(error.errors).map(err => err.message);
+        return res.status(400).json({ message: "Validation error", errors: messages });
+      }
+      res.status(500).json({ message: "Error creating user", error: error.message });
+    }
+ };
+ // Cập nhật
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -383,6 +431,41 @@ exports.deleteVoucher = async (req, res) => {
     res.status(500).json({ message: 'Lỗi khi xóa voucher', error: error.message });
   }
 };
+exports.updateCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    let { name, slug, fullSlug } = req.body;
+
+    // Xóa khoảng trắng thừa
+    name = name?.trim();
+    slug = slug?.trim();
+    fullSlug = fullSlug?.trim();
+
+    // Kiểm tra dữ liệu đầu vào
+    if (!name || !slug || !fullSlug) {
+      return res.status(400).json({ message: "Vui lòng cung cấp đầy đủ thông tin" });
+    }
+
+    // Chỉ cập nhật các trường hợp hợp lệ
+    const updateData = {};
+    if (name) updateData.name = name;
+    if (slug) updateData.slug = slug;
+    if (fullSlug) updateData.fullSlug = fullSlug;
+
+    // Cập nhật danh mục
+    const updatedCategory = await category.findByIdAndUpdate(id, updateData, { new: true });
+
+    if (!updatedCategory) {
+      return res.status(404).json({ message: "Không tìm thấy danh mục" });
+    }
+
+    res.json({ message: "Cập nhật danh mục thành công", category: updatedCategory });
+  } catch (error) {
+    console.error("Lỗi cập nhật danh mục:", error);
+    res.status(500).json({ message: "Lỗi khi cập nhật danh mục" });
+  }
+};
+
 
 exports.changeUserRole = async (req, res) => {
   try {

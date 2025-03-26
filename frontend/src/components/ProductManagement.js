@@ -124,10 +124,11 @@ const ProductManagement = () => {
   
     return (
       <div className={styles.productManagement}>
-        <h2>Quản lý sản phẩm</h2>
+        <h2>QUẢN LÝ SẢN PHẨM</h2>
         <div className={styles.searchBar}>
           <FaSearch />
           <input
+            id="TKSP"
             type="text"
             placeholder="Tìm kiếm theo tên hoặc danh mục"
             value={searchTerm}
@@ -150,12 +151,14 @@ const ProductManagement = () => {
               <tr key={product._id}>
                 <td>{editingProduct && editingProduct._id === product._id ? 
                   <input 
+                    
                     value={editingProduct.name} 
                     onChange={(e) => setEditingProduct({...editingProduct, name: e.target.value})}
                   /> : product.name}
                 </td>
                 <td>{editingProduct && editingProduct._id === product._id ? 
                   <input 
+
                     type="number" 
                     value={editingProduct.price} 
                     onChange={(e) => setEditingProduct({...editingProduct, price: e.target.value})}

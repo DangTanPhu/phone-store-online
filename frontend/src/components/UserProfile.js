@@ -42,6 +42,7 @@ const UserProfile = () => {
       setError('Không thể tải thông tin người dùng. Vui lòng thử lại sau.');
     }
   };
+
   const fetchShippingAddresses = async () => {
     try {
       const response = await getShippingAddresses();
@@ -57,7 +58,23 @@ const UserProfile = () => {
     const { name, value } = e.target;
     setUpdatedProfile(prev => ({ ...prev, [name]: value }));
   };
+  const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+    try {
+      if (!updatedProfile.fullName || !updatedProfile.phone || !updatedProfile.email) {
+        throw new Error('Vui lòng điền đầy đủ thông tin cá nhân');
+      }
 
+      const response = await updateUserProfile(updatedProfile);
+      setProfile(response.data);
+      login(response.data); // Cập nhật thông tin đăng nhập nếu cần
+      setEditMode(false);
+      alert('Cập nhật thông tin thành công!');
+    } catch (error) {
+      console.error('Lỗi khi cập nhật thông tin:', error);
+      alert(error.message || 'Không thể cập nhật thông tin. Vui lòng thử lại.');
+    }
+  };
   const handleAddressInputChange = (e) => {
     const { name, value } = e.target;
     const updatedAddress = { ...newAddress };

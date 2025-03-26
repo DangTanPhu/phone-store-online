@@ -68,7 +68,7 @@ const InventoryManagement = () => {
 
   return (
     <div className={styles.inventoryManagement}>
-      <h2>Quản lý kho hàng</h2>
+      <h2>QUẢN LÝ ĐƠN HÀNG</h2>
 
       <section className={styles.lowStockSection}>
         <h3>Sản phẩm sắp hết hàng</h3>
@@ -78,7 +78,7 @@ const InventoryManagement = () => {
               <li key={product._id} className={styles.productItem}>
                 <span>{product.name}</span>
                 <span>Số lượng: {product.stock}</span>
-                <input
+                <input id="nhapSL1"
                   type="number"
                   defaultValue={product.stock}
                   min="0"
@@ -103,7 +103,7 @@ const InventoryManagement = () => {
               <li key={product._id} className={styles.productItem}>
                 <span>{product.name}</span>
                 <span>Số lượng: {product.stock}</span>
-                <input
+                <input id="nhapSL2"
                   type="number"
                   defaultValue={product.stock}
                   min="0"

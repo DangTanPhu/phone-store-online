@@ -33,12 +33,14 @@ router.put("/users/:userId/role", adminController.changeUserRole);
 router.patch("/users/:id/toggle-status", adminController.toggleUserStatus);
 router.put("/updateUser/:id", adminController.updateUser);
 router.delete("/deleteUser/:id", adminController.deleteUser);
+router.put("/updateCategory/:id", adminController.updateCategory);
 // Thống kê
 router.get("/statistics", adminController.getStatistics);
 
 // Quản lý kho hàng
 router.get("/products/low-stock", inventoryController.getLowStockProducts);
 router.put("/products/update-stock", inventoryController.updateStock);
+router.post("/createUser", adminController.createUser);
 
 // Quản lý đơn đặt hàng
 router.get("/purchase-orders", inventoryController.getPurchaseOrders);

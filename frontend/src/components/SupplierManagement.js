@@ -79,7 +79,7 @@ const SupplierManagement = () => {
 
   return (
     <div className={styles.supplierManagement}>
-      <h2>Quản lý nhà cung cấp</h2>
+      <h2>QUẢN LÝ NHÀ CUNG CẤP</h2>
       <form onSubmit={handleSubmit} className={styles.supplierForm}>
         <input
           type="text"
