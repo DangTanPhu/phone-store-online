@@ -91,9 +91,13 @@ const CategoryManagement = () => {
           <button id="chinhsuaDM" className={styles.editButton} onClick={() => handleEditCategory(category)}>
             Chỉnh sửa
           </button>
-          <button id="xoaDM" className={styles.deleteButton} onClick={() => handleDeleteCategory(category._id)}>
-            Xóa
-          </button>
+          <button
+                  id={`xoaDM-${category._id}`}
+  className={styles.deleteButton}
+  onClick={() => handleDeleteCategory(category._id)}
+>
+  Xóa
+</button>
         </div>
         {category.children && category.children.length > 0 && renderCategories(category.children, level + 1)}
       </React.Fragment>
@@ -128,12 +132,12 @@ const CategoryManagement = () => {
           <input id="nhapDMM" type="text" name="name" value={editCategory.name} onChange={handleInputChange} required className={styles.input} />
           <input id="nhapslugM" type="text" name="slug" value={editCategory.slug} onChange={handleInputChange} required className={styles.input} />
           <select id="chonDMM" name="parentId" value={editCategory.parentId || ""} onChange={handleInputChange} className={styles.select}>
-            <option value="">Không có danh mục cha</option>
+            <option  value="">Không có danh mục cha</option>
             {categories.map((category) => (
-              <option key={category._id} value={category._id}>
+              <option key={category._id} value={category._id} >
                 {category.name}
               </option>
-            ))}
+            ))}   
           </select>
           <button id="capnhatDM" type="submit" className={styles.button}>Cập nhật</button>
           <button id="huyDM" type="button" className={styles.cancelButton} onClick={() => setEditCategory(null)}>

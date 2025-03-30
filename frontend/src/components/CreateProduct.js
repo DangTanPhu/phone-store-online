@@ -10,8 +10,8 @@ const CreateProduct = () => {
     name: "",
     description: "",
     price: "",
-    categoryId: "",
-    subcategoryId: "",
+    categoryIds: [],
+    
     stock: "",
     sizes: "",
     colors: "",
@@ -24,6 +24,18 @@ const CreateProduct = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { user } = useAuth();
+  const handleCategoryChange = (e) => {
+    const selectedCategories = Array.from(e.target.selectedOptions, (option) => option.value);
+    if (selectedCategories.length > 2) {
+      setError("Chỉ được chọn tối đa 2 danh mục");
+    } else {
+      setError("");
+      setProduct((prevProduct) => ({
+        ...prevProduct,
+        categoryIds: selectedCategories,
+      }));
+    }
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -63,7 +75,11 @@ const CreateProduct = () => {
 
     const formData = new FormData();
     Object.keys(product).forEach((key) => {
-      formData.append(key, product[key]);
+      if (Array.isArray(product[key])) {
+        product[key].forEach((value) => formData.append(key, value));
+      } else {
+        formData.append(key, product[key]);
+      }
     });
 
     if (image) {
@@ -145,27 +161,11 @@ const CreateProduct = () => {
           required
         >
           <option value="">Chọn danh mục</option>
+          
           {renderCategories(categories)}
         </select>
 
-        {/* Chọn danh mục con */}
-        <select
-          id="chon-danh-muc-phu"
-          name="subcategoryId"
-          value={product.subcategoryId}
-          onChange={handleProductChange}
-          required
-        >
-          <option value="">Chọn danh mục con</option>
-          {categories
-            .filter((category) => category.parentId === product.categoryId)
-            .map((subcategory) => (
-              <option key={subcategory._id} value={subcategory._id}>
-                {subcategory.name}
-              </option>
-            ))}
-        </select>
-
+      
         <input
           id="slk"
           type="number"

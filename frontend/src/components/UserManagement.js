@@ -44,7 +44,7 @@ const UserManagement = () => {
   const [usersPerPage] = useState(10);
   const { user, user: currentUser } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newUser, setNewUser] = useState({ username: '', email: '', password: '', role: 'user' });
+  const [newUser, setNewUser] = useState({ username: '', email: '', password: '', role: 'user', phoneNumber:'' });
   
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editUser, setEditUser] = useState(null);
@@ -71,7 +71,7 @@ const UserManagement = () => {
       toast.success('Người dùng đã được thêm thành công!');
       fetchUsers();
       setIsModalOpen(false);
-      setNewUser({ username: '', email: '', password: '', role: 'user' });
+      setNewUser({ username: '', email: '', password: '', role: 'user',phoneNumber:'' });
     } catch (error) {
       toast.error('Không thể thêm người dùng!');
       console.error('Lỗi khi thêm người dùng:', error);
@@ -235,9 +235,12 @@ const UserManagement = () => {
           <tr>
             <th onClick={() => handleSort('username')}>Tên <FaSort /></th>
             <th onClick={() => handleSort('email')}>Email <FaSort /></th>
+            <th onClick={() => handleSort('password')}>Mật khẩu <FaSort /></th>
+            <th onClick={() => handleSort('phoneNumber')}>Số điện thoại <FaSort /></th>
             <th onClick={() => handleSort('role')}>Vai trò <FaSort /></th>
             <th onClick={() => handleSort('isActive')}>Trạng thái <FaSort /></th>
             <th>Hành động</th>
+
           </tr>
         </thead>
         <tbody>
@@ -245,6 +248,8 @@ const UserManagement = () => {
             <tr key={user._id}>
               <td>{user.username}</td>
               <td>{user.email}</td>
+              <td>{user.password}</td>
+              <td>{user.phoneNumber}</td>
               <td>
                 <select
                   id="chonrole"
@@ -287,6 +292,9 @@ const UserManagement = () => {
             <input id="2-2" type="text" placeholder="Tên người dùng" value={newUser.username} onChange={(e) => setNewUser({...newUser, username: e.target.value})} />
             <input id="3-3" type="email" placeholder="Email" value={newUser.email} onChange={(e) => setNewUser({...newUser, email: e.target.value})} />
             <input id="4-4" type="password" placeholder="Mật khẩu" value={newUser.password} onChange={(e) => setNewUser({...newUser, password: e.target.value})} />
+            <input id="address" type="address" placeholder="Địa chỉ" value={newUser.address} onChange={(e) => setNewUser({...newUser, address: e.target.value})} />
+            <input id="sodienthoai" type="phoneNumber" placeholder="Số điện thoại" value={newUser.phoneNumber} onChange={(e) => setNewUser({...newUser, phoneNumber: e.target.value})} />
+
             <select id="5-5" value={newUser.role} onChange={(e) => setNewUser({...newUser, role: e.target.value})}>
               <option id="6-6" value="user">User</option>
               <option id="7-7" value="admin">Admin</option>
@@ -306,6 +314,12 @@ const UserManagement = () => {
         onChange={(e) => setEditUser({...editUser, username: e.target.value})} />
       <input id="12-12" type="email" value={editUser.email || ''} 
         onChange={(e) => setEditUser({...editUser, email: e.target.value})} />
+        <input id="mattkhauu" type="password" value={editUser.password || ''} 
+        onChange={(e) => setEditUser({...editUser, password: e.target.value})} />
+        <input id="diachiii" type="address" value={editUser.address || ''} 
+        onChange={(e) => setEditUser({...editUser, address: e.target.value})} />
+        <input id="sodienthoaii1" type="phoneNumber" value={editUser.phoneNumber || ''} 
+        onChange={(e) => setEditUser({...editUser, phoneNumber: e.target.value})} />
       <select id="13-13" value={editUser.role || ''}
       onChange={(e) => setEditUser({...editUser, role: e.target.value})}>
       <option id="14-14" value="user">User</option>

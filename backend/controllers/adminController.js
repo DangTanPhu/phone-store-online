@@ -5,6 +5,8 @@ const Voucher = require('../models/Voucher');
 const moment = require('moment');
 const { createStatisticsReportPDF } = require('../utils/pdfGenerator');
 const category = require('../models/Category');
+const bcrypt = require('bcrypt');
+
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -110,7 +112,7 @@ exports.updateUserStatus = async (req, res) => {
 exports.createUser = async (req, res) => {
   try {
       const { username, email, password, fullName, phoneNumber, address, role } = req.body;
-      console.log("Registration attempt:", { username, email, role });
+      console.log("Registration attempt:", { username, email, role,fullName, phoneNumber, address,password });
   
       // Kiểm tra email có phải là Gmail không
       if (!email.endsWith("@gmail.com")) {
@@ -132,7 +134,7 @@ exports.createUser = async (req, res) => {
       // Lưu thông tin người dùng
       const newUser = new User({
         username,
-        email,
+        email,  
         password: hashedPassword,
         fullName, // Optional field
         phoneNumber, // Optional field with validation
@@ -159,10 +161,10 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const { username, email } = req.body;
+    const { username, email ,password,phoneNumber, address} = req.body;
 
     // Tạo một object chứa dữ liệu cần cập nhật
-    const updateData = { username, email };
+    const updateData = { username, email ,password,phoneNumber,address};
 
     const updatedUser = await User.findByIdAndUpdate(id, updateData, { new: true });
 
