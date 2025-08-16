@@ -10,7 +10,7 @@ const CreateProduct = () => {
     name: "",
     description: "",
     price: "",
-    categoryIds: [],
+    categoryId: "",
     
     stock: "",
     sizes: "",

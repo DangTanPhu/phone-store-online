@@ -6,6 +6,7 @@
     display: flex;
     /* Sắp xếp các phần tử con theo chiều dọc */
     flex-direction: column;
+    background-color: #ffffff;
   }
   
   /* Định nghĩa style cho thanh phân cách */

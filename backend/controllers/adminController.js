@@ -34,6 +34,11 @@ exports.updateProduct = async (req, res) => {
     const { name, price, description, category } = req.body;
     const image = req.file ? req.file.filename : undefined;
 
+    // Kiểm tra mô tả phải có ít nhất 10 ký tự
+    if (description && description.length < 10) {
+      return res.status(400).json({ message: 'Mô tả sản phẩm phải có ít nhất 10 ký tự' });
+    }
+
     const updateData = { name, price, description, category };
     if (image) {
       updateData.image = image;
@@ -47,10 +52,11 @@ exports.updateProduct = async (req, res) => {
 
     res.json(updatedProduct);
   } catch (error) {
-    console.error('Error updating product:', error);
+    console.error('Lỗi khi cập nhật sản phẩm:', error);
     res.status(500).json({ message: 'Lỗi khi cập nhật sản phẩm' });
   }
 };
+
 
 exports.deleteProduct = async (req, res) => {
   try {
@@ -109,7 +115,7 @@ exports.updateUserStatus = async (req, res) => {
     res.status(500).json({ message: 'Lỗi khi cập nhật trạng thái người dùng' });
   }
 };
-exports.createUser = async (req, res) => {
+  exports.createUser = async (req, res) => {
   try {
       const { username, email, password, fullName, phoneNumber, address, role } = req.body;
       console.log("Registration attempt:", { username, email, role,fullName, phoneNumber, address,password });
@@ -117,6 +123,13 @@ exports.createUser = async (req, res) => {
       // Kiểm tra email có phải là Gmail không
       if (!email.endsWith("@gmail.com")) {
         return res.status(400).json({ message: "Vui lòng sử dụng email Gmail (@gmail.com)" });
+      }
+      if (!/^[0-9]{10}$/.test(phoneNumber)) {
+        return res.status(400).json({ message: "Số điện thoại phải đúngđúng 10 chữ số" });
+      }
+  
+      if (!/(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
+        return res.status(400).json({ message: "Mật khẩu phải có ít nhất 8 ký tự, bao gồm ít nhất 1 chữ cái viết hoa, 1 số và 1 ký tự đặc biệt" });
       }
   
       // Kiểm tra tài khoản đã tồn tại chưa

@@ -25,7 +25,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-exports.createProduct = async (req, res) => {
+/*exports.createProduct = async (req, res) => {
   try {
     const { name, description, price, categoryId, stock, sizes, colors, sizeGuideType } = req.body;
     let image = '';
@@ -67,6 +67,109 @@ exports.createProduct = async (req, res) => {
     console.log('New product created:', newProduct);
 
     res.status(201).json(newProduct);
+  } catch (error) {
+    res.status(400).json({ message: 'Lỗi khi tạo sản phẩm', error: error.message });
+  }
+};*/
+class ProductBuilder {
+  constructor() {
+    this.product = {};
+  }
+
+  setName(name) {
+    this.product.name = name;
+    return this;
+  }
+
+  setDescription(description) {
+    this.product.description = description;
+    return this;
+  }
+
+  setPrice(price) {
+    this.product.price = price;
+    return this;
+  }
+
+  setCategory(categoryId) {
+    this.product.category = categoryId;
+    return this;
+  }
+
+  setStock(stock) {
+    this.product.stock = stock;
+    return this;
+  }
+
+  setSizes(sizes) {
+    this.product.sizes = sizes ? sizes.split(',').map(size => size.trim()) : [];
+    return this;
+  }
+
+  setColors(colors) {
+    this.product.colors = colors ? colors.split(',').map(color => color.trim()) : [];
+    return this;
+  }
+
+  setSizeGuideType(sizeGuideType) {
+    this.product.sizeGuideType = sizeGuideType;
+    return this;
+  }
+
+  setImages(image, detailImages) {
+    this.product.image = image;
+    this.product.detailImages = detailImages;
+    return this;
+  }
+  
+
+  build() {
+    return this.product;
+  }
+
+}
+
+exports.createProduct = async (req, res) => {
+  try {
+    const { name, description, price, categoryId, stock, sizes, colors, sizeGuideType } = req.body;
+    let image = '';
+    let detailImages = [];
+
+    if (req.files) {
+      if (req.files['image']) {
+        image = req.files['image'][0].filename;
+      }
+      if (req.files['detailImages']) {
+        detailImages = req.files['detailImages'].map(file => file.filename);
+      }
+    }
+
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      return res.status(404).json({ message: 'Danh mục không tồn tại' });
+    }
+
+    const newProduct = new ProductBuilder()
+      .setName(name)
+      .setDescription(description)
+      .setPrice(price)
+      .setCategory(categoryId)
+      .setStock(stock)
+      .setSizes(sizes)
+      .setColors(colors)
+      .setSizeGuideType(sizeGuideType)
+      .setImages(image, detailImages)
+      .build();
+
+    const createdProduct = new Product(newProduct);
+    await createdProduct.save();
+
+    category.productCount = (category.productCount || 0) + 1;
+    await category.save();
+
+    console.log('New product created:', createdProduct);
+
+    res.status(201).json(createdProduct);
   } catch (error) {
     res.status(400).json({ message: 'Lỗi khi tạo sản phẩm', error: error.message });
   }

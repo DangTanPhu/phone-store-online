@@ -59,6 +59,10 @@ export const CartProvider = ({ children }) => {
       if (!user) {
         throw new Error('User must be logged in to add items to cart');
       }
+      if (quantity > product.stock) {
+        alert(`Số lượng sản phẩm vượt quá tồn kho! Chỉ còn ${product.stock} sản phẩm.`);
+        return;
+      }
       await apiAddToCart({
         productId: product._id,
         quantity,

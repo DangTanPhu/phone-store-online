@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { getCategories, createCategory, deleteCategory, updateCategory } from "../services/api";
 import styles from "./style.component/CategoryManagement.module.css";
-
+import { toast } from "react-toastify";
 const CategoryManagement = () => {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState({ name: "", slug: "", parentId: "" });
   const [editCategory, setEditCategory] = useState(null); // State lưu danh mục đang chỉnh sửa
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [searched, setSearched] = useState(false);
   const fetchCategories = useCallback(async () => {
     try {
       const response = await getCategories();
@@ -33,12 +35,19 @@ const CategoryManagement = () => {
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
+    if (newCategory.name.length < 2 || newCategory.name.length > 50) {
+      window.alert("Tên danh mục phải từ 2 đến 50 ký tự!");
+      return;
+    }
+    if (newCategory.slug.length < 2 || newCategory.slug.length > 100) {
+      window.alert("Slug phải từ 2 đến 100 ký tự!");
+      return;
+    }
     try {
       const response = await createCategory(newCategory);
       setCategories((prevCategories) => [...prevCategories, response]);
       setNewCategory({ name: "", slug: "", parentId: "" });
       window.alert("Danh mục đã được tạo thành công!");
-      setSuccess("Danh mục đã được tạo thành công");
       setError("");
       fetchCategories();
     } catch (error) {
@@ -52,7 +61,6 @@ const CategoryManagement = () => {
       try {
         await deleteCategory(categoryId);
         window.alert("Danh mục đã được xóa thành công!");
-        setSuccess("Danh mục đã được xóa thành công");
         setError("");
         fetchCategories();
       } catch (error) {
@@ -64,22 +72,33 @@ const CategoryManagement = () => {
 
   const handleEditCategory = (category) => {
     setEditCategory(category);
+    
   };
 
   const handleUpdateCategory = async (e) => {
     e.preventDefault();
     if (!editCategory) return;
+  
+    // Kiểm tra ràng buộc trước khi gửi yêu cầu
+    if (editCategory.name.length < 2 || editCategory.name.length > 50) {
+      window.alert("Tên danh mục phải từ 3 đến 50 ký tự!");
+      return;
+    }
+    if (editCategory.slug.length < 2 || editCategory.slug.length > 100) {
+      window.alert("Slug phải từ 3 đến 100 ký tự!");
+      return;
+    }
+  
     try {
       await updateCategory(editCategory._id, editCategory);
-      setSuccess("Danh mục đã được cập nhật thành công");
-      setError("");
+      window.alert("Danh mục đã được cập nhật thành công!");
       setEditCategory(null);
       fetchCategories();
     } catch (error) {
-      setError(error.response?.data?.message || "Lỗi khi cập nhật danh mục");
-      setSuccess("");
+      window.alert(error.response?.data?.message || "Lỗi khi cập nhật danh mục");
     }
   };
+  
 
   const renderCategories = (categories, level = 0) => {
     return categories.map((category) => (
@@ -88,9 +107,10 @@ const CategoryManagement = () => {
           <span className={styles.categoryName}>
             {category.name} - {category.slug}
           </span>
-          <button id="chinhsuaDM" className={styles.editButton} onClick={() => handleEditCategory(category)}>
+          <button id={`chinhsuaDM-${category._id}`}  className={styles.editButton} onClick={() => handleEditCategory(category)}>
             Chỉnh sửa
           </button>
+          
           <button
                   id={`xoaDM-${category._id}`}
   className={styles.deleteButton}
@@ -103,12 +123,47 @@ const CategoryManagement = () => {
       </React.Fragment>
     ));
   };
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
+  const handleSearch = () => {
+    const result = categories.filter(category => 
+      category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      category.slug.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    setFilteredCategories(result);
+    setSearched(true);
+  
+    if (result.length > 0) {
+      toast.success('Đã tìm thấy danh mục!', { toastId: 'search-toast' });
+    } else {
+      toast.error('Không tìm thấy danh mục nào!', { toastId: 'search-toast' });
+    }
+  };
 
+  useEffect(() => {
+    if (!searched) {
+      setFilteredCategories(categories);
+    }
+  }, [categories, searched]);
   return (
     <div className={styles.categoryManagement}>
       <h2>QUẢN LÝ DANH MỤC</h2>
       {error && <p className={styles.error}>{error}</p>}
       {success && <p className={styles.success}>{success}</p>}
+      <div className={styles.searchContainer}>
+        <input
+          id="timkiemtl"
+          type="text"
+          placeholder="Tìm kiếm danh mục..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+          
+        />
+        <button onClick={handleSearch} id="buttontk" className={styles.searchButton}>Tìm kiếm</button>
+      </div>
 
       {/* Form tạo danh mục */}
       <form onSubmit={handleCreateCategory} className={styles.form}>
@@ -148,7 +203,7 @@ const CategoryManagement = () => {
 
       <div className={styles.categoryListContainer}>
         <h3>Danh sách danh mục:</h3>
-        {renderCategories(categories)}
+        {renderCategories(filteredCategories)}
       </div>
     </div>
   );

@@ -158,11 +158,13 @@ const ProductManagement = () => {
                 </td>
                 <td>{editingProduct && editingProduct._id === product._id ? 
                   <input 
-
                     type="number" 
-                    value={editingProduct.price} 
+                    value={editingProduct.price || ''} 
                     onChange={(e) => setEditingProduct({...editingProduct, price: e.target.value})}
-                  /> : `${product.price.toLocaleString('vi-VN')} đ`}</td>
+                  /> 
+                  : (product.price ? `${product.price.toLocaleString('vi-VN')} đ` : 'N/A')}
+                </td>
+
                 <td>
                   {editingProduct && editingProduct._id === product._id ? (
                     <>

@@ -4,6 +4,21 @@ import { register } from '../services/api';
 import styles from './style.component/Register.module.css';
 import { FaUser, FaEnvelope, FaLock, FaUserPlus, FaArrowLeft } from 'react-icons/fa';
 
+const createInputField = (id, type, placeholder, value, setValue, error, Icon) => (
+  <div className={styles.inputGroup}>
+    <Icon className={styles.inputIcon} />
+    <input
+      id={id}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      className={styles.input}
+    />
+    {error && <span className={styles.errorText}>{error}</span>}
+  </div>
+);
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -63,61 +78,12 @@ const Register = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            <div className={styles.inputGroup}>
-              <FaUser className={styles.inputIcon} />
-              <input
-                id="inputDKND"
-                type="text"
-                placeholder="Tên người dùng"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className={styles.input}
-              />
-              {errors.username && <span className={styles.errorText}>{errors.username}</span>}
-            </div>
+            {createInputField('inputDKND', 'text', 'Tên người dùng', username, setUsername, errors.username, FaUser)}
+            {createInputField('inputDKEM', 'email', 'Email', email, setEmail, errors.email, FaEnvelope)}
+            {createInputField('inputDKPW', 'password', 'Mật khẩu', password, setPassword, errors.password, FaLock)}
+            {createInputField('inputDKXNPW', 'password', 'Xác nhận mật khẩu', confirmPassword, setConfirmPassword, errors.confirmPassword, FaLock)}
 
-            <div className={styles.inputGroup}>
-              <FaEnvelope className={styles.inputIcon} />
-              <input
-                id="inputDKEM"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={styles.input}
-              />
-              {errors.email && <span className={styles.errorText}>{errors.email}</span>}
-            </div>
-
-            <div className={styles.inputGroup}>
-              <FaLock className={styles.inputIcon} />
-              <input
-                id="inoutDKPW"
-                type="password"
-                placeholder="Mật khẩu"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={styles.input}
-              />
-              {errors.password && <span className={styles.errorText}>{errors.password}</span>}
-            </div>
-
-            <div className={styles.inputGroup}>
-              <FaLock className={styles.inputIcon} />
-              <input
-                id="inputDKXNPW"
-                type="password"
-                placeholder="Xác nhận mật khẩu"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className={styles.input}
-              />
-              {errors.confirmPassword && (
-                <span className={styles.errorText}>{errors.confirmPassword}</span>
-              )}
-            </div>
-
-            <button type="submit" id="btndk"  className={styles.registerButton}>
+            <button type="submit" id="btndk" className={styles.registerButton}>
               <FaUserPlus className={styles.buttonIcon} /> Đăng ký
             </button>
           </form>

@@ -67,7 +67,7 @@ const HomePage = () => {
               <span className={styles.sloganText}>Phong Cách Hiện Đại</span>
             </div>
           </h1>
-          <Link to="/products" className={styles.ctaButton}>Mua Ngay</Link>
+          <Link to="/products" className={styles.ctaButton} id='btnmua'>Mua Ngay</Link>
         </div>
       </section>
        <section className={styles.valueAndNewsSection}>

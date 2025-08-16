@@ -337,6 +337,7 @@ const Checkout = () => {
 					handleAddOrUpdateAddress={handleAddOrUpdateAddress}
 					renderAddressFields={renderAddressFields}
 				/>
+				
 				{isAddingNewAddress && (
 					<form onSubmit={handleAddOrUpdateAddress} className={styles.newAddressForm}>
 						{renderAddressFields(editingAddress || newAddress)}

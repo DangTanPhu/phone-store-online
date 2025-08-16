@@ -271,12 +271,13 @@ const ProductList = () => {
               <div className={styles.productInfo}>
                 <h2 className={styles.productName}>{product.name}</h2>
                 <p className={styles.productPrice}>
-                  {product.price.toLocaleString('vi-VN')} đ
-                </p>
+  {product.price ? `${product.price.toLocaleString('vi-VN')} đ` : 'Liên hệ'}
+</p>
               </div>
             </Link>
             <div className={styles.productActions}>
               <button 
+              id={`addToCartBtn-${product._id}`} 
                 className={`${styles.actionButton} ${styles.addToCart}`}
                 onClick={(e) => handleAddToCart(e, product)}
                 disabled={addingToCart[product._id]}

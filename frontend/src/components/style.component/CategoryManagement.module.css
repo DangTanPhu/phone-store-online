@@ -176,3 +176,54 @@ select:focus {
     font-size: 14px;
   }
 }
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #333333;
+  border-radius: 8px;
+}
+
+.searchBar input {
+  flex-grow: 1;
+  border: 1px solid #ff0000;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #262626;
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+  }
+  
+  .searchBar input:focus {
+    border-color: #ff4d4d;
+    outline: none;
+  }
+.pagination{
+  border-radius: 5%;
+  display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+   margin-top: 5px;
+}
+/* Nút search */
+.searchButton {
+  background-color: #007bff; /* Màu xanh dương */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.searchButton:hover {
+  background-color: #0056b3; /* Màu xanh đậm khi hover */
+}
+
+.searchButton:active {
+  transform: scale(0.95); /* Hiệu ứng nhấn xuống */
+}

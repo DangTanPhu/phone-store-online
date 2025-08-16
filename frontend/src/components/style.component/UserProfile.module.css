@@ -1,20 +1,18 @@
 .profileContainer {
     max-width: 1200px;
+    margin: 40px auto;
     padding: 20px;
-    background: #1a1a1a; /* Dark background for a bold look */
+    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
-    font-family: "Playfair Display", serif;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
 .title {
     font-size: 28px;
-    color: #ffffff; /* Bright red for strong heading presence */
+    color: #333;
     text-align: center;
     margin-bottom: 30px;
     position: relative;
-    font-weight: 700;
-    font-family: "Playfair Display", serif;
 }
 
 .title:after {
@@ -25,29 +23,26 @@
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: #ffffff; /* Darker red for contrast */
+    background: #000;
 }
 
 .profileInfo {
-    background: #262626;
-    color: #ffffff;
+    background: #f8f9fa;
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.2);
 }
 
 .profileInfo p {
-    margin: 13px 0;
+    margin: 15px 0;
     font-size: 16px;
-    color: #ffffff;
-  
+    color: #555;
 }
 
 .profileInfo strong {
     display: inline-block;
-    width: 200px;
-    color: #ffffff; /* Lighter red for contrast */
+    width: 120px;
+    color: #333;
 }
 
 .form {
@@ -62,27 +57,22 @@
 .formGroup label {
     display: block;
     margin-bottom: 8px;
-    color: #ffffff;
-    font-weight: 600;
-    font-family: "Playfair Display", serif;
+    color: #555;
+    font-weight: 500;
 }
 
 .formGroup input,
 .formGroup select {
-    width: 50%;
+    width: 100%;
     padding: 12px;
-    border: 1px solid #cc0000;
+    border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 15px;
-    transition: border-color 0.3s ease;
-    background-color: #333333; /* Darker background for inputs */
-    color: #ffffff;
-    font-family: "Playfair Display", serif;
 }
 
 .formGroup input:focus,
 .formGroup select:focus {
-    border-color: #ffffff;
+    border-color: #000;
     outline: none;
 }
 
@@ -94,18 +84,16 @@
 }
 
 .addressCard {
-    background: #262626;
-    border: 1px solid #ffffff;
+    background: #fff;
+    border: 1px solid #eee;
     border-radius: 8px;
     padding: 20px;
     position: relative;
     transition: all 0.3s ease;
-    color: #ffffff;
-    font-family: "Playfair Display", serif;
 }
 
 .addressCard:hover {
-    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transform: translateY(-2px);
 }
 
@@ -114,16 +102,14 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-
 }
 
 .defaultBadge {
-    background: #ff0000;
+    background: #4CAF50;
     color: white;
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
-    font-family: "Playfair Display", serif;
 }
 
 .addressActions {
@@ -139,25 +125,20 @@
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
-    font-family: "Playfair Display", serif;
-}
-
-.actionButton:hover {
-    opacity: 0.9;
 }
 
 .editButton {
-    background: #12c95b;
+    background: #000;
     color: white;
 }
 
 .deleteButton {
-    background: #000000;
+    background: #dc3545;
     color: white;
 }
 
 .defaultButton {
-    background: #cc0000;
+    background: #4CAF50;
     color: white;
 }
 
@@ -167,29 +148,19 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     transition: all 0.3s ease;
-    font-family: "Playfair Display", serif;
 }
 
 .submitButton {
-    background: #ff1a1a;
+    background: #000;
     color: white;
     margin-right: 10px;
-    margin-top: 32px;
-}
-
-.submitButton:hover {
-    background: #cc0000;
 }
 
 .cancelButton {
-    background: #4d4d4d;
+    background: #6c757d;
     color: white;
-}
-
-.cancelButton:hover {
-    background: #333333;
 }
 
 @media (max-width: 768px) {
@@ -229,7 +200,4 @@
     .formGroup label {
         font-size: 14px;
     }
-}
-.subtitle{
-    color: #ffffff;
 }

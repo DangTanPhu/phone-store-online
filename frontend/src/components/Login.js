@@ -1,5 +1,90 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import AuthFacade from '../services/authFacade'; // Import Facade
+import styles from './style.component/Login.module.css';
+import { FaEnvelope, FaLock, FaSignInAlt, FaUserPlus, FaKey, FaGoogle, FaFacebook } from 'react-icons/fa';
+
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    AuthFacade.loginWithEmail(email, password, login, navigate);
+  };
+
+  const handleGoogleLogin = useCallback(() => {
+    AuthFacade.loginWithGoogle(login, navigate);
+  }, [login, navigate]);
+
+  const handleFacebookLogin = useCallback(() => {
+    AuthFacade.loginWithFacebook(login, navigate);
+  }, [login, navigate]);
+
+  return (
+    <div className={styles.loginPage}>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginForm}>
+          <h1 className={styles.loginTitle}>Đăng nhập</h1>
+          <p className={styles.loginSubtitle}>Chào mừng bạn đến với thế giới điện thoại của chúng tôi</p>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.inputGroup}>
+              <FaEnvelope className={styles.inputIcon} />
+              <input
+                id="email"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className={styles.input}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <FaLock className={styles.inputIcon} />
+              <input
+                id="password"
+                type="password"
+                placeholder="Mật khẩu"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className={styles.input}
+              />
+            </div>
+            <button type="submit" id="btndn" className={styles.loginButton}>
+              Đăng nhập
+            </button>
+          </form>
+          <div className={styles.socialLogin}>
+            <button onClick={handleGoogleLogin} className={`${styles.socialButton} ${styles.googleButton}`}>
+              <FaGoogle className={styles.buttonIcon} /> Google
+            </button>
+            <button onClick={handleFacebookLogin} className={`${styles.socialButton} ${styles.facebookButton}`}>
+              <FaFacebook className={styles.buttonIcon} /> Facebook
+            </button>
+          </div>
+          <div className={styles.loginFooter}>
+            <Link to="/forgot-password" className={styles.footerLink}>
+              <FaKey className={styles.linkIcon} /> Quên mật khẩu?
+            </Link>
+            <Link to="/register" className={styles.footerLink}>
+              <FaUserPlus className={styles.linkIcon} /> Tạo tài khoản mới
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+
+/*import React, { useState, useCallback } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { login as apiLogin, loginWithGoogle, loginWithFacebook } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import styles from './style.component/Login.module.css';
@@ -72,8 +157,7 @@ const Login = () => {
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginContainer}>
-        {/* <div className={styles.loginImage}>
-        </div> */}
+        {}
         <div className={styles.loginForm}>
           <h1 className={styles.loginTitle}>Đăng nhập</h1>
           <p className={styles.loginSubtitle}>Chào mừng bạn đến với thế giới điện thoại của chúng tôi</p>
@@ -104,7 +188,7 @@ const Login = () => {
               />
             </div>
             <button type="submit" id='btndn' className={styles.loginButton}>
-              {/* <FaSignInAlt className={styles.buttonIcon} /> Đăng nhập */}
+              { }
               Đăng nhập
             </button>
           </form>
@@ -130,4 +214,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;*/
